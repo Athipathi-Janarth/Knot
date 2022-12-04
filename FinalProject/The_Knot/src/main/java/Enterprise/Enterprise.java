@@ -22,7 +22,7 @@ public abstract class Enterprise /*extends Organization */{
 //    }
 
     public enum EnterpriseType {
-        FoodManagement("Food Management"), EventDecor("Event Decor"), Grooming("Grooming"), FInance("Finance");
+        FoodManagement("Food Management"), EventDecor("Event Decor"), Grooming("Grooming"), Finance("Finance");
 
         private String value;
 
@@ -49,7 +49,7 @@ public abstract class Enterprise /*extends Organization */{
     }
 
     public Enterprise(String name, EnterpriseType type) {
-        super(name);
+        //super(name);
         this.enterpriseType = type;
 //        organizationDirectory = new OrganizationDirectory();
     }
