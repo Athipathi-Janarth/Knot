@@ -14,10 +14,11 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
      * Creates new form mainPanelSysadmin
      */
     networkPanel network = new networkPanel();
+    enterprisePanel enterprise = new enterprisePanel();
+    manageAdminPanel manageAdmin=new manageAdminPanel();
     public mainPanelSysadmin() {
         initComponents();
         splitPane.setRightComponent(network);
-        //splitPane.setResizeWeight(1.5);
     }
 
     /**
@@ -60,10 +61,20 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
         btnEnterprise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/manageIcon.png"))); // NOI18N
         btnEnterprise.setText("       Manage Enterprises");
         btnEnterprise.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnterpriseActionPerformed(evt);
+            }
+        });
 
         btnAdmins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/admins.png"))); // NOI18N
         btnAdmins.setText("       Manage Admins");
         btnAdmins.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAdmins.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout sysAdminMenuPanelLayout = new javax.swing.GroupLayout(sysAdminMenuPanel);
         sysAdminMenuPanel.setLayout(sysAdminMenuPanelLayout);
@@ -123,6 +134,16 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
         splitPane.setRightComponent(network);
         
     }//GEN-LAST:event_btnNetworkActionPerformed
+
+    private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseActionPerformed
+        // TODO add your handling code here:
+        splitPane.setRightComponent(enterprise);
+    }//GEN-LAST:event_btnEnterpriseActionPerformed
+
+    private void btnAdminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminsActionPerformed
+        // TODO add your handling code here:
+        splitPane.setRightComponent(manageAdmin);
+    }//GEN-LAST:event_btnAdminsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
