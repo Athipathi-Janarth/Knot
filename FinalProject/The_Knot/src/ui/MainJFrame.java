@@ -4,7 +4,9 @@
  */
 package ui;
 
+import java.awt.CardLayout;
 import java.awt.Color;
+import uiSystemAdmin.mainPanelSysadmin;
 
 /**
  *
@@ -21,8 +23,10 @@ public class MainJFrame extends javax.swing.JFrame {
         setResizable(false);
         loginPanel.setVisible(true);
         upperPanel.setVisible(false);
-        mainPanel.setVisible(true);
+        mainPanel.setVisible(false);
+        registerPanel.setVisible(false);
         loginForm.setBackground(new Color(0,0,0,50));
+        registerForm.setBackground(new Color(0,0,0,50));
     }
 
     /**
@@ -42,11 +46,16 @@ public class MainJFrame extends javax.swing.JFrame {
         txtPwd = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        logoImg1 = new javax.swing.JLabel();
         defaultBackground = new javax.swing.JLabel();
+        registerPanel = new javax.swing.JPanel();
+        registerForm = new javax.swing.JPanel();
+        logoImg2 = new javax.swing.JLabel();
+        defaultBackground1 = new javax.swing.JLabel();
         upperPanel = new javax.swing.JPanel();
         logoImg = new javax.swing.JLabel();
         logoutImg = new javax.swing.JLabel();
+        headerBackgroundImg = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,8 +88,13 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        logoImg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout loginFormLayout = new javax.swing.GroupLayout(loginForm);
         loginForm.setLayout(loginFormLayout);
@@ -105,13 +119,13 @@ public class MainJFrame extends javax.swing.JFrame {
                             .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(loginFormLayout.createSequentialGroup()
                         .addGap(122, 122, 122)
-                        .addComponent(jLabel3)))
+                        .addComponent(logoImg1)))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         loginFormLayout.setVerticalGroup(
             loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loginFormLayout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoImg1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -136,6 +150,36 @@ public class MainJFrame extends javax.swing.JFrame {
 
         getContentPane().add(loginPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 700));
 
+        registerPanel.setLayout(null);
+
+        logoImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+
+        javax.swing.GroupLayout registerFormLayout = new javax.swing.GroupLayout(registerForm);
+        registerForm.setLayout(registerFormLayout);
+        registerFormLayout.setHorizontalGroup(
+            registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerFormLayout.createSequentialGroup()
+                .addGap(387, 387, 387)
+                .addComponent(logoImg2)
+                .addContainerGap(413, Short.MAX_VALUE))
+        );
+        registerFormLayout.setVerticalGroup(
+            registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logoImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(506, Short.MAX_VALUE))
+        );
+
+        registerPanel.add(registerForm);
+        registerForm.setBounds(80, 30, 1040, 570);
+
+        defaultBackground1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wedding-Background_Image.jpeg"))); // NOI18N
+        registerPanel.add(defaultBackground1);
+        defaultBackground1.setBounds(0, 0, 1210, 700);
+
+        getContentPane().add(registerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 700));
+
         logoImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
 
         logoutImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout.png"))); // NOI18N
@@ -145,38 +189,41 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        headerBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wedding-Background_Image.jpeg"))); // NOI18N
+        headerBackgroundImg.setMaximumSize(new java.awt.Dimension(1300, 800));
+        headerBackgroundImg.setMinimumSize(new java.awt.Dimension(1300, 800));
+        headerBackgroundImg.setPreferredSize(new java.awt.Dimension(1300, 800));
+        headerBackgroundImg.setSize(new java.awt.Dimension(1210, 66));
+
         javax.swing.GroupLayout upperPanelLayout = new javax.swing.GroupLayout(upperPanel);
         upperPanel.setLayout(upperPanelLayout);
         upperPanelLayout.setHorizontalGroup(
             upperPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(upperPanelLayout.createSequentialGroup()
                 .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 847, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 851, Short.MAX_VALUE)
                 .addComponent(logoutImg, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(18, 18, 18))
+            .addGroup(upperPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(upperPanelLayout.createSequentialGroup()
+                    .addComponent(headerBackgroundImg, javax.swing.GroupLayout.PREFERRED_SIZE, 1209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         upperPanelLayout.setVerticalGroup(
             upperPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(upperPanelLayout.createSequentialGroup()
-                .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(logoutImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(upperPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(upperPanelLayout.createSequentialGroup()
+                    .addComponent(headerBackgroundImg, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(upperPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 90));
+        getContentPane().add(upperPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 70));
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1210, Short.MAX_VALUE)
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1210, 610));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1210, 630));
+        mainPanel.setLayout(new java.awt.CardLayout());
+        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1210, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -190,15 +237,30 @@ public class MainJFrame extends javax.swing.JFrame {
         loginPanel.setVisible(false);
         upperPanel.setVisible(true);
         mainPanel.setVisible(true);
+        mainPanelSysadmin syspanel= new mainPanelSysadmin();
+        //syspanel.setSize(1310, 630);
+        mainPanel.add("workArea",syspanel);
+            
+            CardLayout layout = (CardLayout) mainPanel.getLayout();
+            layout.next(mainPanel);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void logoutImgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutImgMouseClicked
         // TODO add your handling code here:
-        loginPanel.setVisible(true);
-        upperPanel.setVisible(false);
-        mainPanel.setVisible(false);
+        logout();
     }//GEN-LAST:event_logoutImgMouseClicked
 
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        // TODO add your handling code here:
+        loginPanel.setVisible(false);
+        upperPanel.setVisible(false);
+        mainPanel.setVisible(false);
+        registerPanel.setVisible(true);
+    }//GEN-LAST:event_btnRegisterActionPerformed
+    public void logout(){
+        loginPanel.setVisible(true);
+        upperPanel.setVisible(false);
+        mainPanel.setVisible(false);}
     /**
      * @param args the command line arguments
      */
@@ -238,14 +300,19 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
     private javax.swing.JLabel defaultBackground;
+    private javax.swing.JLabel defaultBackground1;
+    private javax.swing.JLabel headerBackgroundImg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel loginForm;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel logoImg;
+    private javax.swing.JLabel logoImg1;
+    private javax.swing.JLabel logoImg2;
     private javax.swing.JLabel logoutImg;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel registerForm;
+    private javax.swing.JPanel registerPanel;
     private javax.swing.JPasswordField txtPwd;
     private javax.swing.JTextField txtuserName;
     private javax.swing.JPanel upperPanel;
