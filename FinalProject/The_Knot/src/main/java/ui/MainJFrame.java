@@ -4,6 +4,15 @@
  */
 package ui;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
+
+
 /**
  *
  * @author athipathi
@@ -17,7 +26,10 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("The Knot");
         setResizable(false);
-
+        loginPanel.setVisible(true);
+        mainPanel.setVisible(false);
+        upperPanel.setVisible(false);
+        
     }
 
     /**
@@ -29,18 +41,67 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        upperPanel = new javax.swing.JPanel();
+        lblLogout = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
+        mainPanel = new javax.swing.JPanel();
+        loginPanel = new javax.swing.JPanel();
+        lblLoginBackground = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 632, Short.MAX_VALUE)
+        lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout.png"))); // NOI18N
+        lblLogout.setMaximumSize(new java.awt.Dimension(44, 44));
+        lblLogout.setMinimumSize(new java.awt.Dimension(44, 44));
+        lblLogout.setPreferredSize(new java.awt.Dimension(44, 44));
+        lblLogout.setSize(new java.awt.Dimension(44, 44));
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.jpeg"))); // NOI18N
+        lblLogo.setSize(new java.awt.Dimension(52, 200));
+
+        javax.swing.GroupLayout upperPanelLayout = new javax.swing.GroupLayout(upperPanel);
+        upperPanel.setLayout(upperPanelLayout);
+        upperPanelLayout.setHorizontalGroup(
+            upperPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, upperPanelLayout.createSequentialGroup()
+                .addComponent(lblLogo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 715, Short.MAX_VALUE)
+                .addComponent(lblLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
+        upperPanelLayout.setVerticalGroup(
+            upperPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(upperPanelLayout.createSequentialGroup()
+                .addGroup(upperPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(upperPanelLayout.createSequentialGroup()
+                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
+
+        getContentPane().add(upperPanel, java.awt.BorderLayout.CENTER);
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1022, Short.MAX_VALUE)
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 626, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(mainPanel, java.awt.BorderLayout.PAGE_START);
+
+        loginPanel.setLayout(null);
+
+        lblLoginBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wedding-Background_Image.jpeg"))); // NOI18N
+        loginPanel.add(lblLoginBackground);
+        lblLoginBackground.setBounds(0, 0, 1092, 692);
+
+        getContentPane().add(loginPanel, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -82,5 +143,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblLoginBackground;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblLogout;
+    private javax.swing.JPanel loginPanel;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel upperPanel;
     // End of variables declaration//GEN-END:variables
 }
