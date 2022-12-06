@@ -15,10 +15,12 @@ public class mainPanelUser extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-    planWeddingPanel plan = new planWeddingPanel();
+    planWeddingPanel planPanel = new planWeddingPanel();
+    requestsPanel requestPanel= new requestsPanel();
+    estimationsPanel estimationPanel = new estimationsPanel();
     public mainPanelUser() {
         initComponents();
-        splitPane.setRightComponent(plan);
+        splitPane.setRightComponent(planPanel);
     }
 
     /**
@@ -131,18 +133,18 @@ public class mainPanelUser extends javax.swing.JPanel {
     private void btnPlanWeddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanWeddingActionPerformed
         // TODO add your handling code here:
         
-        splitPane.setRightComponent(plan);
+        splitPane.setRightComponent(planPanel);
         
     }//GEN-LAST:event_btnPlanWeddingActionPerformed
 
     private void btnRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestsActionPerformed
         // TODO add your handling code here:
-        splitPane.setRightComponent(plan);
+        splitPane.setRightComponent(requestPanel);
     }//GEN-LAST:event_btnRequestsActionPerformed
 
     private void btnEstimationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstimationsActionPerformed
         // TODO add your handling code here:
-        splitPane.setRightComponent(plan);
+        splitPane.setRightComponent(estimationPanel);
     }//GEN-LAST:event_btnEstimationsActionPerformed
 
 
