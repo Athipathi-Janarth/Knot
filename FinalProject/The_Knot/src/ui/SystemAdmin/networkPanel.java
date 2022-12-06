@@ -79,7 +79,7 @@ public class networkPanel extends javax.swing.JPanel {
             .addGroup(adminPanelCardLayout.createSequentialGroup()
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
-                        .addGap(315, 315, 315)
+                        .addGap(257, 257, 257)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(adminPanelCardLayout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -87,9 +87,9 @@ public class networkPanel extends javax.swing.JPanel {
                                 .addComponent(txtNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
-                        .addGap(437, 437, 437)
+                        .addGap(386, 386, 386)
                         .addComponent(btnAddnetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +106,7 @@ public class networkPanel extends javax.swing.JPanel {
         );
 
         add(adminPanelCard);
-        adminPanelCard.setBounds(0, 0, 1090, 630);
+        adminPanelCard.setBounds(0, 0, 960, 630);
 
         adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/adminBg.jpeg"))); // NOI18N
         adminBackgroundImg.setPreferredSize(new java.awt.Dimension(977, 630));
