@@ -12,6 +12,7 @@ import ui.SystemAdmin.mainPanelSysadmin;
 import ui.DecorAdmin.mainPanelDecorAdmin;
 import ui.GroomingAdmin.mainPanelGroomingAdmin;
 import ui.FinanceAdmin.mainPanelFinanceAdmin;
+import ui.User.mainPanelUser;
 
 /**
  *
@@ -361,8 +362,9 @@ public class MainJFrame extends javax.swing.JFrame {
         mainPanelGroomingAdmin groomingpanel = new mainPanelGroomingAdmin();
         mainPanelFinanceAdmin financepanel = new mainPanelFinanceAdmin();
         mainPanelBaker bakerpanel= new mainPanelBaker();
+        mainPanelUser userpanel=new mainPanelUser();
         //syspanel.setSize(1310, 630);
-        mainPanel.add("workArea",foodpanel);
+        mainPanel.add("workArea",userpanel);
         
             
             CardLayout layout = (CardLayout) mainPanel.getLayout();
