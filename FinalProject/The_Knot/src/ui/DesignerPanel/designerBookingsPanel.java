@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.BakerPanel;
+package ui.DesignerPanel;
 
 import ui.SystemAdmin.*;
 import java.awt.Color;
@@ -11,12 +11,12 @@ import java.awt.Color;
  *
  * @author vikashsingh
  */
-public class bakerBookingsPanel extends javax.swing.JPanel {
+public class designerBookingsPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form networkPanel
      */
-    public bakerBookingsPanel() {
+    public designerBookingsPanel() {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
@@ -53,7 +53,7 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "User", "Package", "Theme", "Price", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -79,7 +79,7 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "User", "Package", "Theme", "Price", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -142,7 +142,6 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
         adminPanelCard.setBounds(0, 0, 1090, 630);
 
         adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/weddingcake.jpeg"))); // NOI18N
-        adminBackgroundImg.setPreferredSize(new java.awt.Dimension(977, 630));
         add(adminBackgroundImg);
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents

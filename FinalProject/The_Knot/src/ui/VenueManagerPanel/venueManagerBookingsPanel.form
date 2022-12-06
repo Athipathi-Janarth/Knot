@@ -93,7 +93,7 @@
                   <Table columnCount="5" rowCount="4">
                     <Column editable="true" title="User" type="java.lang.String"/>
                     <Column editable="true" title="Booking Date" type="java.lang.String"/>
-                    <Column editable="true" title="Item" type="java.lang.String"/>
+                    <Column editable="true" title="Capacity" type="java.lang.String"/>
                     <Column editable="true" title="Price" type="java.lang.String"/>
                     <Column editable="true" title="Status" type="java.lang.String"/>
                   </Table>
@@ -161,7 +161,7 @@
                   <Table columnCount="5" rowCount="4">
                     <Column editable="true" title="User" type="java.lang.String"/>
                     <Column editable="true" title="Booking Date" type="java.lang.String"/>
-                    <Column editable="true" title="Item" type="java.lang.String"/>
+                    <Column editable="true" title="Capacity" type="java.lang.String"/>
                     <Column editable="true" title="Price" type="java.lang.String"/>
                     <Column editable="true" title="Status" type="java.lang.String"/>
                   </Table>

@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.BakerPanel;
+package ui.DecorationPanel;
 
 import ui.SystemAdmin.*;
 import java.awt.Color;
 
 /**
  *
- * @author vikashsingh
+ * @author athipathi
  */
-public class bakerItemsPanel extends javax.swing.JPanel {
+public class decorationItemsPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form networkPanel
      */
-    public bakerItemsPanel() {
+    public decorationItemsPanel() {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
@@ -54,17 +54,17 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         ItemsTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         ItemsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Item", "Flavour", "Server", "Price", "Image"
+                "User", "Package", "Theme", "Price", "Venue", "Image"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -79,19 +79,19 @@ public class bakerItemsPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Item Name");
+        jLabel1.setText("Package Type");
 
         jTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Flavour");
+        jLabel2.setText("Theme");
 
         jTextField2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Serves");
+        jLabel3.setText("Venue");
 
         jTextField3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 

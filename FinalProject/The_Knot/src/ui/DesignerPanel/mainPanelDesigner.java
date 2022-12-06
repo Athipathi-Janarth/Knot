@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.BakerPanel;
+package ui.DesignerPanel;
 
 import ui.SystemAdmin.*;
 
@@ -10,14 +10,14 @@ import ui.SystemAdmin.*;
  *
  * @author vikashsingh
  */
-public class mainPanelBaker extends javax.swing.JPanel {
+public class mainPanelDesigner extends javax.swing.JPanel {
 
     /**
      * Creates new form mainPanelSysadmin
      */
-   bakerBookingsPanel bookings= new bakerBookingsPanel();
-   bakerItemsPanel menu=new bakerItemsPanel();
-    public mainPanelBaker() {
+   designerBookingsPanel bookings= new designerBookingsPanel();
+   designerItemsPanel menu=new designerItemsPanel();
+    public mainPanelDesigner() {
         initComponents();
         splitPane.setRightComponent(bookings);
     }
@@ -47,7 +47,7 @@ public class mainPanelBaker extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcome Baker!");
+        jLabel1.setText("Welcome Designer!");
 
         btnBookings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/schedules.png"))); // NOI18N
         btnBookings.setText("       View Bookings");

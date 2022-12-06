@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.BakerPanel;
+package ui.DesignerPanel;
 
 import ui.SystemAdmin.*;
 import java.awt.Color;
@@ -11,12 +11,12 @@ import java.awt.Color;
  *
  * @author vikashsingh
  */
-public class bakerItemsPanel extends javax.swing.JPanel {
+public class designerItemsPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form networkPanel
      */
-    public bakerItemsPanel() {
+    public designerItemsPanel() {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
@@ -60,7 +60,7 @@ public class bakerItemsPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Item", "Flavour", "Server", "Price", "Image"
+                "User", "Package", "Theme", "Price", "Image"
             }
         ) {
             Class[] types = new Class [] {
@@ -79,19 +79,19 @@ public class bakerItemsPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Item Name");
+        jLabel1.setText("User");
 
         jTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Flavour");
+        jLabel2.setText("Package");
 
         jTextField2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Serves");
+        jLabel3.setText("Theme");
 
         jTextField3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
