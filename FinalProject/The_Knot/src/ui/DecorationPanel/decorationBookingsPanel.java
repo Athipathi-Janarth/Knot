@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.BakerPanel;
+package ui.DecorationPanel;
 
 import ui.SystemAdmin.*;
 import java.awt.Color;
 
 /**
  *
- * @author vikashsingh
+ * @author athipathi
  */
-public class bakerBookingsPanel extends javax.swing.JPanel {
+public class decorationBookingsPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form networkPanel
      */
-    public bakerBookingsPanel() {
+    public decorationBookingsPanel() {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
@@ -53,7 +53,7 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "User", "Package", "Theme", "Price", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -79,7 +79,7 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "User", "Package", "Theme", "Price", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -118,7 +118,7 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
                         .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +139,7 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
         );
 
         add(adminPanelCard);
-        adminPanelCard.setBounds(0, 0, 970, 630);
+        adminPanelCard.setBounds(0, 0, 1090, 630);
 
         adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/weddingcake.jpeg"))); // NOI18N
         add(adminBackgroundImg);

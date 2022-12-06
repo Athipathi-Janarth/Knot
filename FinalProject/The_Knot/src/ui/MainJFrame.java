@@ -13,6 +13,11 @@ import ui.DecorAdmin.mainPanelDecorAdmin;
 import ui.GroomingAdmin.mainPanelGroomingAdmin;
 import ui.FinanceAdmin.mainPanelFinanceAdmin;
 import ui.User.mainPanelUser;
+import ui.CatererPanel.mainPanelCaterer;
+import ui.VenueManagerPanel.mainPanelVenueManager;
+import ui.DecorationPanel.mainPanelDecoration;
+import ui.StylistPanel.mainPanelStylist;
+import ui.DesignerPanel.mainPanelDesigner;
 
 /**
  *
@@ -363,6 +368,12 @@ public class MainJFrame extends javax.swing.JFrame {
         mainPanelFinanceAdmin financepanel = new mainPanelFinanceAdmin();
         mainPanelBaker bakerpanel= new mainPanelBaker();
         mainPanelUser userpanel=new mainPanelUser();
+        mainPanelCaterer catererpanel = new mainPanelCaterer();
+        mainPanelVenueManager venuepanel = new mainPanelVenueManager();
+        mainPanelDecoration decorationpanel = new mainPanelDecoration();
+        mainPanelStylist stylistpanel = new mainPanelStylist();
+        mainPanelDesigner designerpanel = new mainPanelDesigner();
+        
         //syspanel.setSize(1310, 630);
         mainPanel.add("workArea",userpanel);
         
