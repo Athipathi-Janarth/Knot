@@ -6,7 +6,11 @@ package ui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import ui.FoodAdmin.mainPanelFoodAdmin;
 import ui.SystemAdmin.mainPanelSysadmin;
+import ui.DecorAdmin.mainPanelDecorAdmin;
+import ui.GroomingAdmin.mainPanelGroomingAdmin;
+import ui.FinanceAdmin.mainPanelFinanceAdmin;
 
 /**
  *
@@ -51,7 +55,6 @@ public class MainJFrame extends javax.swing.JFrame {
         registerPanel = new javax.swing.JPanel();
         registerForm = new javax.swing.JPanel();
         logoImg2 = new javax.swing.JLabel();
-        backImg = new javax.swing.JLabel();
         defaultBackground1 = new javax.swing.JLabel();
         upperPanel = new javax.swing.JPanel();
         logoImg = new javax.swing.JLabel();
@@ -155,31 +158,20 @@ public class MainJFrame extends javax.swing.JFrame {
 
         logoImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
 
-        backImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
-        backImg.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backImgMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout registerFormLayout = new javax.swing.GroupLayout(registerForm);
         registerForm.setLayout(registerFormLayout);
         registerFormLayout.setHorizontalGroup(
             registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registerFormLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(backImg)
-                .addGap(321, 321, 321)
+                .addGap(387, 387, 387)
                 .addComponent(logoImg2)
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addContainerGap(413, Short.MAX_VALUE))
         );
         registerFormLayout.setVerticalGroup(
             registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registerFormLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(logoImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backImg))
+                .addComponent(logoImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(506, Short.MAX_VALUE))
         );
 
@@ -202,9 +194,6 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         headerBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wedding-Background_Image.jpeg"))); // NOI18N
-        headerBackgroundImg.setMaximumSize(new java.awt.Dimension(1300, 800));
-        headerBackgroundImg.setMinimumSize(new java.awt.Dimension(1300, 800));
-        headerBackgroundImg.setPreferredSize(new java.awt.Dimension(1300, 800));
         headerBackgroundImg.setSize(new java.awt.Dimension(1210, 66));
 
         javax.swing.GroupLayout upperPanelLayout = new javax.swing.GroupLayout(upperPanel);
@@ -250,8 +239,13 @@ public class MainJFrame extends javax.swing.JFrame {
         upperPanel.setVisible(true);
         mainPanel.setVisible(true);
         mainPanelSysadmin syspanel= new mainPanelSysadmin();
+        mainPanelFoodAdmin foodpanel = new mainPanelFoodAdmin();
+        mainPanelDecorAdmin decorpanel = new mainPanelDecorAdmin();
+        mainPanelGroomingAdmin groomingpanel = new mainPanelGroomingAdmin();
+        mainPanelFinanceAdmin financepanel = new mainPanelFinanceAdmin();
         //syspanel.setSize(1310, 630);
-        mainPanel.add("workArea",syspanel);
+        mainPanel.add("workArea",decorpanel);
+        
             
             CardLayout layout = (CardLayout) mainPanel.getLayout();
             layout.next(mainPanel);
@@ -317,7 +311,6 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel backImg;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
     private javax.swing.JLabel defaultBackground;
