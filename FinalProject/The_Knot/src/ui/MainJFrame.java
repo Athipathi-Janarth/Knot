@@ -375,7 +375,7 @@ public class MainJFrame extends javax.swing.JFrame {
         mainPanelDesigner designerpanel = new mainPanelDesigner();
         
         //syspanel.setSize(1310, 630);
-        mainPanel.add("workArea",userpanel);
+        mainPanel.add("workArea",foodpanel);
         
             
             CardLayout layout = (CardLayout) mainPanel.getLayout();
