@@ -131,7 +131,7 @@ public class organisationPanel extends javax.swing.JPanel {
         add(adminPanelCard);
         adminPanelCard.setBounds(0, 0, 1090, 630);
 
-        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/adminBg.jpeg"))); // NOI18N
+        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/foodAdminBg.png"))); // NOI18N
         adminBackgroundImg.setPreferredSize(new java.awt.Dimension(977, 630));
         add(adminBackgroundImg);
         adminBackgroundImg.setBounds(0, 0, 1090, 630);

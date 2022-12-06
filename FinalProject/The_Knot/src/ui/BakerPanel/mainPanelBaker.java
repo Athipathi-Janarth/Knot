@@ -16,6 +16,7 @@ public class mainPanelBaker extends javax.swing.JPanel {
      * Creates new form mainPanelSysadmin
      */
    bakerBookingsPanel bookings= new bakerBookingsPanel();
+   bakerItemsPanel menu=new bakerItemsPanel();
     public mainPanelBaker() {
         initComponents();
         splitPane.setRightComponent(bookings);
@@ -124,7 +125,7 @@ public class mainPanelBaker extends javax.swing.JPanel {
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
         // TODO add your handling code here:
-        splitPane.setRightComponent(bookings);
+        splitPane.setRightComponent(menu);
     }//GEN-LAST:event_btnServicesActionPerformed
 
 
