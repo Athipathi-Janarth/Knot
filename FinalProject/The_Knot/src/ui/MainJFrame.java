@@ -6,7 +6,7 @@ package ui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import uiSystemAdmin.mainPanelSysadmin;
+import ui.SystemAdmin.mainPanelSysadmin;
 
 /**
  *
@@ -51,6 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
         registerPanel = new javax.swing.JPanel();
         registerForm = new javax.swing.JPanel();
         logoImg2 = new javax.swing.JLabel();
+        backImg = new javax.swing.JLabel();
         defaultBackground1 = new javax.swing.JLabel();
         upperPanel = new javax.swing.JPanel();
         logoImg = new javax.swing.JLabel();
@@ -154,20 +155,31 @@ public class MainJFrame extends javax.swing.JFrame {
 
         logoImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
 
+        backImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        backImg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backImgMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout registerFormLayout = new javax.swing.GroupLayout(registerForm);
         registerForm.setLayout(registerFormLayout);
         registerFormLayout.setHorizontalGroup(
             registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registerFormLayout.createSequentialGroup()
-                .addGap(387, 387, 387)
+                .addGap(24, 24, 24)
+                .addComponent(backImg)
+                .addGap(321, 321, 321)
                 .addComponent(logoImg2)
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addContainerGap(405, Short.MAX_VALUE))
         );
         registerFormLayout.setVerticalGroup(
             registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registerFormLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(logoImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(logoImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backImg))
                 .addContainerGap(506, Short.MAX_VALUE))
         );
 
@@ -257,6 +269,14 @@ public class MainJFrame extends javax.swing.JFrame {
         mainPanel.setVisible(false);
         registerPanel.setVisible(true);
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void backImgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backImgMouseClicked
+        // TODO add your handling code here:
+        loginPanel.setVisible(true);
+        upperPanel.setVisible(false);
+        mainPanel.setVisible(false);
+        registerPanel.setVisible(false);
+    }//GEN-LAST:event_backImgMouseClicked
     public void logout(){
         loginPanel.setVisible(true);
         upperPanel.setVisible(false);
@@ -297,6 +317,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backImg;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
     private javax.swing.JLabel defaultBackground;
