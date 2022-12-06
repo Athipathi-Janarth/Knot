@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.BakerPanel;
+package ui.CatererPanel;
 
 import ui.SystemAdmin.*;
 import java.awt.Color;
 
 /**
  *
- * @author vikashsingh
+ * @author athipathi
  */
-public class bakerItemsPanel extends javax.swing.JPanel {
+public class catererItemsPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form networkPanel
      */
-    public bakerItemsPanel() {
+    public catererItemsPanel() {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
@@ -60,7 +60,7 @@ public class bakerItemsPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Item", "Flavour", "Server", "Price", "Image"
+                "Item", "Cuisine", "Serves", "Price", "Image"
             }
         ) {
             Class[] types = new Class [] {
@@ -85,7 +85,7 @@ public class bakerItemsPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Flavour");
+        jLabel2.setText("Cuisine");
 
         jTextField2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
