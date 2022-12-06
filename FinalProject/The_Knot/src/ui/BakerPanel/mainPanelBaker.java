@@ -15,12 +15,10 @@ public class mainPanelBaker extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-    networkPanel network = new networkPanel();
-    enterprisePanel enterprise = new enterprisePanel();
-    manageAdminPanel manageAdmin=new manageAdminPanel();
+   bakerBookingsPanel bookings= new bakerBookingsPanel();
     public mainPanelBaker() {
         initComponents();
-        splitPane.setRightComponent(network);
+        splitPane.setRightComponent(bookings);
     }
 
     /**
@@ -120,13 +118,13 @@ public class mainPanelBaker extends javax.swing.JPanel {
     private void btnBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingsActionPerformed
         // TODO add your handling code here:
         
-        splitPane.setRightComponent(network);
+        splitPane.setRightComponent(bookings);
         
     }//GEN-LAST:event_btnBookingsActionPerformed
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
         // TODO add your handling code here:
-        splitPane.setRightComponent(enterprise);
+        splitPane.setRightComponent(bookings);
     }//GEN-LAST:event_btnServicesActionPerformed
 
 
