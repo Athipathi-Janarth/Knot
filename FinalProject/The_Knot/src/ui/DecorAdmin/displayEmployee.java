@@ -64,9 +64,9 @@ public class displayEmployee extends javax.swing.JPanel {
         adminPanelCardLayout.setHorizontalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminPanelCardLayout.createSequentialGroup()
-                .addGap(315, 315, 315)
+                .addGap(215, 215, 215)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,10 +79,10 @@ public class displayEmployee extends javax.swing.JPanel {
         add(adminPanelCard);
         adminPanelCard.setBounds(0, 0, 1090, 630);
 
-        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/adminBg.jpeg"))); // NOI18N
+        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eventdecor.jpg"))); // NOI18N
         adminBackgroundImg.setPreferredSize(new java.awt.Dimension(977, 630));
         add(adminBackgroundImg);
-        adminBackgroundImg.setBounds(0, 0, 1090, 630);
+        adminBackgroundImg.setBounds(0, 0, 1080, 630);
     }// </editor-fold>//GEN-END:initComponents
 
 
