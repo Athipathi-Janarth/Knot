@@ -6,6 +6,7 @@ package ui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import ui.BakerPanel.mainPanelBaker;
 import ui.FoodAdmin.mainPanelFoodAdmin;
 import ui.SystemAdmin.mainPanelSysadmin;
 import ui.DecorAdmin.mainPanelDecorAdmin;
@@ -359,8 +360,9 @@ public class MainJFrame extends javax.swing.JFrame {
         mainPanelDecorAdmin decorpanel = new mainPanelDecorAdmin();
         mainPanelGroomingAdmin groomingpanel = new mainPanelGroomingAdmin();
         mainPanelFinanceAdmin financepanel = new mainPanelFinanceAdmin();
+        mainPanelBaker bakerpanel= new mainPanelBaker();
         //syspanel.setSize(1310, 630);
-        mainPanel.add("workArea",decorpanel);
+        mainPanel.add("workArea",foodpanel);
         
             
             CardLayout layout = (CardLayout) mainPanel.getLayout();
