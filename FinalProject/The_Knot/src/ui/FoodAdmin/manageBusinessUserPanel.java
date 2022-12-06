@@ -91,10 +91,10 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
             .addGroup(adminPanelCardLayout.createSequentialGroup()
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
-                        .addGap(447, 447, 447)
+                        .addGap(393, 393, 393)
                         .addComponent(btnAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
-                        .addGap(315, 315, 315)
+                        .addGap(274, 274, 274)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblOrganisation, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,7 +109,7 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
                                 .addComponent(dropdownEnterprise, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtAdminName)
                                 .addComponent(txtAdminUsrName, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(274, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,12 +140,12 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         );
 
         add(adminPanelCard);
-        adminPanelCard.setBounds(0, 0, 1090, 630);
+        adminPanelCard.setBounds(0, 0, 1000, 630);
 
-        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/adminBg.jpeg"))); // NOI18N
+        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/foodAdminBg.png"))); // NOI18N
         adminBackgroundImg.setPreferredSize(new java.awt.Dimension(977, 630));
         add(adminBackgroundImg);
-        adminBackgroundImg.setBounds(0, 0, 1090, 630);
+        adminBackgroundImg.setBounds(0, 0, 980, 630);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtAdminNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminNameActionPerformed
