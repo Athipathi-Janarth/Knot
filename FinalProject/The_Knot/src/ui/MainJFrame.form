@@ -3,9 +3,6 @@
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1200, 700]"/>
-    </Property>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1200, 750]"/>
     </Property>
@@ -200,17 +197,49 @@
         <Container class="javax.swing.JPanel" name="registerForm">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="80" y="30" width="1040" height="570"/>
+              <AbsoluteConstraints x="80" y="30" width="1040" height="580"/>
             </Constraint>
           </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="387" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="backImage" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="321" max="-2" attributes="0"/>
                       <Component id="logoImg2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="413" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtyourName" min="-2" pref="271" max="-2" attributes="0"/>
+                          <Component id="lblName" min="-2" pref="71" max="-2" attributes="0"/>
+                          <Component id="txtyourZodiac" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
+                          <Component id="lblName2" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                          <Component id="txtUserName" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
+                          <Component id="lblName4" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                          <Component id="txtEmail" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
+                          <Component id="lblName6" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="225" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtyourName1" pref="271" max="32767" attributes="0"/>
+                          <Component id="lblName1" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="txtyourZodiac1" alignment="0" pref="271" max="32767" attributes="0"/>
+                          <Component id="lblName3" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="txtPassword" alignment="0" pref="271" max="32767" attributes="0"/>
+                          <Component id="lblName5" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="lblName7" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
+                          <Component id="weddingDateChooser" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnRegisterUsr" min="-2" pref="175" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="429" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -218,8 +247,65 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="logoImg2" min="-2" pref="58" max="-2" attributes="0"/>
-                      <EmptySpace pref="506" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="logoImg2" min="-2" pref="58" max="-2" attributes="0"/>
+                          <Component id="backImage" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblName" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtyourName" min="-2" pref="36" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="lblName1" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtyourName1" min="-2" pref="36" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblName2" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtyourZodiac" min="-2" pref="36" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblName3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtyourZodiac1" min="-2" pref="36" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblName4" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtUserName" min="-2" pref="36" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblName5" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtPassword" min="-2" pref="36" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblName7" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="weddingDateChooser" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblName6" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtEmail" min="-2" pref="36" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <Component id="btnRegisterUsr" min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -230,6 +316,80 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/logo.png"/>
                 </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="backImage">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/back.png"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="backImageMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblName">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Your Name"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtyourName">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblName1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Partner&apos;s Name"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtyourName1">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblName2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Your Zodiac"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtyourZodiac">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblName3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Partner&apos;s Zodiac "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtyourZodiac1">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblName4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="User Name"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtUserName">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblName5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Password"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtPassword">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblName6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Email"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtEmail">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblName7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Planned Wedding Date"/>
+              </Properties>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="weddingDateChooser">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="weddingDateChooser.setBackground(new Color(0,0,0,0));"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnRegisterUsr">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Create Account"/>
               </Properties>
             </Component>
           </SubComponents>

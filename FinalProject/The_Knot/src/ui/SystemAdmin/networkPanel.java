@@ -37,7 +37,8 @@ public class networkPanel extends javax.swing.JPanel {
         btnAddnetwork = new javax.swing.JButton();
         adminBackgroundImg = new javax.swing.JLabel();
 
-        setSize(new java.awt.Dimension(977, 630));
+        setMinimumSize(new java.awt.Dimension(977, 630));
+        setSize(new java.awt.Dimension(1090, 630));
         setLayout(null);
 
         networkTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
