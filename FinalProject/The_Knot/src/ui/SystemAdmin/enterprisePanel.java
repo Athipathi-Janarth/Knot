@@ -37,6 +37,8 @@ public class enterprisePanel extends javax.swing.JPanel {
         btnAddenterprise = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         dropdownNetwork = new javax.swing.JComboBox<>();
+        dropdownEnterprise = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setSize(new java.awt.Dimension(977, 630));
@@ -79,15 +81,18 @@ public class enterprisePanel extends javax.swing.JPanel {
 
         dropdownNetwork.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
+        dropdownEnterprise.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Enterprise Type");
+
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
         adminPanelCardLayout.setHorizontalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminPanelCardLayout.createSequentialGroup()
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(adminPanelCardLayout.createSequentialGroup()
-                        .addGap(434, 434, 434)
-                        .addComponent(btnAddenterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(315, 315, 315)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -97,9 +102,16 @@ public class enterprisePanel extends javax.swing.JPanel {
                                 .addComponent(dropdownNetwork, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtEnterpriseName, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(78, 78, 78)
+                                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEnterpriseName)
+                                    .addComponent(dropdownEnterprise, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(adminPanelCardLayout.createSequentialGroup()
+                        .addGap(438, 438, 438)
+                        .addComponent(btnAddenterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(323, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
@@ -111,13 +123,17 @@ public class enterprisePanel extends javax.swing.JPanel {
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(dropdownNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(dropdownEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEnterprise)
                     .addComponent(txtEnterpriseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                .addGap(60, 60, 60)
                 .addComponent(btnAddenterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addGap(99, 99, 99))
         );
 
         add(adminPanelCard);
@@ -134,9 +150,11 @@ public class enterprisePanel extends javax.swing.JPanel {
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JButton btnAddenterprise;
+    private javax.swing.JComboBox<String> dropdownEnterprise;
     private javax.swing.JComboBox<String> dropdownNetwork;
     private javax.swing.JTable enterpriseTable;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEnterprise;
     private javax.swing.JTextField txtEnterpriseName;
