@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.BakerPanel;
+package ui.User;
 
 import ui.SystemAdmin.*;
 import java.awt.Color;
 
 /**
  *
- * @author vikashsingh
+ * @author athipathi
  */
-public class bakerBookingsPanel extends javax.swing.JPanel {
+public class requestsPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form networkPanel
      */
-    public bakerBookingsPanel() {
+    public requestsPanel() {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
@@ -41,8 +41,11 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
         btnCancel = new javax.swing.JButton();
         adminBackgroundImg = new javax.swing.JLabel();
 
-        setSize(new java.awt.Dimension(977, 630));
+        setMinimumSize(new java.awt.Dimension(977, 630));
+        setSize(new java.awt.Dimension(1090, 630));
         setLayout(null);
+
+        adminPanelCard.setFocusable(false);
 
         requestTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -68,7 +71,7 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Order Requests");
+        jLabel1.setText("Your Requests");
 
         requestTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         requestTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -94,9 +97,9 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Upcoming / Past Orders");
+        jLabel2.setText("Orders/Bookings");
 
-        btnAccept.setText("Accept");
+        btnAccept.setText("Confirm");
 
         btnCancel.setText("Cancel");
 
@@ -140,10 +143,12 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
 
         add(adminPanelCard);
         adminPanelCard.setBounds(0, 0, 970, 630);
+        adminPanelCard.setBackground(new Color(0,0,0,100));
 
-        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/weddingcake.jpeg"))); // NOI18N
+        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wedding-Background_Image.jpeg"))); // NOI18N
+        adminBackgroundImg.setPreferredSize(new java.awt.Dimension(977, 630));
         add(adminBackgroundImg);
-        adminBackgroundImg.setBounds(0, 0, 1090, 630);
+        adminBackgroundImg.setBounds(0, 0, 970, 630);
     }// </editor-fold>//GEN-END:initComponents
 
 
