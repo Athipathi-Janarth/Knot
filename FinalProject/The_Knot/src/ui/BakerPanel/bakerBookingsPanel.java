@@ -2,20 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.SystemAdmin;
+package ui.BakerPanel;
 
+import ui.SystemAdmin.*;
 import java.awt.Color;
 
 /**
  *
  * @author athipathi
  */
-public class networkPanel extends javax.swing.JPanel {
+public class bakerBookingsPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form networkPanel
      */
-    public networkPanel() {
+    public bakerBookingsPanel() {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
@@ -37,7 +38,6 @@ public class networkPanel extends javax.swing.JPanel {
         btnAddnetwork = new javax.swing.JButton();
         adminBackgroundImg = new javax.swing.JLabel();
 
-        setMinimumSize(new java.awt.Dimension(1090, 630));
         setSize(new java.awt.Dimension(977, 630));
         setLayout(null);
 
