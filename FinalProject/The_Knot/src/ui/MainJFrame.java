@@ -4,8 +4,12 @@
  */
 package ui;
 
+import Business.EcoSystem;
+import DB4OUtil.DB4OUtil;
+import com.db4o.ObjectSet;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.ArrayList;
 import ui.BakerPanel.mainPanelBaker;
 import ui.FoodAdmin.mainPanelFoodAdmin;
 import ui.SystemAdmin.mainPanelSysadmin;
@@ -28,16 +32,26 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    private EcoSystem system;
+    private ObjectSet systems;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    public static void listResult(ObjectSet result) {
+        System.out.println(result.size());
+    }
+
     public MainJFrame() {
         initComponents();
         setTitle("The Knot");
         setResizable(false);
+        system=dB4OUtil.retrieveSystem();
+        //system = dB4OUtil.retrieveSystem();
         loginPanel.setVisible(true);
         upperPanel.setVisible(false);
         mainPanel.setVisible(false);
         registerPanel.setVisible(false);
         loginForm.setBackground(new Color(0,0,0,50));
         registerForm.setBackground(new Color(0,0,0,50));
+            
     }
 
     /**
@@ -358,6 +372,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        
+        String userName = txtuserName.getText();
+        system.setName(userName);
+        dB4OUtil.storeSystem(system);
+        
+        
         loginPanel.setVisible(false);
         upperPanel.setVisible(true);
         mainPanel.setVisible(true);
@@ -375,7 +395,7 @@ public class MainJFrame extends javax.swing.JFrame {
         mainPanelDesigner designerpanel = new mainPanelDesigner();
         
         //syspanel.setSize(1310, 630);
-        mainPanel.add("workArea",foodpanel);
+        mainPanel.add("workArea",userpanel);
         
             
             CardLayout layout = (CardLayout) mainPanel.getLayout();
@@ -403,9 +423,12 @@ public class MainJFrame extends javax.swing.JFrame {
         registerPanel.setVisible(false);
     }//GEN-LAST:event_backImageMouseClicked
     public void logout(){
+        dB4OUtil.storeSystem(system);
+        system=dB4OUtil.retrieveSystem();
         loginPanel.setVisible(true);
         upperPanel.setVisible(false);
-        mainPanel.setVisible(false);}
+        mainPanel.setVisible(false);
+    }
     /**
      * @param args the command line arguments
      */

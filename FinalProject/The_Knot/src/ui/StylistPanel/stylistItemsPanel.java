@@ -79,7 +79,7 @@ public class stylistItemsPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("User");
+        jLabel1.setText("Event Type");
 
         jTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
