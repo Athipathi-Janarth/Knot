@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Libaries">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Libaries/AbsoluteLayout-RELEASE160.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Libaries/jcalendar-1.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
