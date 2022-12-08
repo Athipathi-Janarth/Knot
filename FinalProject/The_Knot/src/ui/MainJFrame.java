@@ -43,7 +43,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("The Knot");
         setResizable(false);
-        systems=dB4OUtil.retrieveSystem();
+        system=dB4OUtil.retrieveSystem();
         //system = dB4OUtil.retrieveSystem();
         loginPanel.setVisible(true);
         upperPanel.setVisible(false);
@@ -372,15 +372,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        if(systems!=null){
-            //listResult(systems);
-        }
-        if(!txtuserName.getText().isEmpty())
-        {String userName = txtuserName.getText();
-        system= new EcoSystem();
+        
+        String userName = txtuserName.getText();
         system.setName(userName);
         dB4OUtil.storeSystem(system);
-        }
+        
         
         loginPanel.setVisible(false);
         upperPanel.setVisible(true);
@@ -428,7 +424,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_backImageMouseClicked
     public void logout(){
         dB4OUtil.storeSystem(system);
-        systems=dB4OUtil.retrieveSystem();
+        system=dB4OUtil.retrieveSystem();
         loginPanel.setVisible(true);
         upperPanel.setVisible(false);
         mainPanel.setVisible(false);
