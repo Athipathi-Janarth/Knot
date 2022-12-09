@@ -4,12 +4,20 @@
  */
 package Business;
 
+import User.CoupleUserDirectory;
+
 /**
  *
  * @author athipathi
  */
 public class EcoSystem {
     private static EcoSystem business;
+    CoupleUserDirectory coupleUserlist;
+
+    public EcoSystem() {
+        this.coupleUserlist = new CoupleUserDirectory();
+        this.Name = "System";
+    }
     String Name;
     
     
@@ -29,5 +37,16 @@ public class EcoSystem {
     }
       public static void setInstance(EcoSystem system) {
         business = system;
+    }
+      
+    public CoupleUserDirectory getCoupledirectory() {
+        if(coupleUserlist==null){
+        this.coupleUserlist = new CoupleUserDirectory();
+        }
+        return coupleUserlist;
+    }
+
+    public void setCoupledirectory(CoupleUserDirectory coupleUserlist) {
+        this.coupleUserlist = coupleUserlist;
     }
 }

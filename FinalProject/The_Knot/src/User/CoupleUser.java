@@ -20,16 +20,22 @@ public class CoupleUser {
     String partnerZodiacSign;
     String userName;
     String password;
+    String email;
     Date weddingDate;
 
-    public CoupleUser(String name, String partnerName, String zodiacSign, String partnerZodiacSign, String userName, String password, Date weddingDate) {
+    public CoupleUser(String name, String partnerName, String zodiacSign, String partnerZodiacSign, String userName, String password, String email,Date weddingDate) {
         this.name = name;
         this.partnerName = partnerName;
         this.zodiacSign = zodiacSign;
         this.partnerZodiacSign = partnerZodiacSign;
         this.userName = userName;
         this.password = password;
+        this.email = email;
         this.weddingDate = weddingDate;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public int getCoupleUserID() {
