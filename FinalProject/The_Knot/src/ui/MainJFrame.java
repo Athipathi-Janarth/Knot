@@ -6,10 +6,12 @@ package ui;
 
 import Business.EcoSystem;
 import DB4OUtil.DB4OUtil;
+import User.CoupleUser;
 import com.db4o.ObjectSet;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import ui.BakerPanel.mainPanelBaker;
 import ui.FoodAdmin.mainPanelFoodAdmin;
 import ui.SystemAdmin.mainPanelSysadmin;
@@ -35,9 +37,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private EcoSystem system;
     private ObjectSet systems;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    public static void listResult(ObjectSet result) {
-        System.out.println(result.size());
-    }
+    CoupleUser userAccount;
+    mainPanelUser userpanel;
 
     public MainJFrame() {
         initComponents();
@@ -51,6 +52,7 @@ public class MainJFrame extends javax.swing.JFrame {
         registerPanel.setVisible(false);
         loginForm.setBackground(new Color(0,0,0,50));
         registerForm.setBackground(new Color(0,0,0,50));
+        userpanel=new mainPanelUser();
             
     }
 
@@ -220,6 +222,11 @@ public class MainJFrame extends javax.swing.JFrame {
         lblName7.setText("Planned Wedding Date");
 
         btnRegisterUsr.setText("Create Account");
+        btnRegisterUsr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterUsrActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout registerFormLayout = new javax.swing.GroupLayout(registerForm);
         registerForm.setLayout(registerFormLayout);
@@ -372,30 +379,37 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        
-        String userName = txtuserName.getText();
-        system.setName(userName);
-        dB4OUtil.storeSystem(system);
-        
-        
-        loginPanel.setVisible(false);
-        upperPanel.setVisible(true);
-        mainPanel.setVisible(true);
         mainPanelSysadmin syspanel= new mainPanelSysadmin();
         mainPanelFoodAdmin foodpanel = new mainPanelFoodAdmin();
         mainPanelDecorAdmin decorpanel = new mainPanelDecorAdmin();
         mainPanelGroomingAdmin groomingpanel = new mainPanelGroomingAdmin();
         mainPanelFinanceAdmin financepanel = new mainPanelFinanceAdmin();
         mainPanelBaker bakerpanel= new mainPanelBaker();
-        mainPanelUser userpanel=new mainPanelUser();
+        
         mainPanelCaterer catererpanel = new mainPanelCaterer();
         mainPanelVenueManager venuepanel = new mainPanelVenueManager();
         mainPanelDecoration decorationpanel = new mainPanelDecoration();
         mainPanelStylist stylistpanel = new mainPanelStylist();
         mainPanelDesigner designerpanel = new mainPanelDesigner();
         
+        
+        String username=txtuserName.getText();
+        String password=txtPwd.getText();
+        userAccount = system.getCoupledirectory().authenticateUser(username, password);
+        if(userAccount==null){
+            JOptionPane.showMessageDialog(null, "No User Found");
+        }
+        else{
+            
+            loginPanel.setVisible(false);
+            upperPanel.setVisible(true);
+            mainPanel.setVisible(true);
+            mainPanel.add("workArea",userpanel);
+        }
+        
+       
         //syspanel.setSize(1310, 630);
-        mainPanel.add("workArea",userpanel);
+        
         
             
             CardLayout layout = (CardLayout) mainPanel.getLayout();
@@ -422,6 +436,38 @@ public class MainJFrame extends javax.swing.JFrame {
         mainPanel.setVisible(false);
         registerPanel.setVisible(false);
     }//GEN-LAST:event_backImageMouseClicked
+
+    private void btnRegisterUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUsrActionPerformed
+        // TODO add your handling code here:
+        if(validateCoupleUser()){
+            CoupleUser user = new CoupleUser(txtyourName.getText(),txtyourName1.getText(),txtyourZodiac.getText(),txtyourZodiac1.getText(),txtUserName.getText(),txtPassword.getText(),txtEmail.getText(),weddingDateChooser.getDate());
+            system.getCoupledirectory().createUserAccount(user);
+            JOptionPane.showMessageDialog(null, "User Created Successfully");
+            clearRegister();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please Enter All Details");
+        }
+    }//GEN-LAST:event_btnRegisterUsrActionPerformed
+    public boolean validateCoupleUser(){
+        boolean valid = true;
+        if(txtyourName.getText().isEmpty() || txtyourName1.getText().isEmpty()){
+            valid=false;
+        }
+        if(txtyourZodiac.getText().isEmpty() || txtyourZodiac1.getText().isEmpty()){
+            valid=false;
+        }
+        if(txtUserName.getText().isEmpty() || txtPassword.getText().isEmpty()){
+            valid=false;
+        }
+        if(txtEmail.getText().length()<2 || !txtEmail.getText().matches("^(.+)@(\\S+)$")){
+            valid=false;
+        }
+        if(weddingDateChooser.getDate()== null){
+        valid= false;
+        }
+        return valid;
+    }
     public void logout(){
         dB4OUtil.storeSystem(system);
         system=dB4OUtil.retrieveSystem();
@@ -429,6 +475,17 @@ public class MainJFrame extends javax.swing.JFrame {
         upperPanel.setVisible(false);
         mainPanel.setVisible(false);
     }
+    public void clearRegister(){
+        txtyourName.setText("");
+        txtyourName1.setText("");
+        txtyourZodiac.setText("");
+        txtyourZodiac1.setText("");
+        txtUserName.setText("");
+        txtPassword.setText("");
+        txtEmail.setText("");
+        weddingDateChooser.setDate(null);
+    }
+    
     /**
      * @param args the command line arguments
      */
