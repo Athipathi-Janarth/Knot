@@ -5,20 +5,20 @@
 package Roles;
 
 import javax.swing.JPanel;
-import ui.FoodAdmin.mainPanelFoodAdmin;
+import ui.StylistPanel.mainPanelStylist;
 
 /**
  *
  * @author vikashsingh
  */
-public class FoodAdminRole extends Role{
-
+public class StylistRole extends Role{
+    
     @Override
     public JPanel createWorkArea() {
-       return new mainPanelFoodAdmin();
+       return new mainPanelStylist();
        
     }
-
+    
     
     
 }
