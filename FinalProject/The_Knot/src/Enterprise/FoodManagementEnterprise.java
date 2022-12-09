@@ -11,6 +11,6 @@ package Enterprise;
 public class FoodManagementEnterprise extends Enterprise {
       
     public FoodManagementEnterprise(String name){
-        super(name,EnterpriseType.EventDecor);
+        super(name,EnterpriseType.FoodManagement);
     }
 }
