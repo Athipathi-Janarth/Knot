@@ -4,6 +4,7 @@
  */
 package Network;
 
+import Enterprise.Enterprise;
 import Enterprise.EnterpriseDirectory;
 
 /**
@@ -30,11 +31,19 @@ public class Network {
     public EnterpriseDirectory getEnterpriseDirectory() {
         return enterpriseDirectory;
     }
-
+    
     @Override
     public String toString() {
         return name;
     }
-    
+     public Enterprise retriveEnterprise(String name){
+         Enterprise ent=new Enterprise();
+        for(Enterprise enterprise : enterpriseDirectory.getEnterpriseList()){
+            if(enterprise.getEnterpriseName().equalsIgnoreCase(name)){
+                ent= enterprise;
+            }
+        }
+        return ent;
+    }
 
 }

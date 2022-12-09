@@ -12,6 +12,8 @@ public class Enterprise {
      private EnterpriseType enterpriseType;
      private String enterpriseName;
 
+   
+
     public EnterpriseType getEnterpriseType() {
         return enterpriseType;
     }
@@ -38,6 +40,7 @@ public class Enterprise {
             return value;
         }
     }
+    public Enterprise(){}
     public Enterprise(String name, EnterpriseType type) {
         this.enterpriseName=name;
         this.enterpriseType = type;

@@ -11,6 +11,6 @@ package Enterprise;
 public class GroomingEnterprise extends Enterprise {
       
     public GroomingEnterprise(String name){
-        super(name,EnterpriseType.EventDecor);
+        super(name,EnterpriseType.Grooming);
     }
 }
