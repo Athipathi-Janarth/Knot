@@ -4,7 +4,11 @@
  */
 package ui.SystemAdmin;
 
+import Business.EcoSystem;
+import Network.Network;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +19,22 @@ public class networkPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public networkPanel() {
+    EcoSystem system;
+    public networkPanel(EcoSystem system) {
         initComponents();
+        this.system=system;
+        populateNetworkTable();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
-
+       private void populateNetworkTable() {
+        DefaultTableModel model = (DefaultTableModel) networkTable.getModel();
+        model.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            Object[] row = new Object[1];
+            row[0] = network.getName();
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,12 +71,22 @@ public class networkPanel extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(networkTable);
+        if (networkTable.getColumnModel().getColumnCount() > 0) {
+            networkTable.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,6 +96,11 @@ public class networkPanel extends javax.swing.JPanel {
 
         btnAddnetwork.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnAddnetwork.setText("Add Network");
+        btnAddnetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddnetworkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -113,6 +143,24 @@ public class networkPanel extends javax.swing.JPanel {
         add(adminBackgroundImg);
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddnetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddnetworkActionPerformed
+        // TODO add your handling code here:
+        String name = txtNetwork.getText().trim();
+        if (!name.isEmpty()) {
+            if (system.isUnique(name)) {
+                Network network = system.createAndAddNetwork();
+                network.setName(name);
+                JOptionPane.showMessageDialog(null, "Network Successfully Created");
+                txtNetwork.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Network Already Exits");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Enter network name");
+        }
+        populateNetworkTable();
+    }//GEN-LAST:event_btnAddnetworkActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
