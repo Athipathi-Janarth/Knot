@@ -35,7 +35,8 @@ public class EcoSystem {
     public void setName(String Name) {
         this.Name = Name;
     }
-      public static void setInstance(EcoSystem system) {
+    
+    public static void setInstance(EcoSystem system) {
         business = system;
     }
       
