@@ -4,7 +4,9 @@
  */
 package Business;
 
+import Network.Network;
 import User.CoupleUserDirectory;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,11 +15,40 @@ import User.CoupleUserDirectory;
 public class EcoSystem {
     private static EcoSystem business;
     CoupleUserDirectory coupleUserlist;
+    ArrayList<Network> networkList;
+    
+    public Network createAndAddNetwork(){
+        Network network=new Network();
+        networkList.add(network);
+        return network;
+    }
 
     public EcoSystem() {
         this.coupleUserlist = new CoupleUserDirectory();
+        networkList=new ArrayList<Network>();
         this.Name = "System";
     }
+    
+    public ArrayList<Network> getNetworkList() {
+        if(networkList==null){
+            networkList=new ArrayList<Network>();
+        }
+        return networkList;
+    }
+
+    public void setNetworkList(ArrayList<Network> networkList) {
+        this.networkList = networkList;
+    }
+    
+    public boolean isUnique(String name){
+        for(Network network : networkList){
+            if(network.getName().equalsIgnoreCase(name)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     String Name;
     
     

@@ -4,6 +4,8 @@
  */
 package ui.SystemAdmin;
 
+import Business.EcoSystem;
+
 /**
  *
  * @author athipathi
@@ -13,11 +15,12 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-    networkPanel network = new networkPanel();
+    networkPanel network;
     enterprisePanel enterprise = new enterprisePanel();
     manageAdminPanel manageAdmin=new manageAdminPanel();
-    public mainPanelSysadmin() {
+    public mainPanelSysadmin(EcoSystem system) {
         initComponents();
+        network = new networkPanel(system);
         splitPane.setRightComponent(network);
     }
 

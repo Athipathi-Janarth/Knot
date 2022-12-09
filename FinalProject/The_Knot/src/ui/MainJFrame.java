@@ -52,7 +52,6 @@ public class MainJFrame extends javax.swing.JFrame {
         registerPanel.setVisible(false);
         loginForm.setBackground(new Color(0,0,0,50));
         registerForm.setBackground(new Color(0,0,0,50));
-        userpanel=new mainPanelUser();
             
     }
 
@@ -379,22 +378,19 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        mainPanelSysadmin syspanel= new mainPanelSysadmin();
-        mainPanelFoodAdmin foodpanel = new mainPanelFoodAdmin();
-        mainPanelDecorAdmin decorpanel = new mainPanelDecorAdmin();
-        mainPanelGroomingAdmin groomingpanel = new mainPanelGroomingAdmin();
-        mainPanelFinanceAdmin financepanel = new mainPanelFinanceAdmin();
-        mainPanelBaker bakerpanel= new mainPanelBaker();
-        
-        mainPanelCaterer catererpanel = new mainPanelCaterer();
-        mainPanelVenueManager venuepanel = new mainPanelVenueManager();
-        mainPanelDecoration decorationpanel = new mainPanelDecoration();
-        mainPanelStylist stylistpanel = new mainPanelStylist();
-        mainPanelDesigner designerpanel = new mainPanelDesigner();
+        mainPanelSysadmin syspanel= new mainPanelSysadmin(system);
         
         
         String username=txtuserName.getText();
         String password=txtPwd.getText();
+        if(username.equals("sysadmin")&& password.equals("sysadmin")){
+            mainPanel.add("workArea",syspanel);
+            loginPanel.setVisible(false);
+            upperPanel.setVisible(true);
+            mainPanel.setVisible(true);
+            clearLogin();
+        }
+        else{
         userAccount = system.getCoupledirectory().authenticateUser(username, password);
         if(userAccount==null){
             JOptionPane.showMessageDialog(null, "No User Found");
@@ -404,14 +400,15 @@ public class MainJFrame extends javax.swing.JFrame {
             loginPanel.setVisible(false);
             upperPanel.setVisible(true);
             mainPanel.setVisible(true);
+            userpanel = new mainPanelUser(userAccount);
             mainPanel.add("workArea",userpanel);
+            clearLogin();
+        }
         }
         
        
         //syspanel.setSize(1310, 630);
-        
-        
-            
+                   
             CardLayout layout = (CardLayout) mainPanel.getLayout();
             layout.next(mainPanel);
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -440,10 +437,21 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnRegisterUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUsrActionPerformed
         // TODO add your handling code here:
         if(validateCoupleUser()){
+            if(system.getCoupledirectory().checkIfUsernameIsUnique(txtUserName.getText())){
             CoupleUser user = new CoupleUser(txtyourName.getText(),txtyourName1.getText(),txtyourZodiac.getText(),txtyourZodiac1.getText(),txtUserName.getText(),txtPassword.getText(),txtEmail.getText(),weddingDateChooser.getDate());
             system.getCoupledirectory().createUserAccount(user);
             JOptionPane.showMessageDialog(null, "User Created Successfully");
+            userpanel=new mainPanelUser(user);
+            mainPanel.add("workArea",userpanel);
+            CardLayout layout = (CardLayout) mainPanel.getLayout();
+            layout.next(mainPanel);
+            
             clearRegister();
+            }
+            else{
+                txtUserName.setText("");
+                JOptionPane.showMessageDialog(null, "UserName Already Exists!!!");
+            }
         }
         else{
             JOptionPane.showMessageDialog(null, "Please Enter All Details");
@@ -483,8 +491,14 @@ public class MainJFrame extends javax.swing.JFrame {
         txtUserName.setText("");
         txtPassword.setText("");
         txtEmail.setText("");
-        weddingDateChooser.setDate(null);
     }
+    public void clearLogin(){
+        
+        txtuserName.setText("");
+        txtPwd.setText("");
+        
+    }
+    
     
     /**
      * @param args the command line arguments
