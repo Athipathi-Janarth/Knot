@@ -15,8 +15,6 @@ public class Enterprise {
      private String enterpriseName;
      private OrganizatinDirectory organizationList;
 
-   
-
     public EnterpriseType getEnterpriseType() {
         return enterpriseType;
     }

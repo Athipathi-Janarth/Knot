@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author athipathi
  */
 public class OrganizatinDirectory {
+    private static long orgId = 100;
     private ArrayList<Organization> organizationList;
 
     public OrganizatinDirectory() {
@@ -21,41 +22,43 @@ public class OrganizatinDirectory {
     public ArrayList<Organization> getOrganizationList() {
         return organizationList;
     }
-    
-    public Organization createOrganization(String name,Type type){
+
+    public Organization createOrganization(String name, Type type) {
         Organization organization = null;
-        if (type.getValue().equals(Type.Bakery.getValue())){
-            organization = new Bakery(name,type);
+        long orgId= OrganizatinDirectory.orgId;
+        if (type.getValue().equals(Type.Bakery.getValue())) {
+            organization = new Bakery(name, type);
+            organization.setId(orgId);
+            organizationList.add(organization);
+        } else if (type.getValue().equals(Type.Catering.getValue())) {
+            organization = new Catering(name, type);
+            organization.setId(orgId);
+            organizationList.add(organization);
+        } else if (type.getValue().equals(Type.Decor.getValue())) {
+            organization = new Decor(name, type);
+            organization.setId(orgId);
+            organizationList.add(organization);
+        } else if (type.getValue().equals(Type.Designer.getValue())) {
+            organization = new Designer(name, type);
+            organization.setId(orgId);
+            organizationList.add(organization);
+        } else if (type.getValue().equals(Type.Stylist.getValue())) {
+            organization = new Stylist(name, type);
+            organization.setId(orgId);
+            organizationList.add(organization);
+        } else if (type.getValue().equals(Type.Venue.getValue())) {
+            organization = new Venue(name, type);
+            organization.setId(orgId);
             organizationList.add(organization);
         }
-        else if (type.getValue().equals(Type.Catering.getValue())){
-            organization = new Catering(name,type);
-            organizationList.add(organization);
-        }
-         else if (type.getValue().equals(Type.Decor.getValue())){
-            organization = new Decor(name,type);
-            organizationList.add(organization);
-        }
-        else if (type.getValue().equals(Type.Designer.getValue())){
-            organization = new Designer(name,type);
-            organizationList.add(organization);
-        }
-        else if (type.getValue().equals(Type.Stylist.getValue())){
-            organization = new Stylist(name,type);
-            organizationList.add(organization);
-        }
-        
-        else if (type.getValue().equals(Type.Venue.getValue())){
-            organization = new Venue(name,type);
-            organizationList.add(organization);
-        }
+        OrganizatinDirectory.orgId++;
         return organization;
-    
-}
-    
-     public boolean isUnique(String name){
-        for(Organization organization : organizationList){
-            if(name.equalsIgnoreCase(organization.getName())){
+
+    }
+
+    public boolean isUnique(String name) {
+        for (Organization organization : organizationList) {
+            if (name.equalsIgnoreCase(organization.getName())) {
                 return false;
             }
         }

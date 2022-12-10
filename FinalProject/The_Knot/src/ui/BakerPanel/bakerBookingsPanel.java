@@ -4,6 +4,9 @@
  */
 package ui.BakerPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Models.Organization.Organization;
 import ui.SystemAdmin.*;
 import java.awt.Color;
 
@@ -16,8 +19,15 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public bakerBookingsPanel() {
+    
+    EcoSystem system;
+    Organization org;
+    Employee employee;
+    
+    public bakerBookingsPanel(EcoSystem system, Employee employee) {
         initComponents();
+        this.system = system;
+        this.employee = employee;
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
 

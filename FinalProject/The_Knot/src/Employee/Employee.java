@@ -18,17 +18,51 @@ public class Employee {
     Role role;
     String networkname;
     int id;
-
+    long orgId; 
+   
     public String getNetworkname() {
         return networkname;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setNetworkname(String networkname) {
+        this.networkname = networkname;
+    }
+
+    public long getOrgId() {
+        return orgId;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setOrgId(long orgId) {
+        this.orgId = orgId;
+    }
     
-    public Employee(String name, String userName, String password,Role role,String network){
+    public Employee(String name, String userName, String password,Role role,String network,long orgId){
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.role=role;
         this.networkname=network;
+        this.orgId = orgId;
     }
 
     public Role getRole() {

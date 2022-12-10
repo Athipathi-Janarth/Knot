@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class GroomingDirectory {
-   private ArrayList<Stylist> groomingDirectory; 
+   private ArrayList<Stylist> groomingDirectory = new ArrayList<>(); 
 
     public ArrayList<Stylist> getGroomingDirectory() {
         return groomingDirectory;
@@ -22,7 +22,4 @@ public class GroomingDirectory {
         this.groomingDirectory = groomingDirectory;
     }
 
-    public GroomingDirectory() {
-        
-    }
 }

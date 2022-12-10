@@ -96,6 +96,11 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         });
 
         txtAdminUsrName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtAdminUsrName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAdminUsrNameActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,6 +179,7 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String userName = txtAdminUsrName.getText();
         String password = txtAdminPwd.getText();
+<<<<<<< Updated upstream
         if ("".equals(userName)) {
             JOptionPane.showMessageDialog(null, "Please enter username");
         } else if (!system.checkIfUserIsUnique(system,userName)) {
@@ -185,12 +191,39 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
             {system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new BakerRole(),"Boston");}
             else{
              system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new CatererRole(),"Boston");}
+=======
+            if ("".equals(userName)) {
+                JOptionPane.showMessageDialog(null, "Please enter username");
+            } else if (!system.checkIfUserIsUnique(system,userName)) {
+                JOptionPane.showMessageDialog(null, "Please enter unique username");
+            } else if ("".equals(password)) {
+                JOptionPane.showMessageDialog(null, "Please enter password");
+            } else {
+            for(Organization org:ent.getOrganizationList().getOrganizationList()){
+                if(org.getName().equals(dropdownEnterprise.getSelectedItem()))
+                    this.org=org;
+            }
+            if(this.org.getType()==Organization.Type.Bakery)
+            {
+                system.getEmployeedirectory().createEmployee(txtAdminName.getText(),  userName, password, new BakerRole(),net.getName(), this.org.getId());
+                this.org.getEmployees().createEmployee(txtAdminName.getText(),userName, password, new BakerRole(),net.getName(), this.org.getId());
+            }
+            else {
+             system.getEmployeedirectory().createEmployee(userName, txtAdminName.getText(), password, new CatererRole(),net.getName(), this.org.getId());
+             this.org.getEmployees().createEmployee(userName, txtAdminName.getText(), password, new CatererRole(),net.getName(), this.org.getId());
+            }
+            
+>>>>>>> Stashed changes
             JOptionPane.showMessageDialog(null, "User Account Created");
             txtAdminUsrName.setText("");
             txtAdminPwd.setText("");
             txtAdminName.setText("");
         }
     }//GEN-LAST:event_btnAddUserActionPerformed
+
+    private void txtAdminUsrNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminUsrNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAdminUsrNameActionPerformed
     private void populateCombo(){
         dropdownNetwork.removeAllItems();
         dropdownEnterprise.removeAllItems();
