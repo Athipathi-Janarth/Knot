@@ -4,6 +4,7 @@
  */
 package ui.SingleUser;
 
+import Business.EcoSystem;
 import ui.User.*;
 import User.CoupleUser;
 import User.SingleUser;
@@ -18,12 +19,13 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-    planWeddingPanel planPanel = new planWeddingPanel();
+    findMatchPanel planPanel;
     requestsPanel requestPanel= new requestsPanel();
     estimationsPanel estimationPanel = new estimationsPanel();
-    public mainPanelSingleUser(SingleUser user) {
+    public mainPanelSingleUser(EcoSystem system,SingleUser user) {
         initComponents();
         jLabel1.setText("Welcome "+user.getName());
+        planPanel = new findMatchPanel(system);
         splitPane.setRightComponent(planPanel);
     }
 
@@ -56,7 +58,7 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
         jLabel1.setText("Welcome Vicky ");
 
         btnPlanWedding.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/schedules.png"))); // NOI18N
-        btnPlanWedding.setText("    Plan Your Wedding");
+        btnPlanWedding.setText("    Find a Match");
         btnPlanWedding.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPlanWedding.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

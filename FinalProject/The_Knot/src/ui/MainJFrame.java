@@ -800,7 +800,7 @@ public class MainJFrame extends javax.swing.JFrame {
             loginPanel.setVisible(false);
             upperPanel.setVisible(true);
             mainPanel.setVisible(true);
-            singleuserpanel = new mainPanelSingleUser(singleuserAccount);
+            singleuserpanel = new mainPanelSingleUser(system,singleuserAccount);
             mainPanel.add("workArea",singleuserpanel);
             clearLogin();
            
@@ -911,7 +911,7 @@ public class MainJFrame extends javax.swing.JFrame {
             SingleUser user=new SingleUser(txtName.getText(),genderBtn.getSelection().toString(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().toString(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
             system.getSingleUserlist().createUserAccount(txtName.getText(),genderBtn.getSelection().toString(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().toString(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
             JOptionPane.showMessageDialog(null, "User Created Successfully");
-            singleuserpanel=new mainPanelSingleUser(user);
+            singleuserpanel=new mainPanelSingleUser(system,user);
             mainPanel.add("workArea",singleuserpanel);
             CardLayout layout = (CardLayout) mainPanel.getLayout();
             layout.next(mainPanel);
