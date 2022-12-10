@@ -34,8 +34,8 @@ public class SingleUserDirectory {
 //public CoupleUser(String name, String partnerName, String zodiacSign, String partnerZodiacSign, String userName, String password, Date weddingDate) {
 // check if this is correct     
     
-    public SingleUser createUserAccount(String name, String gender, int age, String zodiacSign, String userName, String password, String hobbies, String image, int preferredAge, String preferredGender, String preferredHobbies){
-        SingleUser userAccount = new SingleUser(name, gender, age, zodiacSign, userName, password, hobbies, image, preferredAge, preferredGender, preferredHobbies);
+    public SingleUser createUserAccount(String name, String gender, int age, String zodiacSign, String userName, String password, String hobbies, String image, int preferredAge, String preferredGender, String preferredHobbies,String preferredZodiac){
+        SingleUser userAccount = new SingleUser(name, gender, age, zodiacSign, userName, password, hobbies, image, preferredAge, preferredGender, preferredHobbies,preferredZodiac);
         singleUserList.add(userAccount);
         return userAccount;
     }

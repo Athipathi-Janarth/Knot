@@ -23,9 +23,10 @@ public class SingleUser {
     String image;
     int preferredAge;
     String preferredGender;
+    String preferredZodiac;
     String preferredHobbies;
 
-    public SingleUser(String name, String gender, int age, String zodiacSign, String userName, String password, String hobbies, String image, int preferredAge, String preferredGender, String preferredHobbies) {
+    public SingleUser(String name, String gender, int age, String zodiacSign, String userName, String password, String hobbies, String image, int preferredAge, String preferredGender, String preferredHobbies,String preferredZodiac) {
         this.name = name;
         this.gender = gender;
         this.age = age;
@@ -37,6 +38,7 @@ public class SingleUser {
         this.preferredAge = preferredAge;
         this.preferredGender = preferredGender;
         this.preferredHobbies = preferredHobbies;
+        this.preferredZodiac=preferredZodiac;
     }
 
     public int getSingleUserID() {
