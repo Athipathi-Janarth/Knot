@@ -4,8 +4,6 @@
  */
 package Employee;
 
-import Roles.Role;
-import User.CoupleUser;
 import java.util.ArrayList;
 
 /**
@@ -24,16 +22,9 @@ public class EmployeeDirectory {
         return employeeList;
     }
 
-    public Employee createEmployee(String name, String userName, String password,Role role){
-        Employee employee = new Employee(name, userName, password,role);
+    public Employee createEmployee(String name, String userName, String password){
+        Employee employee = new Employee(name, userName, password);
         employeeList.add(employee);
         return employee;
-    }
-    public Employee authenticateUser(String username, String password){
-        for (Employee emp : employeeList)
-            if (emp.getUserName().equals(username) && emp.getPassword().equals(password)){
-                return emp;
-            }
-        return null;
     }
 }

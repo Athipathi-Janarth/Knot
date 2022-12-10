@@ -11,6 +11,6 @@ package Enterprise;
 public class FinanceEnterprise extends Enterprise {
       
     public FinanceEnterprise(String name){
-        super(name,EnterpriseType.Finance);
+        super(name,EnterpriseType.EventDecor);
     }
 }

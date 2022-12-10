@@ -4,8 +4,6 @@
  */
 package Employee;
 
-import Roles.Role;
-
 /**
  *
  * @author vikashsingh
@@ -15,18 +13,13 @@ public class Employee {
     String name;
     String userName;
     String password;
-    Role role;
+//    Employee <Role>;
     int id;
     
-    public Employee(String name, String userName, String password,Role role){
+    public Employee(String name, String userName, String password){
         this.name = name;
         this.userName = userName;
         this.password = password;
-        this.role=role;
-    }
-
-    public Role getRole() {
-        return role;
     }
 
     public String getName() {

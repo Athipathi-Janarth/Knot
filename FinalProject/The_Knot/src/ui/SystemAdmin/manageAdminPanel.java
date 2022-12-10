@@ -4,14 +4,7 @@
  */
 package ui.SystemAdmin;
 
-import Business.EcoSystem;
-import DB4OUtil.DB4OUtil;
-import Employee.Employee;
-import Enterprise.Enterprise;
-import Network.Network;
-import Roles.*;
 import java.awt.Color;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,14 +15,9 @@ public class manageAdminPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    EcoSystem system;
-    Network network;
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    public manageAdminPanel(EcoSystem system) {
+    public manageAdminPanel() {
         initComponents();
-        this.system=system;
         adminPanelCard.setBackground(new Color(0,0,0,90));
-        populateNetworkComboBox();
     }
 
     /**
@@ -45,14 +33,14 @@ public class manageAdminPanel extends javax.swing.JPanel {
         lblEnterprise = new javax.swing.JLabel();
         btnAddenterpriseAdmin = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
-        dropdownEnterprise = new javax.swing.JComboBox();
+        dropdownEnterprise = new javax.swing.JComboBox<>();
         lblusrName = new javax.swing.JLabel();
         lblPwd = new javax.swing.JLabel();
         txtAdminPwd = new javax.swing.JTextField();
         txtAdminName = new javax.swing.JTextField();
         txtAdminUsrName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        dropdownNetwork = new javax.swing.JComboBox();
+        dropdownNetwork = new javax.swing.JComboBox<>();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setSize(new java.awt.Dimension(977, 630));
@@ -64,18 +52,12 @@ public class manageAdminPanel extends javax.swing.JPanel {
 
         btnAddenterpriseAdmin.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnAddenterpriseAdmin.setText("Add Enterprise Admin");
-        btnAddenterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddenterpriseAdminActionPerformed(evt);
-            }
-        });
 
         nameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
         nameLabel.setText("Name");
 
         dropdownEnterprise.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        dropdownEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblusrName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lblusrName.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,12 +83,6 @@ public class manageAdminPanel extends javax.swing.JPanel {
         jLabel2.setText("Network Name");
 
         dropdownNetwork.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        dropdownNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        dropdownNetwork.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dropdownNetworkActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -172,73 +148,17 @@ public class manageAdminPanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents
 
-      private void populateNetworkComboBox() {
-        dropdownNetwork.removeAllItems();
-        for (Network network : system.getNetworkList()) {
-            dropdownNetwork.addItem(network);
-        }
-    }
-
-    private void populateEnterpriseComboBox(Network network) {
-        dropdownEnterprise.removeAllItems();
-        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-            dropdownEnterprise.addItem(enterprise.getEnterpriseName());
-        }
-    }
     private void txtAdminNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAdminNameActionPerformed
-
-    private void dropdownNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownNetworkActionPerformed
-        // TODO add your handling code here:
-         network = (Network) dropdownNetwork.getSelectedItem();
-        if (network != null) {
-            populateEnterpriseComboBox(network);
-        }
-    }//GEN-LAST:event_dropdownNetworkActionPerformed
-
-    private void btnAddenterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddenterpriseAdminActionPerformed
-        // TODO add your handling code here:
-        Enterprise enterprise =  network.retriveEnterprise(dropdownEnterprise.getSelectedItem().toString());
-        String username = txtAdminUsrName.getText();
-        String password = String.valueOf(txtAdminPwd.getText());
-        String name = txtAdminName.getText();
-        if (username.isEmpty() || password.isEmpty() || name.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter all fields", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-        else {
-            if (system.checkIfUserIsUnique(system,username)) {
-                Employee employee;
-                if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.EventDecor){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new DecorAdminRole());
-                }else if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.FoodManagement){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FoodAdminRole());
-                }
-                if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Grooming){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new GroomingAdminRole());
-                }
-                if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Finance){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FinanceAdminRole());
-                }
-                txtAdminUsrName.setText("");
-                txtAdminPwd.setText("");
-                txtAdminName.setText("");
-                JOptionPane.showMessageDialog(null, "Account created sucessfully");
-                dB4OUtil.storeSystem(system);
-            } else {
-                JOptionPane.showMessageDialog(null, "Please enter unique username", "Warning", JOptionPane.WARNING_MESSAGE);
-                txtAdminUsrName.setText("");
-            }
-        }
-    }//GEN-LAST:event_btnAddenterpriseAdminActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JButton btnAddenterpriseAdmin;
-    private javax.swing.JComboBox dropdownEnterprise;
-    private javax.swing.JComboBox dropdownNetwork;
+    private javax.swing.JComboBox<String> dropdownEnterprise;
+    private javax.swing.JComboBox<String> dropdownNetwork;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblEnterprise;
     private javax.swing.JLabel lblPwd;

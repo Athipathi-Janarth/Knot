@@ -5,7 +5,6 @@
 package ui.SystemAdmin;
 
 import Business.EcoSystem;
-import DB4OUtil.DB4OUtil;
 import Network.Network;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -21,9 +20,9 @@ public class networkPanel extends javax.swing.JPanel {
      * Creates new form networkPanel
      */
     EcoSystem system;
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public networkPanel(EcoSystem system) {
         initComponents();
+        this.system=system;
         populateNetworkTable();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
@@ -154,7 +153,6 @@ public class networkPanel extends javax.swing.JPanel {
                 network.setName(name);
                 JOptionPane.showMessageDialog(null, "Network Successfully Created");
                 txtNetwork.setText("");
-                dB4OUtil.storeSystem(system);
             } else {
                 JOptionPane.showMessageDialog(null, "Network Already Exits");
             }

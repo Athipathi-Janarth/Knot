@@ -4,10 +4,7 @@
  */
 package Business;
 
-import Employee.Employee;
-import Employee.EmployeeDirectory;
 import Network.Network;
-import User.CoupleUser;
 import User.CoupleUserDirectory;
 import java.util.ArrayList;
 
@@ -18,7 +15,6 @@ import java.util.ArrayList;
 public class EcoSystem {
     private static EcoSystem business;
     CoupleUserDirectory coupleUserlist;
-    EmployeeDirectory  employeeList;
     ArrayList<Network> networkList;
     
     public Network createAndAddNetwork(){
@@ -52,15 +48,7 @@ public class EcoSystem {
         }
         return true;
     }
-     public Network retriveNetwork(String name){
-         Network net=new Network();
-        for(Network network : networkList){
-            if(network.getName().equalsIgnoreCase(name)){
-                net= network;
-            }
-        }
-        return net;
-    }
+    
     String Name;
     
     
@@ -92,29 +80,5 @@ public class EcoSystem {
 
     public void setCoupledirectory(CoupleUserDirectory coupleUserlist) {
         this.coupleUserlist = coupleUserlist;
-    }
-     public EmployeeDirectory getEmployeedirectory() {
-        if(employeeList==null){
-        this.employeeList = new EmployeeDirectory();
-        }
-        return employeeList;
-    }
-
-    public void setEmployeedirectory(EmployeeDirectory employeeList) {
-        this.employeeList = employeeList;
-    }
-    public boolean checkIfUserIsUnique(EcoSystem system,String name){
-        boolean flag=true;
-        for(CoupleUser user : system.getCoupledirectory().getCoupleUserList()){
-            if(user.getUserName().equalsIgnoreCase(name)){
-                flag = false;
-            }
-        }
-        for(Employee emp : system.getEmployeedirectory().getEmployeeList()){
-            if(emp.getUserName().equalsIgnoreCase(name)){
-                flag = false;
-            }
-        }
-        return flag;
     }
 }

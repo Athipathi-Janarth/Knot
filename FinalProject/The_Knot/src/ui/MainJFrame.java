@@ -6,7 +6,6 @@ package ui;
 
 import Business.EcoSystem;
 import DB4OUtil.DB4OUtil;
-import Employee.Employee;
 import User.CoupleUser;
 import com.db4o.ObjectSet;
 import java.awt.CardLayout;
@@ -39,7 +38,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private ObjectSet systems;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     CoupleUser userAccount;
-    Employee employeeAccount;
     mainPanelUser userpanel;
 
     public MainJFrame() {
@@ -97,7 +95,6 @@ public class MainJFrame extends javax.swing.JFrame {
         lblName7 = new javax.swing.JLabel();
         weddingDateChooser = new com.toedter.calendar.JDateChooser();
         btnRegisterUsr = new javax.swing.JButton();
-        heartImg = new javax.swing.JLabel();
         defaultBackground1 = new javax.swing.JLabel();
         upperPanel = new javax.swing.JPanel();
         logoImg = new javax.swing.JLabel();
@@ -230,8 +227,6 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        heartImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/rings.png"))); // NOI18N
-
         javax.swing.GroupLayout registerFormLayout = new javax.swing.GroupLayout(registerForm);
         registerForm.setLayout(registerFormLayout);
         registerFormLayout.setHorizontalGroup(
@@ -245,22 +240,15 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(registerFormLayout.createSequentialGroup()
                 .addGap(139, 139, 139)
                 .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(registerFormLayout.createSequentialGroup()
-                        .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtyourName, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblName6, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(registerFormLayout.createSequentialGroup()
-                        .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblName4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblName2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtyourZodiac, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                        .addComponent(heartImg, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)))
+                    .addComponent(txtyourName, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtyourZodiac, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblName2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblName4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblName6, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtyourName1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                     .addComponent(lblName1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,34 +273,32 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(backImage))
                 .addGap(39, 39, 39)
                 .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, registerFormLayout.createSequentialGroup()
+                        .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtyourName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(registerFormLayout.createSequentialGroup()
-                        .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, registerFormLayout.createSequentialGroup()
-                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtyourName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(registerFormLayout.createSequentialGroup()
-                                .addComponent(lblName1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtyourName1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(22, 22, 22)
-                        .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, registerFormLayout.createSequentialGroup()
-                                .addComponent(lblName2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtyourZodiac, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(registerFormLayout.createSequentialGroup()
-                                .addComponent(lblName3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtyourZodiac1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(22, 22, 22)
+                        .addComponent(lblName1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtyourName1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, registerFormLayout.createSequentialGroup()
+                        .addComponent(lblName2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtyourZodiac, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(registerFormLayout.createSequentialGroup()
+                        .addComponent(lblName3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtyourZodiac1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, registerFormLayout.createSequentialGroup()
                         .addComponent(lblName4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(registerFormLayout.createSequentialGroup()
-                        .addGroup(registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblName5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(heartImg, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblName5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(22, 22, 22)
@@ -406,27 +392,17 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         else{
         userAccount = system.getCoupledirectory().authenticateUser(username, password);
-        if(userAccount!=null){
+        if(userAccount==null){
+            JOptionPane.showMessageDialog(null, "No User Found");
+        }
+        else{
+            
             loginPanel.setVisible(false);
             upperPanel.setVisible(true);
             mainPanel.setVisible(true);
             userpanel = new mainPanelUser(userAccount);
             mainPanel.add("workArea",userpanel);
             clearLogin();
-           
-        }
-        else{
-            employeeAccount =system.getEmployeedirectory().authenticateUser(username, password);
-             if(employeeAccount!=null){
-                loginPanel.setVisible(false);
-                upperPanel.setVisible(true);
-                mainPanel.setVisible(true);
-                mainPanel.add("workArea",employeeAccount.getRole().createWorkArea());
-                clearLogin();
-             }
-             else{
-             JOptionPane.showMessageDialog(null, "No User Found");
-             }
         }
         }
         
@@ -461,7 +437,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnRegisterUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUsrActionPerformed
         // TODO add your handling code here:
         if(validateCoupleUser()){
-            if(system.checkIfUserIsUnique(system,txtUserName.getText())){
+            if(system.getCoupledirectory().checkIfUsernameIsUnique(txtUserName.getText())){
             CoupleUser user = new CoupleUser(txtyourName.getText(),txtyourName1.getText(),txtyourZodiac.getText(),txtyourZodiac1.getText(),txtUserName.getText(),txtPassword.getText(),txtEmail.getText(),weddingDateChooser.getDate());
             system.getCoupledirectory().createUserAccount(user);
             JOptionPane.showMessageDialog(null, "User Created Successfully");
@@ -469,10 +445,7 @@ public class MainJFrame extends javax.swing.JFrame {
             mainPanel.add("workArea",userpanel);
             CardLayout layout = (CardLayout) mainPanel.getLayout();
             layout.next(mainPanel);
-            loginPanel.setVisible(false);
-            upperPanel.setVisible(true);
-            mainPanel.setVisible(true);
-            registerPanel.setVisible(false);
+            
             clearRegister();
             }
             else{
@@ -570,7 +543,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel defaultBackground;
     private javax.swing.JLabel defaultBackground1;
     private javax.swing.JLabel headerBackgroundImg;
-    private javax.swing.JLabel heartImg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblName;

@@ -4,13 +4,7 @@
  */
 package ui.SystemAdmin;
 
-import Business.EcoSystem;
-import DB4OUtil.DB4OUtil;
-import Enterprise.Enterprise;
-import Network.Network;
 import java.awt.Color;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,41 +15,11 @@ public class enterprisePanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    EcoSystem system;
-    public enterprisePanel(EcoSystem system) {
+    public enterprisePanel() {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
-        this.system=system;
-        this.system=dB4OUtil.retrieveSystem();
-        populateTable();
-        populateComboBox();
     }
 
-    private void populateComboBox() {
-        dropdownNetwork.removeAllItems();
-        dropdownEnterprise.removeAllItems();
-        for (Network network : system.getNetworkList()) {
-            dropdownNetwork.addItem(network.toString());
-        }
-
-        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            dropdownEnterprise.addItem(type);
-        }
-    }
-    private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) enterpriseTable.getModel();
-        model.setRowCount(0);
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                Object[] row = new Object[3];
-                row[0] = enterprise.getEnterpriseName();
-                row[1] = network.getName();
-                row[2] = enterprise.getEnterpriseType().getValue();
-                model.addRow(row);
-            }
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,8 +37,8 @@ public class enterprisePanel extends javax.swing.JPanel {
         btnAddenterprise = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         dropdownNetwork = new javax.swing.JComboBox<>();
+        dropdownEnterprise = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        dropdownEnterprise = new javax.swing.JComboBox();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setSize(new java.awt.Dimension(977, 630));
@@ -83,17 +47,17 @@ public class enterprisePanel extends javax.swing.JPanel {
         enterpriseTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Enterprise", "Type", "Network"
+                "Enterprise", "Network"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -110,11 +74,6 @@ public class enterprisePanel extends javax.swing.JPanel {
 
         btnAddenterprise.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnAddenterprise.setText("Add Enterprise");
-        btnAddenterprise.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddenterpriseActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,12 +81,11 @@ public class enterprisePanel extends javax.swing.JPanel {
 
         dropdownNetwork.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
+        dropdownEnterprise.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Enterprise Type");
-
-        dropdownEnterprise.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        dropdownEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -149,8 +107,8 @@ public class enterprisePanel extends javax.swing.JPanel {
                                     .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(78, 78, 78)
                                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dropdownEnterprise, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtEnterpriseName)))))
+                                    .addComponent(txtEnterpriseName)
+                                    .addComponent(dropdownEnterprise, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(438, 438, 438)
                         .addComponent(btnAddenterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -165,10 +123,10 @@ public class enterprisePanel extends javax.swing.JPanel {
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(dropdownNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(dropdownEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dropdownEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEnterprise)
@@ -187,39 +145,12 @@ public class enterprisePanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddenterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddenterpriseActionPerformed
-        // TODO add your handling code here:
-        Network network = system.retriveNetwork(dropdownNetwork.getSelectedItem().toString());
-        
-        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) dropdownEnterprise.getSelectedItem();
-        
-        if (network == null || type == null) {
-            JOptionPane.showMessageDialog(null, "Invalid Input!");
-            return;
-        }
-        String name = txtEnterpriseName.getText();
-        if (!name.isEmpty()) {
-            if (network.getEnterpriseDirectory().isUnique(name)) {
-                Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-                JOptionPane.showMessageDialog(null, "Enterprise created sucessfully!");
-                txtEnterpriseName.setText("");
-                populateTable();
-                dB4OUtil.storeSystem(system);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Enterprise already exists!");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Enter enterprise name");
-        }
-    }//GEN-LAST:event_btnAddenterpriseActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JButton btnAddenterprise;
-    private javax.swing.JComboBox dropdownEnterprise;
+    private javax.swing.JComboBox<String> dropdownEnterprise;
     private javax.swing.JComboBox<String> dropdownNetwork;
     private javax.swing.JTable enterpriseTable;
     private javax.swing.JLabel jLabel2;
