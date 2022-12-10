@@ -199,8 +199,8 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
                 this.org.getEmployees().createEmployee(txtAdminName.getText(),userName, password, new BakerRole(),net.getName(), this.org.getId());
             }
             else {
-             system.getEmployeedirectory().createEmployee(userName, txtAdminName.getText(), password, new CatererRole(),net.getName(), this.org.getId());
-             this.org.getEmployees().createEmployee(userName, txtAdminName.getText(), password, new CatererRole(),net.getName(), this.org.getId());
+             system.getEmployeedirectory().createEmployee(txtAdminName.getText(),  userName, password, new CatererRole(),net.getName(), this.org.getId());
+             this.org.getEmployees().createEmployee(txtAdminName.getText(),  userName, password, new CatererRole(),net.getName(), this.org.getId());
             }
             JOptionPane.showMessageDialog(null, "User Account Created");
             txtAdminUsrName.setText("");

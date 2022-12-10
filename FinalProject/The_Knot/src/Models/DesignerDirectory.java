@@ -11,18 +11,18 @@ import java.util.ArrayList;
  *
  * @author nageshsairam
  */
-public class GroomingDirectory {
-   private ArrayList<Stylist> groomingDirectory = new ArrayList<>(); 
+public class DesignerDirectory {
+   private ArrayList<Stylist> designerDirectory = new ArrayList<>(); 
 
     public ArrayList<Stylist> getGroomingDirectory() {
-        return groomingDirectory;
+        return designerDirectory;
     }
 
-    public GroomingDirectory() {
+    public DesignerDirectory() {
     }
 
     public void setGroomingDirectory(ArrayList<Stylist> groomingDirectory) {
-        this.groomingDirectory = groomingDirectory;
+        this.designerDirectory = groomingDirectory;
     }
 
 }

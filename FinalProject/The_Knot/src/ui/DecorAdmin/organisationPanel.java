@@ -4,7 +4,17 @@
  */
 package ui.DecorAdmin;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Enterprise.Enterprise;
+import Models.Organization.Decor;
+import Models.Organization.Venue;
+import Models.Organization.Organization;
+import Network.Network;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -18,9 +28,18 @@ public class organisationPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public organisationPanel() {
+    
+    EcoSystem system;
+    Employee emp;
+    Enterprise ent;
+    
+    public organisationPanel(EcoSystem system, Employee emp) {
+        this.emp = emp;
+        this.system = system;
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        populateCombo();
+        populateTable();
     }
 
     /**
@@ -33,15 +52,15 @@ public class organisationPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         adminPanelCard = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         organisationTable = new javax.swing.JTable();
-        lblEnterprise = new javax.swing.JLabel();
+        lblEnterprise1 = new javax.swing.JLabel();
         txtEnterpriseName = new javax.swing.JTextField();
         btnAddOrganisation = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        dropdownNetwork = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        dropdownOrganisation = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        dropdownNetwork = new javax.swing.JComboBox();
+        dropdownOrganisation = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setSize(new java.awt.Dimension(977, 630));
@@ -56,7 +75,7 @@ public class organisationPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Enterprise", "Organisation"
+                "Organisation", "Organization Type"
             }
         ) {
             Class[] types = new Class [] {
@@ -67,11 +86,11 @@ public class organisationPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(organisationTable);
+        jScrollPane2.setViewportView(organisationTable);
 
-        lblEnterprise.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
-        lblEnterprise.setText("Organisation Name");
+        lblEnterprise1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lblEnterprise1.setForeground(new java.awt.Color(255, 255, 255));
+        lblEnterprise1.setText("Organisation Name");
 
         txtEnterpriseName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
@@ -83,17 +102,24 @@ public class organisationPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Enterprise Name");
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Enterprise Name");
 
         dropdownNetwork.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Organisation Type");
+        dropdownNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item1", "Item2" }));
+        dropdownNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownNetworkActionPerformed(evt);
+            }
+        });
 
         dropdownOrganisation.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        dropdownOrganisation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item1", "Item2" }));
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Organisation Type");
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -104,19 +130,19 @@ public class organisationPanel extends javax.swing.JPanel {
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(315, 315, 315)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblEnterprise))
-                                .addGap(62, 62, 62)
+                                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblEnterprise1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(67, 67, 67)
                                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtEnterpriseName)
-                                    .addComponent(dropdownNetwork, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dropdownOrganisation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(dropdownOrganisation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dropdownNetwork, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
-                        .addGap(442, 442, 442)
+                        .addGap(436, 436, 436)
                         .addComponent(btnAddOrganisation, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(323, Short.MAX_VALUE))
         );
@@ -124,22 +150,22 @@ public class organisationPanel extends javax.swing.JPanel {
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminPanelCardLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
                     .addComponent(dropdownNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(50, 50, 50)
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
                     .addComponent(dropdownOrganisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEnterprise)
+                    .addComponent(lblEnterprise1)
                     .addComponent(txtEnterpriseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(btnAddOrganisation, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110))
+                .addGap(96, 96, 96))
         );
 
         add(adminPanelCard);
@@ -153,19 +179,72 @@ public class organisationPanel extends javax.swing.JPanel {
 
     private void btnAddOrganisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrganisationActionPerformed
         // TODO add your handling code here:
+        Organization newOrg;
+        Network network= system.retriveNetwork(emp.getNetworkname());
+        Organization.Type type = (Organization.Type) dropdownOrganisation.getSelectedItem();
+        if ("".equals(txtEnterpriseName.getText())) {
+            JOptionPane.showMessageDialog(null, "Enter organization name!");
+        } else {
+            if (this.ent.getOrganizationList().isUnique(txtEnterpriseName.getText())) {
+                newOrg = this.ent.getOrganizationList().createOrganization(txtEnterpriseName.getText(), type);
+                if (newOrg.getType() == Organization.Type.Venue) {
+                    network.getVenueDirectory().getVenueDirectory().add(new Venue(newOrg.getName(), newOrg.getType()));
+                }
+                else if (newOrg.getType() == Organization.Type.Decor) {
+                    network.getDecorDirectory().getDecorDirectory().add(new Decor(newOrg.getName(), newOrg.getType()));
+                }
+                JOptionPane.showMessageDialog(null, "Organization Successfully Created");
+                txtEnterpriseName.setText("");
+                populateTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Organization name already exists!");
+            }
+
+        }
     }//GEN-LAST:event_btnAddOrganisationActionPerformed
 
+    private void dropdownNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownNetworkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropdownNetworkActionPerformed
+    private void populateCombo() {
+        dropdownNetwork.removeAllItems();
+        dropdownOrganisation.removeAllItems();
+        for (Network network : system.getNetworkList()) {
+            if (emp.getNetworkname().equals(network.getName())) {
+                for (Enterprise ent : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (ent.getEnterpriseType() == Enterprise.EnterpriseType.EventDecor) {
+                        dropdownNetwork.addItem(ent.getEnterpriseName());
+                        this.ent = ent;
+                    }
+                }
+            }
+        }
+        dropdownOrganisation.addItem(Organization.Type.Venue);
+        dropdownOrganisation.addItem(Organization.Type.Decor);
+    }
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) organisationTable.getModel();
+        model.setRowCount(0);
+        for (Organization organization : ent.getOrganizationList().getOrganizationList()) {
+            Object[] row = new Object[2];
+            row[1] = organization.getType();
+            row[0] = organization.getName();
+
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JButton btnAddOrganisation;
-    private javax.swing.JComboBox<String> dropdownNetwork;
-    private javax.swing.JComboBox<String> dropdownOrganisation;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblEnterprise;
+    private javax.swing.JComboBox dropdownNetwork;
+    private javax.swing.JComboBox dropdownOrganisation;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblEnterprise1;
     private javax.swing.JTable organisationTable;
     private javax.swing.JTextField txtEnterpriseName;
     // End of variables declaration//GEN-END:variables

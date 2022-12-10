@@ -9,7 +9,9 @@ import Enterprise.EnterpriseDirectory;
 import Models.BakeryDirectory;
 import Models.CateringDirectory;
 import Models.DecorDirectory;
-import Models.GroomingDirectory;
+import Models.DesignerDirectory;
+import Models.StylistDirectory;
+import Models.VenueDirectory;
 
 /**
  *
@@ -22,7 +24,31 @@ public class Network {
     private BakeryDirectory bakeryDirectory = new BakeryDirectory();
     private CateringDirectory cateringDirectory = new CateringDirectory();
     private DecorDirectory decorDirectory = new DecorDirectory();
-    private GroomingDirectory groomingDirectory = new GroomingDirectory();
+    private DesignerDirectory groomingDirectory = new DesignerDirectory();
+    private VenueDirectory venueDirectory = new VenueDirectory();
+    private StylistDirectory stylistDirectory = new StylistDirectory();
+
+    public StylistDirectory getStylistDirectory() {
+        if(stylistDirectory == null){
+           stylistDirectory = new StylistDirectory();
+        }
+        return stylistDirectory;
+    }
+
+    public void setStylistDirectory(StylistDirectory stylistDirectory) {
+        this.stylistDirectory = stylistDirectory;
+    }
+
+    public VenueDirectory getVenueDirectory() {
+        if(venueDirectory == null){
+           venueDirectory = new VenueDirectory();
+        }
+        return venueDirectory;
+    }
+
+    public void setVenueDirectory(VenueDirectory venueDirectory) {
+        this.venueDirectory = venueDirectory;
+    }
 
     public BakeryDirectory getBakeryDirectory() {
         if(bakeryDirectory == null){
@@ -57,14 +83,14 @@ public class Network {
         this.decorDirectory = decorDirectory;
     }
 
-    public GroomingDirectory getGroomingDirectory() {
+    public DesignerDirectory getGroomingDirectory() {
         if(groomingDirectory == null){
-            groomingDirectory = new GroomingDirectory();
+            groomingDirectory = new DesignerDirectory();
         }
         return groomingDirectory;
     }
 
-    public void setGroomingDirectory(GroomingDirectory groomingDirectory) {
+    public void setGroomingDirectory(DesignerDirectory groomingDirectory) {
         this.groomingDirectory = groomingDirectory;
     }
 

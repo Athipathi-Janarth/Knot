@@ -4,7 +4,17 @@
  */
 package ui.DecorAdmin;
 
+
+import Business.EcoSystem;
+import Employee.Employee;
+import Enterprise.Enterprise;
+import Models.Organization.Organization;
+import Network.Network;
+import Roles.DecorationManagerRole;
+import Roles.VenueManagerRole;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -15,9 +25,18 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public manageBusinessUserPanel() {
+    
+    EcoSystem system;
+    Employee emp;
+    Enterprise ent;
+    Network net;
+    Organization org;
+    public manageBusinessUserPanel(EcoSystem system,Employee emp) {
+        this.emp=emp;
+        this.system = system;
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        populateCombo();
     }
 
     /**
@@ -52,6 +71,11 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
 
         btnAddUser.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnAddUser.setText("Add User");
+        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUserActionPerformed(evt);
+            }
+        });
 
         nameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,6 +176,56 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAdminNameActionPerformed
 
+    private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
+        // TODO add your handling code here:
+        String userName = txtAdminUsrName.getText();
+        String password = txtAdminPwd.getText();
+            if ("".equals(userName)) {
+                JOptionPane.showMessageDialog(null, "Please enter username");
+            } else if (!system.checkIfUserIsUnique(system,userName)) {
+                JOptionPane.showMessageDialog(null, "Please enter unique username");
+            } else if ("".equals(password)) {
+                JOptionPane.showMessageDialog(null, "Please enter password");
+            } else {
+            for(Organization org:ent.getOrganizationList().getOrganizationList()){
+                if(org.getName().equals(dropdownEnterprise.getSelectedItem()))
+                    this.org=org;
+            }
+            if(this.org.getType()==Organization.Type.Decor)
+            {
+                system.getEmployeedirectory().createEmployee(txtAdminName.getText(),  userName, password, new DecorationManagerRole(),net.getName(), this.org.getId());
+                this.org.getEmployees().createEmployee(txtAdminName.getText(),userName, password, new DecorationManagerRole(),net.getName(), this.org.getId());
+            }
+            else {
+             system.getEmployeedirectory().createEmployee(txtAdminName.getText(), userName, password, new VenueManagerRole(),net.getName(), this.org.getId());
+             this.org.getEmployees().createEmployee(txtAdminName.getText(), userName, password, new VenueManagerRole(),net.getName(), this.org.getId());
+            }
+            JOptionPane.showMessageDialog(null, "User Account Created");
+            txtAdminUsrName.setText("");
+            txtAdminPwd.setText("");
+            txtAdminName.setText("");
+        }
+    }//GEN-LAST:event_btnAddUserActionPerformed
+    private void populateCombo(){
+        dropdownNetwork.removeAllItems();
+        dropdownEnterprise.removeAllItems();
+        for (Network network :system.getNetworkList()){
+            net=network;
+            if(emp.getNetworkname().equals(network.getName())){
+            for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
+                if (ent.getEnterpriseType()==Enterprise.EnterpriseType.EventDecor){
+                    dropdownNetwork.addItem(ent.getEnterpriseName());  
+                    this.ent=ent;
+                    for(Organization org:ent.getOrganizationList().getOrganizationList()){
+                        dropdownEnterprise.addItem(org.getName());
+                    }
+                }
+            }
+            }
+        }
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;

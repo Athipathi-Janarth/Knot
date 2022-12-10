@@ -4,7 +4,13 @@
  */
 package ui.DecorAdmin;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Enterprise.Enterprise;
+import Models.Organization.Organization;
+import Network.Network;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +21,40 @@ public class displayEmployee extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public displayEmployee() {
+    
+    EcoSystem system;
+    Employee emp;
+    
+    public displayEmployee(EcoSystem system,Employee emp) {
+        this.system=system;
+        this.emp=emp;
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        popData();
     }
+    public void popData() {
 
+        DefaultTableModel model = (DefaultTableModel) networkTable.getModel();
+
+        model.setRowCount(0);
+
+        for (Network network :system.getNetworkList()){
+            if(emp.getNetworkname().equals(network.getName())){
+            for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
+                if (ent.getEnterpriseType()==Enterprise.EnterpriseType.EventDecor){  
+                    for(Organization org:ent.getOrganizationList().getOrganizationList()){
+                       for (Employee employee : org.getEmployees().getEmployeeList()) {
+                            Object row[] = new Object[2];
+                            row[0] = employee.getName();
+                            row[1] = employee.getUserName();
+                            ((DefaultTableModel) networkTable.getModel()).addRow(row);
+                        }
+                    }
+                }
+            }
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

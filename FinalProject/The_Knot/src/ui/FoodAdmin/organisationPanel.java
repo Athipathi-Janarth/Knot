@@ -107,6 +107,11 @@ public class organisationPanel extends javax.swing.JPanel {
 
         dropdownNetwork.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         dropdownNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item1", "Item2" }));
+        dropdownNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownNetworkActionPerformed(evt);
+            }
+        });
 
         dropdownOrganisation.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         dropdownOrganisation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item1", "Item2" }));
@@ -195,6 +200,10 @@ public class organisationPanel extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_btnAddOrganisationActionPerformed
+
+    private void dropdownNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownNetworkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropdownNetworkActionPerformed
     private void populateCombo() {
         dropdownNetwork.removeAllItems();
         dropdownOrganisation.removeAllItems();

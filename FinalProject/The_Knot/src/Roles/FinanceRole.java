@@ -7,24 +7,23 @@ package Roles;
 import Business.EcoSystem;
 import Employee.Employee;
 import javax.swing.JPanel;
-import ui.DecorationPanel.mainPanelDecoration;
+import ui.BakerPanel.mainPanelBaker;
 
 /**
  *
  * @author vikashsingh
  */
-public class DecorationManagerRole extends Role{
+public class FinanceRole extends Role{
     
     @Override
     public JPanel createWorkArea() {
-       return new mainPanelDecoration();
+       return new mainPanelBaker();
        
     }
 
     @Override
     public JPanel createWorkArea(EcoSystem system, Employee employee) {
-        return new mainPanelDecoration(system, employee);
-        
+         return new mainPanelBaker(system,employee);
     }
     
     
