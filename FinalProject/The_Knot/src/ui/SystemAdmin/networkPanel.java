@@ -21,9 +21,9 @@ public class networkPanel extends javax.swing.JPanel {
      * Creates new form networkPanel
      */
     EcoSystem system;
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public networkPanel(EcoSystem system) {
         initComponents();
+        this.system=system;
         populateNetworkTable();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
@@ -153,8 +153,7 @@ public class networkPanel extends javax.swing.JPanel {
                 Network network = system.createAndAddNetwork();
                 network.setName(name);
                 JOptionPane.showMessageDialog(null, "Network Successfully Created");
-                txtNetwork.setText("");
-                dB4OUtil.storeSystem(system);
+                txtNetwork.setText("");        
             } else {
                 JOptionPane.showMessageDialog(null, "Network Already Exits");
             }

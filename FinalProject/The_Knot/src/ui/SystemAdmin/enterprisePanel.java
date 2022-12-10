@@ -21,13 +21,11 @@ public class enterprisePanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     EcoSystem system;
     public enterprisePanel(EcoSystem system) {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
         this.system=system;
-        this.system=dB4OUtil.retrieveSystem();
         populateTable();
         populateComboBox();
     }
@@ -204,7 +202,6 @@ public class enterprisePanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Enterprise created sucessfully!");
                 txtEnterpriseName.setText("");
                 populateTable();
-                dB4OUtil.storeSystem(system);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Enterprise already exists!");

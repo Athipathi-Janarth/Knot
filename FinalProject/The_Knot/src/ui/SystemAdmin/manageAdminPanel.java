@@ -24,7 +24,6 @@ public class manageAdminPanel extends javax.swing.JPanel {
      */
     EcoSystem system;
     Network network;
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public manageAdminPanel(EcoSystem system) {
         initComponents();
         this.system=system;
@@ -224,7 +223,6 @@ public class manageAdminPanel extends javax.swing.JPanel {
                 txtAdminPwd.setText("");
                 txtAdminName.setText("");
                 JOptionPane.showMessageDialog(null, "Account created sucessfully");
-                dB4OUtil.storeSystem(system);
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter unique username", "Warning", JOptionPane.WARNING_MESSAGE);
                 txtAdminUsrName.setText("");
