@@ -99,6 +99,11 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         });
 
         txtAdminUsrName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtAdminUsrName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAdminUsrNameActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -175,7 +180,6 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
         // TODO add your handling code here:
-       
         String userName = txtAdminUsrName.getText();
         String password = txtAdminPwd.getText();
             if ("".equals(userName)) {
@@ -191,20 +195,23 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
             }
             if(this.org.getType()==Organization.Type.Bakery)
             {
-                system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new BakerRole(),net.getName());
-                this.org.getEmployees().createEmployee(userName, password, txtAdminName.getText(), new BakerRole(),net.getName());
+                system.getEmployeedirectory().createEmployee(txtAdminName.getText(),  userName, password, new BakerRole(),net.getName(), this.org.getId());
+                this.org.getEmployees().createEmployee(txtAdminName.getText(),userName, password, new BakerRole(),net.getName(), this.org.getId());
             }
-            else{
-             system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new CatererRole(),net.getName());
-             this.org.getEmployees().createEmployee(userName, password, txtAdminName.getText(), new CatererRole(),net.getName());
+            else {
+             system.getEmployeedirectory().createEmployee(userName, txtAdminName.getText(), password, new CatererRole(),net.getName(), this.org.getId());
+             this.org.getEmployees().createEmployee(userName, txtAdminName.getText(), password, new CatererRole(),net.getName(), this.org.getId());
             }
-            
             JOptionPane.showMessageDialog(null, "User Account Created");
             txtAdminUsrName.setText("");
             txtAdminPwd.setText("");
             txtAdminName.setText("");
         }
     }//GEN-LAST:event_btnAddUserActionPerformed
+
+    private void txtAdminUsrNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminUsrNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAdminUsrNameActionPerformed
     private void populateCombo(){
         dropdownNetwork.removeAllItems();
         dropdownEnterprise.removeAllItems();

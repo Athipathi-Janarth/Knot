@@ -4,6 +4,11 @@
  */
 package ui.BakerPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Enterprise.Enterprise;
+import Models.Organization.Organization;
+import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
 
@@ -16,8 +21,16 @@ public class bakerItemsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public bakerItemsPanel() {
+    
+   EcoSystem system;
+   Organization org;
+   Employee employee;
+    
+    public bakerItemsPanel(EcoSystem system, Employee employee) {
         initComponents();
+        this.system = system;
+        this.employee = employee;
+        getOrganization(employee.getOrgId(), system);
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
 
@@ -35,15 +48,15 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         ItemsTable = new javax.swing.JTable();
         btnCreateCake = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        ItemName = new javax.swing.JLabel();
+        cakeName = new javax.swing.JTextField();
+        FlavourLabel = new javax.swing.JLabel();
+        flavourValue = new javax.swing.JTextField();
+        ServesLabel = new javax.swing.JLabel();
+        serveValue = new javax.swing.JTextField();
+        priceLabel = new javax.swing.JLabel();
+        PriceValue = new javax.swing.JTextField();
+        ImageLabel = new javax.swing.JLabel();
         btnUploadImg = new javax.swing.JButton();
         cakeImg = new javax.swing.JLabel();
         adminBackgroundImg = new javax.swing.JLabel();
@@ -74,36 +87,41 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(ItemsTable);
 
         btnCreateCake.setText("Add Item");
+        btnCreateCake.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateCakeActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Item Name");
+        ItemName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        ItemName.setForeground(new java.awt.Color(255, 255, 255));
+        ItemName.setText("Item Name");
 
-        jTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        cakeName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Flavour");
+        FlavourLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        FlavourLabel.setForeground(new java.awt.Color(255, 255, 255));
+        FlavourLabel.setText("Flavour");
 
-        jTextField2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        flavourValue.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Serves");
+        ServesLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        ServesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ServesLabel.setText("Serves");
 
-        jTextField3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        serveValue.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Price");
+        priceLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        priceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        priceLabel.setText("Price");
 
-        jTextField4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        PriceValue.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Image");
+        ImageLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        ImageLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ImageLabel.setText("Image");
 
         btnUploadImg.setText("Upload Image");
 
@@ -121,22 +139,22 @@ public class bakerItemsPanel extends javax.swing.JPanel {
                                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(FlavourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(flavourValue, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(cakeName, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ServesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(serveValue, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(PriceValue, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(ImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(255, 255, 255)
                                 .addComponent(cakeImg, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
@@ -166,23 +184,23 @@ public class bakerItemsPanel extends javax.swing.JPanel {
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ItemName)
+                            .addComponent(cakeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(FlavourLabel)
+                            .addComponent(flavourValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ServesLabel)
+                            .addComponent(serveValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(priceLabel)
+                            .addComponent(PriceValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
+                            .addComponent(ImageLabel)
                             .addComponent(btnUploadImg))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -195,24 +213,54 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private Organization getOrganization (long orgId, EcoSystem system){
+//       Network network = system.retriveNetwork(employee.getNetworkname());
+//       Organization org = null;
+//       for(int i=0;i< network.getEnterpriseDirectory().getEnterpriseList().size(); i++){
+//           Enterprise enterprise = network.getEnterpriseDirectory().getEnterpriseList().get(i);
+//           for (Organization organization : enterprise.getOrganizationList().getOrganizationList()) {
+//               if(organization.getId() == orgId){
+//                   org=organization;
+//
+//               }
+//           }
+//       }
+       return org;
+    }
+    
+    private void btnCreateCakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCakeActionPerformed
+        String name = cakeName.getText().trim();
+        String flavour = flavourValue.getText().trim();
+        String serves = serveValue.getText().trim();
+        String price = PriceValue.getText().trim();
+        System.out.println(name +" "+ flavour+  " "+serves + " "+ price);
+        System.out.println(employee.getOrgId());
+        Organization organization = getOrganization(employee.getOrgId(), this.system);
+    }//GEN-LAST:event_btnCreateCakeActionPerformed
+
+    
+    private void populateTable(){
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FlavourLabel;
+    private javax.swing.JLabel ImageLabel;
+    private javax.swing.JLabel ItemName;
     private javax.swing.JTable ItemsTable;
+    private javax.swing.JTextField PriceValue;
+    private javax.swing.JLabel ServesLabel;
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JButton btnCreateCake;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUploadImg;
     private javax.swing.JLabel cakeImg;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField cakeName;
+    private javax.swing.JTextField flavourValue;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JTextField serveValue;
     // End of variables declaration//GEN-END:variables
 }

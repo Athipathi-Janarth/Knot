@@ -12,18 +12,14 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class CateringDirectory {
-    private ArrayList<Catering> cateringDirectory;
+    private ArrayList<Catering> cateringList =  new ArrayList<>();
 
-    public ArrayList<Catering> getCateringDirectory() {
-        return cateringDirectory;
+    public ArrayList<Catering> getCateringList() {
+        return cateringList;
     }
 
-    public void setCateringDirectory(ArrayList<Catering> cateringDirectory) {
-        this.cateringDirectory = cateringDirectory;
+    public void setCateringList(ArrayList<Catering> cateringList) {
+        this.cateringList = cateringList;
     }
 
-    public CateringDirectory(ArrayList<Catering> cateringDirectory) {
-        this.cateringDirectory = cateringDirectory;
-    }
-    
 }

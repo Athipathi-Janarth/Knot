@@ -6,6 +6,7 @@ package ui.BakerPanel;
 
 import Business.EcoSystem;
 import Employee.Employee;
+import Models.Organization.Organization;
 import ui.SystemAdmin.*;
 
 /**
@@ -17,15 +18,26 @@ public class mainPanelBaker extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-   bakerBookingsPanel bookings= new bakerBookingsPanel();
-   bakerItemsPanel menu=new bakerItemsPanel();
+   bakerBookingsPanel bookings;
+   bakerItemsPanel menu;
+   EcoSystem system;
+   Employee employee;
+   
+  
    public mainPanelBaker(){
    initComponents();
-        splitPane.setRightComponent(bookings);}
+        splitPane.setRightComponent(bookings);
+   }
+   
+   
     public mainPanelBaker(EcoSystem system,Employee employee) {
         initComponents();
+        this.employee = employee;
+        this.system= system;
+        bookings = new bakerBookingsPanel(system, employee);
         splitPane.setRightComponent(bookings);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,13 +135,14 @@ public class mainPanelBaker extends javax.swing.JPanel {
 
     private void btnBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingsActionPerformed
         // TODO add your handling code here:
-        
+        bookings = new bakerBookingsPanel(system, employee);
         splitPane.setRightComponent(bookings);
         
     }//GEN-LAST:event_btnBookingsActionPerformed
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
         // TODO add your handling code here:
+        menu = new bakerItemsPanel(system, employee);
         splitPane.setRightComponent(menu);
     }//GEN-LAST:event_btnServicesActionPerformed
 

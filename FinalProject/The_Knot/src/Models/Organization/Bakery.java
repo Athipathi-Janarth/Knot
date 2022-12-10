@@ -27,5 +27,14 @@ public class Bakery extends Organization {
     public void setMenu(BakeryMenu menu) {
         this.menu = menu;
     }
+    
     private OrderDirectory orders;
+
+    public OrderDirectory getOrders() {
+        return orders;
+    }
+
+    public void setOrders(OrderDirectory orders) {
+        this.orders = orders;
+    }
 }

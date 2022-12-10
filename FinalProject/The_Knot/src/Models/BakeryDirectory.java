@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class BakeryDirectory {
-    private ArrayList<Bakery> bakeries;
+    private ArrayList<Bakery> bakeries = new ArrayList<>();
 
     public ArrayList<Bakery> getBakeries() {
         return bakeries;
@@ -22,6 +22,4 @@ public class BakeryDirectory {
         this.bakeries = bakeries;
     }
 
-    public BakeryDirectory() {
-    }
 }
