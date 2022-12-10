@@ -60,8 +60,10 @@ public class MainJFrame extends javax.swing.JFrame {
         upperPanel.setVisible(false);
         mainPanel.setVisible(false);
         registerPanel.setVisible(false);
+        registerPanel1.setVisible(false);
         loginForm.setBackground(new Color(0,0,0,50));
         registerForm.setBackground(new Color(0,0,0,50));
+        registerForm1.setBackground(new Color(0,0,0,50));
             
     }
 
@@ -83,6 +85,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         logoImg1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         defaultBackground = new javax.swing.JLabel();
         registerPanel = new javax.swing.JPanel();
         registerForm = new javax.swing.JPanel();
@@ -112,6 +115,46 @@ public class MainJFrame extends javax.swing.JFrame {
         logoutImg = new javax.swing.JLabel();
         headerBackgroundImg = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
+        registerPanel1 = new javax.swing.JPanel();
+        registerForm1 = new javax.swing.JPanel();
+        logoImg3 = new javax.swing.JLabel();
+        backImage1 = new javax.swing.JLabel();
+        lblName8 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        lblName9 = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
+        lblName10 = new javax.swing.JLabel();
+        txtZodiac = new javax.swing.JTextField();
+        lblName11 = new javax.swing.JLabel();
+        lblName12 = new javax.swing.JLabel();
+        txtUserName1 = new javax.swing.JTextField();
+        lblName13 = new javax.swing.JLabel();
+        txtPassword1 = new javax.swing.JTextField();
+        lblName14 = new javax.swing.JLabel();
+        btnNextPage = new javax.swing.JButton();
+        heartImg1 = new javax.swing.JLabel();
+        maleRadio = new javax.swing.JRadioButton();
+        femaleRadio = new javax.swing.JRadioButton();
+        dropdownHobby = new javax.swing.JComboBox<>();
+        lblName16 = new javax.swing.JLabel();
+        ProfileImg = new javax.swing.JButton();
+        profileImg = new javax.swing.JLabel();
+        registerForm2 = new javax.swing.JPanel();
+        logoImg4 = new javax.swing.JLabel();
+        backImage2 = new javax.swing.JLabel();
+        lblName15 = new javax.swing.JLabel();
+        lblName17 = new javax.swing.JLabel();
+        txtAge1 = new javax.swing.JTextField();
+        lblName18 = new javax.swing.JLabel();
+        txtpreferedZodiac3 = new javax.swing.JTextField();
+        lblName19 = new javax.swing.JLabel();
+        lblName22 = new javax.swing.JLabel();
+        btnRegisterUsr2 = new javax.swing.JButton();
+        heartImg2 = new javax.swing.JLabel();
+        maleRadio1 = new javax.swing.JRadioButton();
+        femaleRadio1 = new javax.swing.JRadioButton();
+        dropdownHobby1 = new javax.swing.JComboBox<>();
+        defaultBackground2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1200, 750));
@@ -197,6 +240,17 @@ public class MainJFrame extends javax.swing.JFrame {
 
         loginPanel.add(loginForm);
         loginForm.setBounds(330, 190, 490, 340);
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/couple.png"))); // NOI18N
+        jLabel3.setText("Find a Match ");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        loginPanel.add(jLabel3);
+        jLabel3.setBounds(650, 530, 180, 40);
 
         defaultBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wedding-Background_Image.jpeg"))); // NOI18N
         loginPanel.add(defaultBackground);
@@ -391,6 +445,298 @@ public class MainJFrame extends javax.swing.JFrame {
         mainPanel.setLayout(new java.awt.CardLayout());
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1210, 630));
 
+        registerPanel1.setLayout(null);
+
+        logoImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+
+        backImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        backImage1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backImage1MouseClicked(evt);
+            }
+        });
+
+        lblName8.setText(" Name");
+
+        lblName9.setText("Age");
+
+        lblName10.setText(" Zodiac");
+
+        lblName11.setText("Gender");
+
+        lblName12.setText("User Name");
+
+        lblName13.setText("Password");
+
+        lblName14.setText("Hobby");
+
+        btnNextPage.setText("Fill Preferences");
+        btnNextPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextPageActionPerformed(evt);
+            }
+        });
+
+        heartImg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/heart.png"))); // NOI18N
+
+        maleRadio.setText("Male");
+
+        femaleRadio.setText("Female");
+
+        dropdownHobby.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clubbing", "Netflix", "Travelling", "Coding", "Reading", "Foodie", "Cooking", "Painting", "Singing", "Dancing" }));
+
+        lblName16.setText("Profile Picture");
+
+        ProfileImg.setText("Upload Image");
+
+        javax.swing.GroupLayout registerForm1Layout = new javax.swing.GroupLayout(registerForm1);
+        registerForm1.setLayout(registerForm1Layout);
+        registerForm1Layout.setHorizontalGroup(
+            registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerForm1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(backImage1)
+                .addGap(321, 321, 321)
+                .addComponent(logoImg3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(registerForm1Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(registerForm1Layout.createSequentialGroup()
+                        .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblName12, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblName10, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtZodiac, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(heartImg1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))
+                    .addGroup(registerForm1Layout.createSequentialGroup()
+                        .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(registerForm1Layout.createSequentialGroup()
+                                .addComponent(lblName11, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(maleRadio)
+                                .addGap(30, 30, 30)
+                                .addComponent(femaleRadio))
+                            .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblName8, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblName13, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblName9, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(registerForm1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(lblName14, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dropdownHobby, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registerForm1Layout.createSequentialGroup()
+                            .addComponent(lblName16, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ProfileImg)))
+                    .addComponent(profileImg, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(134, 134, 134))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registerForm1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
+        );
+        registerForm1Layout.setVerticalGroup(
+            registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerForm1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(logoImg3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backImage1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(registerForm1Layout.createSequentialGroup()
+                        .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, registerForm1Layout.createSequentialGroup()
+                                .addComponent(lblName8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(registerForm1Layout.createSequentialGroup()
+                                .addComponent(lblName9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(21, 21, 21)
+                        .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(registerForm1Layout.createSequentialGroup()
+                                .addComponent(lblName10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtZodiac, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
+                                .addComponent(lblName12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(registerForm1Layout.createSequentialGroup()
+                                .addComponent(lblName14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dropdownHobby, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblName16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ProfileImg))
+                                .addGap(42, 42, 42))))
+                    .addGroup(registerForm1Layout.createSequentialGroup()
+                        .addComponent(heartImg1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)))
+                .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(registerForm1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(lblName13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(registerForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(maleRadio)
+                            .addComponent(femaleRadio)
+                            .addComponent(lblName11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(98, 98, 98))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registerForm1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(profileImg, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))))
+        );
+
+        registerPanel1.add(registerForm1);
+        registerForm1.setBounds(80, 30, 1040, 580);
+
+        logoImg4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+
+        backImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        backImage2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backImage2MouseClicked(evt);
+            }
+        });
+
+        lblName15.setText("Preferences:");
+
+        lblName17.setText("Age");
+
+        lblName18.setText(" Zodiac");
+
+        lblName19.setText("Gender");
+
+        lblName22.setText("Hobby");
+
+        btnRegisterUsr2.setText("Create Account");
+        btnRegisterUsr2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterUsr2ActionPerformed(evt);
+            }
+        });
+
+        heartImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/heart.png"))); // NOI18N
+
+        maleRadio1.setText("Male");
+
+        femaleRadio1.setText("Female");
+
+        dropdownHobby1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clubbing", "Netflix", "Travelling", "Coding", "Reading", "Foodie", "Cooking", "Painting", "Singing", "Dancing" }));
+
+        javax.swing.GroupLayout registerForm2Layout = new javax.swing.GroupLayout(registerForm2);
+        registerForm2.setLayout(registerForm2Layout);
+        registerForm2Layout.setHorizontalGroup(
+            registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerForm2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(backImage2)
+                .addGap(321, 321, 321)
+                .addComponent(logoImg4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(registerForm2Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(registerForm2Layout.createSequentialGroup()
+                        .addComponent(lblName15, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(registerForm2Layout.createSequentialGroup()
+                        .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(registerForm2Layout.createSequentialGroup()
+                                .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(registerForm2Layout.createSequentialGroup()
+                                        .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblName18, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtpreferedZodiac3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(registerForm2Layout.createSequentialGroup()
+                                        .addComponent(lblName19, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(maleRadio1)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(femaleRadio1)))
+                                .addGap(73, 73, 73))
+                            .addGroup(registerForm2Layout.createSequentialGroup()
+                                .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblName17, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(registerForm2Layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(lblName22, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(dropdownHobby1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(heartImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addComponent(btnRegisterUsr2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(134, 134, 134))))
+        );
+        registerForm2Layout.setVerticalGroup(
+            registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerForm2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(logoImg4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backImage2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(registerForm2Layout.createSequentialGroup()
+                        .addComponent(lblName15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(maleRadio1)
+                            .addComponent(femaleRadio1)
+                            .addComponent(lblName19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblName18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtpreferedZodiac3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(registerForm2Layout.createSequentialGroup()
+                                .addComponent(lblName17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnRegisterUsr2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(heartImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(lblName22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(dropdownHobby1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(143, Short.MAX_VALUE))
+        );
+
+        //maleRadio1.setBackground(new Color(0,0,0,0));
+
+        registerPanel1.add(registerForm2);
+        registerForm2.setBounds(80, 30, 1040, 580);
+        registerForm2.setBackground(new Color(0,0,0,50));
+
+        defaultBackground2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/wedding-Background_Image.jpeg"))); // NOI18N
+        registerPanel1.add(defaultBackground2);
+        defaultBackground2.setBounds(0, 0, 1210, 700);
+
+        getContentPane().add(registerPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 700));
+        registerForm2.setVisible(false);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -469,6 +815,7 @@ public class MainJFrame extends javax.swing.JFrame {
         upperPanel.setVisible(false);
         mainPanel.setVisible(false);
         registerPanel.setVisible(false);
+        registerPanel1.setVisible(false);
     }//GEN-LAST:event_backImageMouseClicked
 
     private void btnRegisterUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUsrActionPerformed
@@ -486,6 +833,7 @@ public class MainJFrame extends javax.swing.JFrame {
             upperPanel.setVisible(true);
             mainPanel.setVisible(true);
             registerPanel.setVisible(false);
+            registerPanel1.setVisible(false);
             clearRegister();
             }
             else{
@@ -497,6 +845,41 @@ public class MainJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please Enter All Details");
         }
     }//GEN-LAST:event_btnRegisterUsrActionPerformed
+
+    private void backImage1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backImage1MouseClicked
+        // TODO add your handling code here:
+        loginPanel.setVisible(true);
+        upperPanel.setVisible(false);
+        mainPanel.setVisible(false);
+        registerPanel.setVisible(false);
+         registerPanel1.setVisible(false);
+    }//GEN-LAST:event_backImage1MouseClicked
+
+    private void btnNextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextPageActionPerformed
+        // TODO add your handling code here:
+        registerForm2.setVisible(true);
+        registerForm1.setVisible(false);
+    }//GEN-LAST:event_btnNextPageActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+        loginPanel.setVisible(false);
+        upperPanel.setVisible(false);
+        mainPanel.setVisible(false);
+        registerPanel.setVisible(false);
+         registerPanel1.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void backImage2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backImage2MouseClicked
+        // TODO add your handling code here:
+        registerForm2.setVisible(false);
+        registerForm1.setVisible(true);
+    }//GEN-LAST:event_backImage2MouseClicked
+
+    private void btnRegisterUsr2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUsr2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegisterUsr2ActionPerformed
     public boolean validateCoupleUser(){
         boolean valid = true;
         if(txtyourName.getText().isEmpty() || txtyourName1.getText().isEmpty()){
@@ -525,6 +908,7 @@ public class MainJFrame extends javax.swing.JFrame {
         loginPanel.setVisible(true);
         upperPanel.setVisible(false);
         mainPanel.setVisible(false);
+        
     }
     public void clearRegister(){
         txtyourName.setText("");
@@ -583,37 +967,78 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ProfileImg;
     private javax.swing.JLabel backImage;
+    private javax.swing.JLabel backImage1;
+    private javax.swing.JLabel backImage2;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnNextPage;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRegisterUsr;
+    private javax.swing.JButton btnRegisterUsr2;
     private javax.swing.JLabel defaultBackground;
     private javax.swing.JLabel defaultBackground1;
+    private javax.swing.JLabel defaultBackground2;
+    private javax.swing.JComboBox<String> dropdownHobby;
+    private javax.swing.JComboBox<String> dropdownHobby1;
+    private javax.swing.JRadioButton femaleRadio;
+    private javax.swing.JRadioButton femaleRadio1;
     private javax.swing.JLabel headerBackgroundImg;
     private javax.swing.JLabel heartImg;
+    private javax.swing.JLabel heartImg1;
+    private javax.swing.JLabel heartImg2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblName1;
+    private javax.swing.JLabel lblName10;
+    private javax.swing.JLabel lblName11;
+    private javax.swing.JLabel lblName12;
+    private javax.swing.JLabel lblName13;
+    private javax.swing.JLabel lblName14;
+    private javax.swing.JLabel lblName15;
+    private javax.swing.JLabel lblName16;
+    private javax.swing.JLabel lblName17;
+    private javax.swing.JLabel lblName18;
+    private javax.swing.JLabel lblName19;
     private javax.swing.JLabel lblName2;
+    private javax.swing.JLabel lblName22;
     private javax.swing.JLabel lblName3;
     private javax.swing.JLabel lblName4;
     private javax.swing.JLabel lblName5;
     private javax.swing.JLabel lblName6;
     private javax.swing.JLabel lblName7;
+    private javax.swing.JLabel lblName8;
+    private javax.swing.JLabel lblName9;
     private javax.swing.JPanel loginForm;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel logoImg;
     private javax.swing.JLabel logoImg1;
     private javax.swing.JLabel logoImg2;
+    private javax.swing.JLabel logoImg3;
+    private javax.swing.JLabel logoImg4;
     private javax.swing.JLabel logoutImg;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JRadioButton maleRadio;
+    private javax.swing.JRadioButton maleRadio1;
+    private javax.swing.JLabel profileImg;
     private javax.swing.JPanel registerForm;
+    private javax.swing.JPanel registerForm1;
+    private javax.swing.JPanel registerForm2;
     private javax.swing.JPanel registerPanel;
+    private javax.swing.JPanel registerPanel1;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtAge1;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtPassword1;
     private javax.swing.JPasswordField txtPwd;
     private javax.swing.JTextField txtUserName;
+    private javax.swing.JTextField txtUserName1;
+    private javax.swing.JTextField txtZodiac;
+    private javax.swing.JTextField txtpreferedZodiac3;
     private javax.swing.JTextField txtuserName;
     private javax.swing.JTextField txtyourName;
     private javax.swing.JTextField txtyourName1;
