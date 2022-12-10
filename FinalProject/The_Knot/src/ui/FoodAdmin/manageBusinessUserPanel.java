@@ -26,6 +26,8 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
     EcoSystem system;
     Employee emp;
     Enterprise ent;
+    Network net;
+    Organization org;
     public manageBusinessUserPanel(EcoSystem system,Employee emp) {
         this.emp=emp;
         this.system = system;
@@ -47,7 +49,7 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         lblOrganisation = new javax.swing.JLabel();
         btnAddUser = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
-        dropdownEnterprise = new javax.swing.JComboBox<>();
+        dropdownEnterprise = new javax.swing.JComboBox();
         lblusrName = new javax.swing.JLabel();
         lblPwd = new javax.swing.JLabel();
         txtAdminPwd = new javax.swing.JTextField();
@@ -77,6 +79,7 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         nameLabel.setText("Name");
 
         dropdownEnterprise.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        dropdownEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item1", "Item2" }));
 
         lblusrName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lblusrName.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,19 +175,30 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
         // TODO add your handling code here:
+       
         String userName = txtAdminUsrName.getText();
         String password = txtAdminPwd.getText();
-        if ("".equals(userName)) {
-            JOptionPane.showMessageDialog(null, "Please enter username");
-        } else if (!system.checkIfUserIsUnique(system,userName)) {
-            JOptionPane.showMessageDialog(null, "Please enter unique username");
-        } else if ("".equals(password)) {
-            JOptionPane.showMessageDialog(null, "Please enter password");
-        } else {
-            if(dropdownEnterprise.getSelectedItem()=="Bakery")
-            {system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new BakerRole(),"Boston");}
+            if ("".equals(userName)) {
+                JOptionPane.showMessageDialog(null, "Please enter username");
+            } else if (!system.checkIfUserIsUnique(system,userName)) {
+                JOptionPane.showMessageDialog(null, "Please enter unique username");
+            } else if ("".equals(password)) {
+                JOptionPane.showMessageDialog(null, "Please enter password");
+            } else {
+            for(Organization org:ent.getOrganizationList().getOrganizationList()){
+                if(org.getName().equals(dropdownEnterprise.getSelectedItem()))
+                    this.org=org;
+            }
+            if(this.org.getType()==Organization.Type.Bakery)
+            {
+                system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new BakerRole(),net.getName());
+                this.org.getEmployees().createEmployee(userName, password, txtAdminName.getText(), new BakerRole(),net.getName());
+            }
             else{
-             system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new CatererRole(),"Boston");}
+             system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new CatererRole(),net.getName());
+             this.org.getEmployees().createEmployee(userName, password, txtAdminName.getText(), new CatererRole(),net.getName());
+            }
+            
             JOptionPane.showMessageDialog(null, "User Account Created");
             txtAdminUsrName.setText("");
             txtAdminPwd.setText("");
@@ -195,6 +209,7 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         dropdownNetwork.removeAllItems();
         dropdownEnterprise.removeAllItems();
         for (Network network :system.getNetworkList()){
+            net=network;
             if(emp.getNetworkname().equals(network.getName())){
             for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
                 if (ent.getEnterpriseType()==Enterprise.EnterpriseType.FoodManagement){
@@ -214,7 +229,7 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JButton btnAddUser;
-    private javax.swing.JComboBox<String> dropdownEnterprise;
+    private javax.swing.JComboBox dropdownEnterprise;
     private javax.swing.JComboBox<String> dropdownNetwork;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblOrganisation;

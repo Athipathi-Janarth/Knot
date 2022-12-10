@@ -4,7 +4,13 @@
  */
 package ui.FoodAdmin;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Enterprise.Enterprise;
+import Models.Organization.Organization;
+import Network.Network;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +21,39 @@ public class displayEmployee extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public displayEmployee() {
+    EcoSystem system;
+    Employee emp;
+    public displayEmployee(EcoSystem system,Employee emp) {
         initComponents();
+        this.system=system;
+        this.emp=emp;
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        popData();
     }
+    
+    public void popData() {
 
+        DefaultTableModel model = (DefaultTableModel) networkTable.getModel();
+
+        model.setRowCount(0);
+
+        for (Network network :system.getNetworkList()){
+            if(emp.getNetworkname().equals(network.getName())){
+            for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
+                if (ent.getEnterpriseType()==Enterprise.EnterpriseType.FoodManagement){  
+                    for(Organization org:ent.getOrganizationList().getOrganizationList()){
+                       for (Employee employee : org.getEmployees().getEmployeeList()) {
+                            Object row[] = new Object[2];
+                            row[0] = employee.getName();
+                            row[1] = employee.getUserName();
+                            ((DefaultTableModel) networkTable.getModel()).addRow(row);
+                        }
+                    }
+                }
+            }
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,17 +74,17 @@ public class displayEmployee extends javax.swing.JPanel {
         networkTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         networkTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Users"
+                "Business Users", "User Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -80,7 +114,6 @@ public class displayEmployee extends javax.swing.JPanel {
         adminPanelCard.setBounds(0, 0, 1010, 630);
 
         adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/foodAdminBg.png"))); // NOI18N
-        adminBackgroundImg.setPreferredSize(new java.awt.Dimension(977, 630));
         add(adminBackgroundImg);
         adminBackgroundImg.setBounds(0, 0, 980, 640);
     }// </editor-fold>//GEN-END:initComponents

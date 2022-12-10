@@ -20,7 +20,7 @@ public class mainPanelFoodAdmin extends javax.swing.JPanel {
      */
     EcoSystem system;
     Employee employeeAccount;
-    displayEmployee employee = new displayEmployee();
+    displayEmployee employee ;
     organisationPanel organisation; 
     manageBusinessUserPanel manageUser;
     public mainPanelFoodAdmin() {
@@ -157,6 +157,7 @@ public class mainPanelFoodAdmin extends javax.swing.JPanel {
 
     private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
         // TODO add your handling code here:
+        employee = new displayEmployee(system,employeeAccount);
         splitPane.setRightComponent(employee);
     }//GEN-LAST:event_btnDisplayActionPerformed
 

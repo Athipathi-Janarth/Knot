@@ -64,6 +64,9 @@ public class Organization {
     private long enterpiseId;
 
     public EmployeeDirectory getEmployees() {
+        if(employees==null){
+            this.employees = new EmployeeDirectory();
+        }
         return employees;
     }
 
