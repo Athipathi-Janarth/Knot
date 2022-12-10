@@ -24,10 +24,8 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
    EcoSystem system;
     public mainPanelSysadmin(EcoSystem system) {
         initComponents();
+        this.system=system;
         network = new networkPanel(system);
-        enterprise = new enterprisePanel(system);
-        manageAdmin=new manageAdminPanel(system);
-        displayPanel= new displayAdminsPanel(system);
         splitPane.setRightComponent(network);
     }
 
@@ -153,26 +151,26 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
 
     private void btnNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetworkActionPerformed
         // TODO add your handling code here:
-        
+        network = new networkPanel(system);
         splitPane.setRightComponent(network);
         
     }//GEN-LAST:event_btnNetworkActionPerformed
 
     private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseActionPerformed
         // TODO add your handling code here:
-       
+        enterprise = new enterprisePanel(system);
         splitPane.setRightComponent(enterprise);
     }//GEN-LAST:event_btnEnterpriseActionPerformed
 
     private void btnAdminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminsActionPerformed
         // TODO add your handling code here:
-       
+        manageAdmin=new manageAdminPanel(system);
         splitPane.setRightComponent(manageAdmin);
     }//GEN-LAST:event_btnAdminsActionPerformed
 
     private void btnViewAdminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAdminsActionPerformed
         // TODO add your handling code here:
-       
+       displayPanel= new displayAdminsPanel(system);
         splitPane.setRightComponent(displayPanel);
     }//GEN-LAST:event_btnViewAdminsActionPerformed
 

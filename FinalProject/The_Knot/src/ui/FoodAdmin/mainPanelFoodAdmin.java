@@ -4,6 +4,9 @@
  */
 package ui.FoodAdmin;
 
+import Business.EcoSystem;
+import Employee.Employee;
+
 
 /**
  *
@@ -15,11 +18,20 @@ public class mainPanelFoodAdmin extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
+    EcoSystem system;
+    Employee employeeAccount;
     displayEmployee employee = new displayEmployee();
-    organisationPanel organisation = new organisationPanel();
-    manageBusinessUserPanel manageUser=new manageBusinessUserPanel();
+    organisationPanel organisation; 
+    manageBusinessUserPanel manageUser;
     public mainPanelFoodAdmin() {
         initComponents();
+   
+    }
+    public mainPanelFoodAdmin(EcoSystem system,Employee emp) {
+        initComponents();
+        this.system = system;
+        this.employeeAccount=emp;
+        organisation = new organisationPanel(system,emp);
         splitPane.setRightComponent(organisation);
     }
 
@@ -132,13 +144,14 @@ public class mainPanelFoodAdmin extends javax.swing.JPanel {
 
     private void btnOrganisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrganisationActionPerformed
         // TODO add your handling code here:
-        
+        organisation = new organisationPanel(system,employeeAccount);
         splitPane.setRightComponent(organisation);
         
     }//GEN-LAST:event_btnOrganisationActionPerformed
 
     private void btnUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersActionPerformed
         // TODO add your handling code here:
+        manageUser=new manageBusinessUserPanel(system,employeeAccount);
         splitPane.setRightComponent(manageUser);
     }//GEN-LAST:event_btnUsersActionPerformed
 

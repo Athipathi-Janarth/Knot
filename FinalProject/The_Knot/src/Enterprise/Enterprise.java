@@ -4,6 +4,8 @@
  */
 package Enterprise;
 
+import Models.Organization.OrganizatinDirectory;
+
 /**
  *
  * @author athipathi
@@ -11,6 +13,7 @@ package Enterprise;
 public class Enterprise {
      private EnterpriseType enterpriseType;
      private String enterpriseName;
+     private OrganizatinDirectory organizationList;
 
    
 
@@ -20,6 +23,12 @@ public class Enterprise {
 
     public String getEnterpriseName() {
         return enterpriseName;
+    }
+
+    public OrganizatinDirectory getOrganizationList() {
+        if(organizationList==null){
+        this.organizationList=new OrganizatinDirectory();}
+        return organizationList;
     }
     
     public enum EnterpriseType {
@@ -44,7 +53,7 @@ public class Enterprise {
     public Enterprise(String name, EnterpriseType type) {
         this.enterpriseName=name;
         this.enterpriseType = type;
-        //organizationDirectory = new OrganizationDirectory();
+        organizationList = new OrganizatinDirectory();
     }
 
 }

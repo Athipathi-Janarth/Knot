@@ -25,28 +25,28 @@ public class OrganizatinDirectory {
     public Organization createOrganization(String name,Type type){
         Organization organization = null;
         if (type.getValue().equals(Type.Bakery.getValue())){
-            organization = new Bakery(name);
+            organization = new Bakery(name,type);
             organizationList.add(organization);
         }
         else if (type.getValue().equals(Type.Catering.getValue())){
-            organization = new Catering(name);
+            organization = new Catering(name,type);
             organizationList.add(organization);
         }
          else if (type.getValue().equals(Type.Decor.getValue())){
-            organization = new Decor(name);
+            organization = new Decor(name,type);
             organizationList.add(organization);
         }
         else if (type.getValue().equals(Type.Designer.getValue())){
-            organization = new Designer(name);
+            organization = new Designer(name,type);
             organizationList.add(organization);
         }
         else if (type.getValue().equals(Type.Stylist.getValue())){
-            organization = new Stylist(name);
+            organization = new Stylist(name,type);
             organizationList.add(organization);
         }
         
         else if (type.getValue().equals(Type.Venue.getValue())){
-            organization = new Venue(name);
+            organization = new Venue(name,type);
             organizationList.add(organization);
         }
         return organization;

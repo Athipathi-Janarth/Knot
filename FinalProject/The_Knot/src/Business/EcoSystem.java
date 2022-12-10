@@ -17,9 +17,7 @@ import java.util.ArrayList;
  */
 public class EcoSystem {
     private static EcoSystem business;
-    CoupleUserDirectory coupleUserlist;
-    EmployeeDirectory  employeeList;
-    ArrayList<Network> networkList;
+    
     
     public Network createAndAddNetwork(){
         Network network=new Network();
@@ -27,10 +25,12 @@ public class EcoSystem {
         return network;
     }
 
+    
     public EcoSystem() {
+        this.employeeList=new EmployeeDirectory();
         this.coupleUserlist = new CoupleUserDirectory();
         networkList=new ArrayList<Network>();
-        this.Name = "System";
+        this.Name = "System1";
     }
     
     public ArrayList<Network> getNetworkList() {
@@ -40,7 +40,7 @@ public class EcoSystem {
         return networkList;
     }
 
-    public void setNetworkList(ArrayList<Network> networkList) {
+    public  void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
     }
     
@@ -62,7 +62,9 @@ public class EcoSystem {
         return net;
     }
     String Name;
-    
+     private CoupleUserDirectory coupleUserlist;
+     private EmployeeDirectory  employeeList;
+     private ArrayList<Network> networkList;
     
      public static EcoSystem getInstance(){
         if(business==null){
@@ -78,18 +80,19 @@ public class EcoSystem {
     public void setName(String Name) {
         this.Name = Name;
     }
-      public static void setInstance(EcoSystem system) {
+    
+    public static void setInstance(EcoSystem system) {
         business = system;
     }
       
-    public CoupleUserDirectory getCoupledirectory() {
+    public  CoupleUserDirectory getCoupledirectory() {
         if(coupleUserlist==null){
         this.coupleUserlist = new CoupleUserDirectory();
         }
         return coupleUserlist;
     }
 
-    public void setCoupledirectory(CoupleUserDirectory coupleUserlist) {
+    public  void setCoupledirectory(CoupleUserDirectory coupleUserlist) {
         this.coupleUserlist = coupleUserlist;
     }
      public EmployeeDirectory getEmployeedirectory() {

@@ -4,7 +4,14 @@
  */
 package ui.FoodAdmin;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Enterprise.Enterprise;
+import Models.Organization.Organization;
+import Network.Network;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,9 +25,16 @@ public class organisationPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public organisationPanel() {
+    EcoSystem system;
+    Employee emp;
+    Enterprise ent;
+    public organisationPanel(EcoSystem system,Employee emp) {
+        this.emp=emp;
+        this.system = system;
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        populateCombo();
+        populateTable();
     }
 
     /**
@@ -39,8 +53,8 @@ public class organisationPanel extends javax.swing.JPanel {
         txtEnterpriseName = new javax.swing.JTextField();
         btnAddOrganisation = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        dropdownNetwork = new javax.swing.JComboBox<>();
-        dropdownOrganisation = new javax.swing.JComboBox<>();
+        dropdownNetwork = new javax.swing.JComboBox();
+        dropdownOrganisation = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         adminBackgroundImg = new javax.swing.JLabel();
 
@@ -56,7 +70,7 @@ public class organisationPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Enterprise", "Organisation"
+                "Organisation", "Organization Type"
             }
         ) {
             Class[] types = new Class [] {
@@ -88,8 +102,10 @@ public class organisationPanel extends javax.swing.JPanel {
         jLabel2.setText("Enterprise Name");
 
         dropdownNetwork.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        dropdownNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item1", "Item2" }));
 
         dropdownOrganisation.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        dropdownOrganisation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item1", "Item2" }));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,15 +168,55 @@ public class organisationPanel extends javax.swing.JPanel {
 
     private void btnAddOrganisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrganisationActionPerformed
         // TODO add your handling code here:
+        
+        Organization.Type type = (Organization.Type) dropdownOrganisation.getSelectedItem();
+        if ("".equals(txtEnterpriseName.getText())) {
+            JOptionPane.showMessageDialog(null, "Enter organization name!");
+        } else {
+            if (this.ent.getOrganizationList().isUnique(txtEnterpriseName.getText())) {
+                this.ent.getOrganizationList().createOrganization(txtEnterpriseName.getText(), type);
+                JOptionPane.showMessageDialog(null, "Organization Successfully Created");
+                txtEnterpriseName.setText("");
+                populateTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Organization name already exists!");
+            }
+
+        }
     }//GEN-LAST:event_btnAddOrganisationActionPerformed
-
-
+     private void populateCombo(){
+        dropdownNetwork.removeAllItems();
+        dropdownOrganisation.removeAllItems();
+        for (Network network :system.getNetworkList()){
+            if(emp.getNetworkname().equals(network.getName())){
+            for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
+                if (ent.getEnterpriseType()==Enterprise.EnterpriseType.FoodManagement){
+                    dropdownNetwork.addItem(ent.getEnterpriseName());  
+                    this.ent=ent;
+                }
+            }
+            }
+        }
+        dropdownOrganisation.addItem(Organization.Type.Catering);
+        dropdownOrganisation.addItem(Organization.Type.Bakery);
+    }
+     private void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) organisationTable.getModel();
+        model.setRowCount(0);
+        for (Organization organization : ent.getOrganizationList().getOrganizationList()){
+            Object[] row = new Object[2];
+            row[1] = organization.getType();
+            row[0] = organization.getName();
+            
+            model.addRow(row);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JButton btnAddOrganisation;
-    private javax.swing.JComboBox<String> dropdownNetwork;
-    private javax.swing.JComboBox<String> dropdownOrganisation;
+    private javax.swing.JComboBox dropdownNetwork;
+    private javax.swing.JComboBox dropdownOrganisation;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;

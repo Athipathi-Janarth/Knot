@@ -12,8 +12,8 @@ import Models.Organization.Organization;
  */
 public class Venue extends Organization {
 
-    public Venue(String name) {
-        super(name);
+    public Venue(String name,Type type) {
+        super(name,type);
     }
 
     public int getCapacity() {

@@ -24,8 +24,8 @@ public class EmployeeDirectory {
         return employeeList;
     }
 
-    public Employee createEmployee(String name, String userName, String password,Role role){
-        Employee employee = new Employee(name, userName, password,role);
+    public Employee createEmployee(String name, String userName, String password,Role role,String network){
+        Employee employee = new Employee(name, userName, password,role,network);
         employeeList.add(employee);
         return employee;
     }

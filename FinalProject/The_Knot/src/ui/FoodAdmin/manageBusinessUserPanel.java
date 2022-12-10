@@ -4,7 +4,15 @@
  */
 package ui.FoodAdmin;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Enterprise.Enterprise;
+import Models.Organization.Organization;
+import Network.Network;
+import Roles.BakerRole;
+import Roles.CatererRole;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,9 +23,15 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public manageBusinessUserPanel() {
+    EcoSystem system;
+    Employee emp;
+    Enterprise ent;
+    public manageBusinessUserPanel(EcoSystem system,Employee emp) {
+        this.emp=emp;
+        this.system = system;
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        populateCombo();
     }
 
     /**
@@ -52,6 +66,11 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
 
         btnAddUser.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnAddUser.setText("Add User");
+        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUserActionPerformed(evt);
+            }
+        });
 
         nameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -143,7 +162,6 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         adminPanelCard.setBounds(0, 0, 1000, 630);
 
         adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/foodAdminBg.png"))); // NOI18N
-        adminBackgroundImg.setPreferredSize(new java.awt.Dimension(977, 630));
         add(adminBackgroundImg);
         adminBackgroundImg.setBounds(0, 0, 980, 630);
     }// </editor-fold>//GEN-END:initComponents
@@ -152,6 +170,45 @@ public class manageBusinessUserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAdminNameActionPerformed
 
+    private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
+        // TODO add your handling code here:
+        String userName = txtAdminUsrName.getText();
+        String password = txtAdminPwd.getText();
+        if ("".equals(userName)) {
+            JOptionPane.showMessageDialog(null, "Please enter username");
+        } else if (!system.checkIfUserIsUnique(system,userName)) {
+            JOptionPane.showMessageDialog(null, "Please enter unique username");
+        } else if ("".equals(password)) {
+            JOptionPane.showMessageDialog(null, "Please enter password");
+        } else {
+            if(dropdownEnterprise.getSelectedItem()=="Bakery")
+            {system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new BakerRole(),"Boston");}
+            else{
+             system.getEmployeedirectory().createEmployee(userName, password, txtAdminName.getText(), new CatererRole(),"Boston");}
+            JOptionPane.showMessageDialog(null, "User Account Created");
+            txtAdminUsrName.setText("");
+            txtAdminPwd.setText("");
+            txtAdminName.setText("");
+        }
+    }//GEN-LAST:event_btnAddUserActionPerformed
+    private void populateCombo(){
+        dropdownNetwork.removeAllItems();
+        dropdownEnterprise.removeAllItems();
+        for (Network network :system.getNetworkList()){
+            if(emp.getNetworkname().equals(network.getName())){
+            for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
+                if (ent.getEnterpriseType()==Enterprise.EnterpriseType.FoodManagement){
+                    dropdownNetwork.addItem(ent.getEnterpriseName());  
+                    this.ent=ent;
+                    for(Organization org:ent.getOrganizationList().getOrganizationList()){
+                        dropdownEnterprise.addItem(org.getName());
+                    }
+                }
+            }
+            }
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;

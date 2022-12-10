@@ -16,13 +16,19 @@ public class Employee {
     String userName;
     String password;
     Role role;
+    String networkname;
     int id;
+
+    public String getNetworkname() {
+        return networkname;
+    }
     
-    public Employee(String name, String userName, String password,Role role){
+    public Employee(String name, String userName, String password,Role role,String network){
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.role=role;
+        this.networkname=network;
     }
 
     public Role getRole() {

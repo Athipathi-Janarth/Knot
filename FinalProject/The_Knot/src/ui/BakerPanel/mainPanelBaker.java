@@ -4,6 +4,8 @@
  */
 package ui.BakerPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import ui.SystemAdmin.*;
 
 /**
@@ -17,7 +19,10 @@ public class mainPanelBaker extends javax.swing.JPanel {
      */
    bakerBookingsPanel bookings= new bakerBookingsPanel();
    bakerItemsPanel menu=new bakerItemsPanel();
-    public mainPanelBaker() {
+   public mainPanelBaker(){
+   initComponents();
+        splitPane.setRightComponent(bookings);}
+    public mainPanelBaker(EcoSystem system,Employee employee) {
         initComponents();
         splitPane.setRightComponent(bookings);
     }

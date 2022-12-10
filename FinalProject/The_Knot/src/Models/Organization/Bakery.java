@@ -14,8 +14,8 @@ import Models.Organization.Organization;
  */
 public class Bakery extends Organization {
 
-    public Bakery(String name) {
-        super(name);
+    public Bakery(String name,Type type) {
+        super(name,type);
     }
     
     private BakeryMenu menu;

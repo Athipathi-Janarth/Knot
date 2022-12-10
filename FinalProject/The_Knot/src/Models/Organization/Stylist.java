@@ -21,8 +21,8 @@ public class Stylist extends Organization {
         this.menu = menu;
     }
 
-    public Stylist(String name) {
-        super(name);
+    public Stylist(String name,Type type) {
+        super(name,type);
     }
     private GroomingMenu menu;
     

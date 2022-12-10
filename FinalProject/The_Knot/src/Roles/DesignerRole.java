@@ -4,8 +4,10 @@
  */
 package Roles;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import javax.swing.JPanel;
-import ui.BakerPanel.mainPanelBaker;
+import ui.DesignerPanel.mainPanelDesigner;
 
 /**
  *
@@ -15,8 +17,13 @@ public class DesignerRole extends Role{
     
     @Override
     public JPanel createWorkArea() {
-       return new mainPanelBaker();
+       return new mainPanelDesigner();
        
+    }
+
+    @Override
+    public JPanel createWorkArea(EcoSystem system, Employee employee) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

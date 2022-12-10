@@ -23,8 +23,9 @@ public class Organization {
             return value;
         }
     }
-    public Organization(String name){
+    public Organization(String name,Type type){
         this.name=name;
+        this.type=type;
     }
     public String getName() {
         return name;

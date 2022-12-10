@@ -12,8 +12,8 @@ import Model.Menus.DecorMenu;
  */
 public class Decor extends Organization {
 
-    public Decor(String name) {
-        super(name);
+    public Decor(String name,Type type) {
+        super(name,type);
     }
     
     private DecorMenu menu;

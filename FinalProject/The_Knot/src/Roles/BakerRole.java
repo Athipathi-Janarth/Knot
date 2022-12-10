@@ -4,6 +4,8 @@
  */
 package Roles;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import javax.swing.JPanel;
 import ui.BakerPanel.mainPanelBaker;
 
@@ -17,6 +19,11 @@ public class BakerRole extends Role{
     public JPanel createWorkArea() {
        return new mainPanelBaker();
        
+    }
+
+    @Override
+    public JPanel createWorkArea(EcoSystem system, Employee employee) {
+         return new mainPanelBaker(system,employee);
     }
     
     

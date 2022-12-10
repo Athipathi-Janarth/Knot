@@ -21,8 +21,8 @@ public class Designer extends Organization {
         this.menu = menu;
     }
 
-    public Designer(String name) {
-        super(name);
+    public Designer(String name,Type type) {
+        super(name,type);
     }
     private GroomingMenu menu;
     

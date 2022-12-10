@@ -153,7 +153,7 @@ public class networkPanel extends javax.swing.JPanel {
                 Network network = system.createAndAddNetwork();
                 network.setName(name);
                 JOptionPane.showMessageDialog(null, "Network Successfully Created");
-                txtNetwork.setText("");        
+                txtNetwork.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "Network Already Exits");
             }

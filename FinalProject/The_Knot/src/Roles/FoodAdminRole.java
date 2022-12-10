@@ -4,6 +4,8 @@
  */
 package Roles;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import javax.swing.JPanel;
 import ui.FoodAdmin.mainPanelFoodAdmin;
 
@@ -14,11 +16,13 @@ import ui.FoodAdmin.mainPanelFoodAdmin;
 public class FoodAdminRole extends Role{
 
     @Override
-    public JPanel createWorkArea() {
-       return new mainPanelFoodAdmin();
-       
+    public JPanel createWorkArea(EcoSystem system,Employee employee) {      
+       return new mainPanelFoodAdmin(system,employee);
     }
 
-    
-    
+    @Override
+    public JPanel createWorkArea() {
+       return new mainPanelFoodAdmin();
+    }
+
 }

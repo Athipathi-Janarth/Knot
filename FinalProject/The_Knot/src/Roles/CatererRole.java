@@ -4,6 +4,8 @@
  */
 package Roles;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import javax.swing.JPanel;
 import ui.CatererPanel.mainPanelCaterer;
 
@@ -17,6 +19,11 @@ public class CatererRole extends Role{
     public JPanel createWorkArea() {
        return new mainPanelCaterer();
        
+    }
+
+    @Override
+    public JPanel createWorkArea(EcoSystem system, Employee employee) {
+      return new mainPanelCaterer(system,employee);
     }
     
     

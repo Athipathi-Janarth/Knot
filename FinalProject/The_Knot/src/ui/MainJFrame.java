@@ -11,6 +11,7 @@ import User.CoupleUser;
 import com.db4o.ObjectSet;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import ui.BakerPanel.mainPanelBaker;
@@ -26,6 +27,12 @@ import ui.DecorationPanel.mainPanelDecoration;
 import ui.StylistPanel.mainPanelStylist;
 import ui.DesignerPanel.mainPanelDesigner;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author athipathi
@@ -36,18 +43,19 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private EcoSystem system;
-    private ObjectSet systems;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     CoupleUser userAccount;
     Employee employeeAccount;
     mainPanelUser userpanel;
 
-    public MainJFrame() {
+    public MainJFrame() throws FileNotFoundException {
         initComponents();
         setTitle("The Knot");
         setResizable(false);
         system=dB4OUtil.retrieveSystem();
-        //system = dB4OUtil.retrieveSystem();
+
+        System.out.println(system);
+        system = dB4OUtil.retrieveSystem();
         loginPanel.setVisible(true);
         upperPanel.setVisible(false);
         mainPanel.setVisible(false);
@@ -421,7 +429,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 loginPanel.setVisible(false);
                 upperPanel.setVisible(true);
                 mainPanel.setVisible(true);
-                mainPanel.add("workArea",employeeAccount.getRole().createWorkArea());
+                mainPanel.add("workArea",employeeAccount.getRole().createWorkArea(system,employeeAccount));
+                
                 clearLogin();
              }
              else{
@@ -438,8 +447,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void logoutImgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutImgMouseClicked
-        // TODO add your handling code here:
-        logout();
+        try {
+            // TODO add your handling code here:
+            logout();
+        } catch (IOException ex) {
+            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_logoutImgMouseClicked
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -503,9 +516,12 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         return valid;
     }
-    public void logout(){
+    public void logout() throws IOException{
         dB4OUtil.storeSystem(system);
+        
         system=dB4OUtil.retrieveSystem();
+        
+
         loginPanel.setVisible(true);
         upperPanel.setVisible(false);
         mainPanel.setVisible(false);
@@ -557,7 +573,11 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrame().setVisible(true);
+                try {
+                    new MainJFrame().setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

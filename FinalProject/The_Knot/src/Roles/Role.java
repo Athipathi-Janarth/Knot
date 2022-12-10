@@ -4,6 +4,8 @@
  */
 package Roles;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import javax.swing.JPanel;
 /**
  *
@@ -40,7 +42,7 @@ public abstract class Role {
     }
     
     public abstract JPanel createWorkArea();
-
+     public abstract JPanel createWorkArea(EcoSystem system,Employee employee);
     @Override
     public String toString() {
         return this.getClass().getName();

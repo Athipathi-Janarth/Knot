@@ -4,6 +4,8 @@
  */
 package ui.CatererPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import ui.SystemAdmin.*;
 
 /**
@@ -18,6 +20,10 @@ public class mainPanelCaterer extends javax.swing.JPanel {
    catererBookingsPanel bookings= new catererBookingsPanel();
    catererItemsPanel menu=new catererItemsPanel();
     public mainPanelCaterer() {
+        initComponents();
+        splitPane.setRightComponent(bookings);
+    }
+    public mainPanelCaterer(EcoSystem system,Employee emp) {
         initComponents();
         splitPane.setRightComponent(bookings);
     }

@@ -4,6 +4,8 @@
  */
 package Roles;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import javax.swing.JPanel;
 import ui.GroomingAdmin.mainPanelGroomingAdmin;
 
@@ -17,6 +19,11 @@ public class GroomingAdminRole extends Role{
     public JPanel createWorkArea() {
        return new mainPanelGroomingAdmin();
        
+    }
+
+    @Override
+    public JPanel createWorkArea(EcoSystem system, Employee employee) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

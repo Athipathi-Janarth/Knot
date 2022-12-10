@@ -209,20 +209,21 @@ public class manageAdminPanel extends javax.swing.JPanel {
             if (system.checkIfUserIsUnique(system,username)) {
                 Employee employee;
                 if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.EventDecor){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new DecorAdminRole());
+                employee = system.getEmployeedirectory().createEmployee(name,username,password,new DecorAdminRole(),network.getName());
                 }else if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.FoodManagement){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FoodAdminRole());
+                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FoodAdminRole(),network.getName());
                 }
                 if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Grooming){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new GroomingAdminRole());
+                employee = system.getEmployeedirectory().createEmployee(name,username,password,new GroomingAdminRole(),network.getName());
                 }
                 if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Finance){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FinanceAdminRole());
+                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FinanceAdminRole(),network.getName());
                 }
                 txtAdminUsrName.setText("");
                 txtAdminPwd.setText("");
                 txtAdminName.setText("");
                 JOptionPane.showMessageDialog(null, "Account created sucessfully");
+
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter unique username", "Warning", JOptionPane.WARNING_MESSAGE);
                 txtAdminUsrName.setText("");

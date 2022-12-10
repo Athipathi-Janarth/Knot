@@ -12,8 +12,8 @@ import Models.Organization.Organization;
  */
 public class Catering extends Organization {
 
-    public Catering(String name) {
-       super(name);  
+    public Catering(String name,Type type) {
+        super(name,type);
     }
     
     
