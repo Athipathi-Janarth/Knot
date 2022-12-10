@@ -118,7 +118,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/schedules.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="    Plan Your Wedding"/>
+                <Property name="text" type="java.lang.String" value="    Find a Match"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
               </Properties>
               <Events>
