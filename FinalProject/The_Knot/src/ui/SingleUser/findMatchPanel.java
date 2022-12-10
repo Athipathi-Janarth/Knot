@@ -10,6 +10,7 @@ import User.SingleUser;
 import ui.User.*;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,8 +23,10 @@ public class findMatchPanel extends javax.swing.JPanel {
      * Creates new form networkPanel
      */
     EcoSystem system;
-    public findMatchPanel(EcoSystem system) {
+    SingleUser user;
+    public findMatchPanel(EcoSystem system,SingleUser user) {
         this.system=system;
+        this.user=user;
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
         populateTable();
@@ -31,15 +34,25 @@ public class findMatchPanel extends javax.swing.JPanel {
     
     public void populateTable(){
          DefaultTableModel model = (DefaultTableModel) matchTable.getModel();
+          model.setRowCount(0);
          for (SingleUser singleUser : system.getSingleUserlist().getSingleUserList()) {
-                            Object row[] = new Object[5];
+             if(!singleUser.getUserName().equals(user.getUserName())){
+                 if(singleUser.getGender().equals(user.getPreferredGender())&& singleUser.getHobbies().equals(user.getPreferredHobbies())){
+                            Object row[] = new Object[7];
                             row[0] = singleUser.getImage();
                             row[1] = singleUser.getName();
                             row[2] = singleUser.getAge();
                             row[3] = singleUser.getHobbies();
                             row[4] = singleUser.getZodiacSign();
+                            row[5] = singleUser.getUserName();
+                            row[6] = singleUser;
                             ((DefaultTableModel) matchTable.getModel()).addRow(row);
-                        }
+                 }
+                 else{
+                     JOptionPane.showMessageDialog(null, "No Match Found According to Your Preferences :( !!");
+                 }
+             }
+         }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,24 +77,44 @@ public class findMatchPanel extends javax.swing.JPanel {
 
         matchTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Image", "Name", "Age", "Hobbies", "Zodiac"
+                "Image", "Name", "Age", "Hobbies", "Zodiac", "UserName", "User"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        matchTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                matchTableMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(matchTable);
+        if (matchTable.getColumnModel().getColumnCount() > 0) {
+            matchTable.getColumnModel().getColumn(5).setMinWidth(0);
+            matchTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            matchTable.getColumnModel().getColumn(5).setMaxWidth(0);
+            matchTable.getColumnModel().getColumn(6).setMinWidth(0);
+            matchTable.getColumnModel().getColumn(6).setPreferredWidth(0);
+            matchTable.getColumnModel().getColumn(6).setMaxWidth(0);
+        }
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -108,6 +141,13 @@ public class findMatchPanel extends javax.swing.JPanel {
         add(adminBackgroundImg);
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void matchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_matchTableMouseClicked
+        // TODO add your handling code here:
+
+        SingleUser singleUser= (SingleUser) matchTable.getValueAt(matchTable.getSelectedRow(), 6);
+        JOptionPane.showMessageDialog(null, "Do you Want to send a request to "+singleUser.getUserName());
+    }//GEN-LAST:event_matchTableMouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -908,8 +908,8 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(validateSingleUser()){
             if(system.checkIfUserIsUnique(system,txtUserName.getText())){
-            SingleUser user=new SingleUser(txtName.getText(),genderBtn.getSelection().toString(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().toString(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
-            system.getSingleUserlist().createUserAccount(txtName.getText(),genderBtn.getSelection().toString(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().toString(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
+            SingleUser user=new SingleUser(txtName.getText(),genderBtn.getSelection().getActionCommand(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().getActionCommand(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
+            system.getSingleUserlist().createUserAccount(txtName.getText(),genderBtn.getSelection().getActionCommand(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().getActionCommand(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
             JOptionPane.showMessageDialog(null, "User Created Successfully");
             singleuserpanel=new mainPanelSingleUser(system,user);
             mainPanel.add("workArea",singleuserpanel);

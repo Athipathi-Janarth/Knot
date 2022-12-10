@@ -22,10 +22,14 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
     findMatchPanel planPanel;
     requestsPanel requestPanel= new requestsPanel();
     estimationsPanel estimationPanel = new estimationsPanel();
+    EcoSystem system;
+    SingleUser user;
     public mainPanelSingleUser(EcoSystem system,SingleUser user) {
         initComponents();
+        this.system=system;
+        this.user=user;
         jLabel1.setText("Welcome "+user.getName());
-        planPanel = new findMatchPanel(system);
+        planPanel = new findMatchPanel(system,user);
         splitPane.setRightComponent(planPanel);
     }
 
@@ -138,7 +142,7 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
 
     private void btnPlanWeddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanWeddingActionPerformed
         // TODO add your handling code here:
-        
+        planPanel = new findMatchPanel(system,user);
         splitPane.setRightComponent(planPanel);
         
     }//GEN-LAST:event_btnPlanWeddingActionPerformed
