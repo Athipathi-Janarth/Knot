@@ -14,14 +14,14 @@ import java.util.ArrayList;
 public class StylistDirectory {
    private ArrayList<Stylist> stylistDirectory = new ArrayList<>(); 
 
-    public ArrayList<Stylist> getGroomingDirectory() {
+    public ArrayList<Stylist> getStylistDirectory() {
         return stylistDirectory;
     }
 
     public StylistDirectory() {
     }
 
-    public void setGroomingDirectory(ArrayList<Stylist> groomingDirectory) {
+    public void setStylistDirectory(ArrayList<Stylist> groomingDirectory) {
         this.stylistDirectory = groomingDirectory;
     }
 

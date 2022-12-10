@@ -4,6 +4,7 @@
  */
 package Models;
 
+import Models.Organization.Designer;
 import Models.Organization.Stylist;
 import java.util.ArrayList;
 
@@ -12,17 +13,17 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class DesignerDirectory {
-   private ArrayList<Stylist> designerDirectory = new ArrayList<>(); 
+   private ArrayList<Designer> designerDirectory = new ArrayList<>(); 
 
-    public ArrayList<Stylist> getGroomingDirectory() {
+    public ArrayList<Designer> getDesignerDirectory() {
         return designerDirectory;
     }
 
     public DesignerDirectory() {
     }
 
-    public void setGroomingDirectory(ArrayList<Stylist> groomingDirectory) {
-        this.designerDirectory = groomingDirectory;
+    public void setDesignerDirectory(ArrayList<Designer> designerDirectory) {
+        this.designerDirectory = designerDirectory;
     }
 
 }

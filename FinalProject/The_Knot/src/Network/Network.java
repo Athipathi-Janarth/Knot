@@ -24,7 +24,7 @@ public class Network {
     private BakeryDirectory bakeryDirectory = new BakeryDirectory();
     private CateringDirectory cateringDirectory = new CateringDirectory();
     private DecorDirectory decorDirectory = new DecorDirectory();
-    private DesignerDirectory groomingDirectory = new DesignerDirectory();
+    private DesignerDirectory designerDirectory = new DesignerDirectory();
     private VenueDirectory venueDirectory = new VenueDirectory();
     private StylistDirectory stylistDirectory = new StylistDirectory();
 
@@ -83,15 +83,15 @@ public class Network {
         this.decorDirectory = decorDirectory;
     }
 
-    public DesignerDirectory getGroomingDirectory() {
-        if(groomingDirectory == null){
-            groomingDirectory = new DesignerDirectory();
+    public DesignerDirectory getDesignerDirectory() {
+        if(designerDirectory == null){
+            designerDirectory = new DesignerDirectory();
         }
-        return groomingDirectory;
+        return designerDirectory;
     }
 
-    public void setGroomingDirectory(DesignerDirectory groomingDirectory) {
-        this.groomingDirectory = groomingDirectory;
+    public void setDesignerDirectory(DesignerDirectory designerDirectory) {
+        this.designerDirectory = designerDirectory;
     }
 
     public Network() {
