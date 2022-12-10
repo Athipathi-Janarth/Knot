@@ -23,7 +23,7 @@ public class DesignerRole extends Role{
 
     @Override
     public JPanel createWorkArea(EcoSystem system, Employee employee) {
-        return new mainPanelDesigner();
+        return new mainPanelDesigner(system,employee);
     }
     
     
