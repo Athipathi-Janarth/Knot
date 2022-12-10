@@ -7,10 +7,21 @@ package ui.BakerPanel;
 import Business.EcoSystem;
 import Employee.Employee;
 import Enterprise.Enterprise;
+import Model.MenuItem.BakeryMenuItem;
+import Model.Menus.BakeryMenu;
+import Models.Organization.Bakery;
 import Models.Organization.Organization;
 import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,13 +36,18 @@ public class bakerItemsPanel extends javax.swing.JPanel {
    EcoSystem system;
    Organization org;
    Employee employee;
+   Bakery bakery;
+   public String photoPath;
     
     public bakerItemsPanel(EcoSystem system, Employee employee) {
         initComponents();
         this.system = system;
         this.employee = employee;
-        getOrganization(employee.getOrgId(), system);
+        System.out.println("Baker items panel");
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        bakery = getBakery(employee.getOrgId());
+        System.out.println("Bakery is " + bakery.getMenu());
+        populateTable(bakery.getMenu());
     }
 
     /**
@@ -57,8 +73,8 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         priceLabel = new javax.swing.JLabel();
         PriceValue = new javax.swing.JTextField();
         ImageLabel = new javax.swing.JLabel();
-        btnUploadImg = new javax.swing.JButton();
         cakeImg = new javax.swing.JLabel();
+        photo = new javax.swing.JLabel();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setSize(new java.awt.Dimension(977, 630));
@@ -67,24 +83,37 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         ItemsTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         ItemsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Item", "Flavour", "Server", "Price", "Image"
+                "Item", "Flavour", "Server", "Price", "Image", "menuItemObject"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
+        ItemsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ItemsTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(ItemsTable);
+        if (ItemsTable.getColumnModel().getColumnCount() > 0) {
+            ItemsTable.getColumnModel().getColumn(4).setMinWidth(0);
+            ItemsTable.getColumnModel().getColumn(4).setPreferredWidth(0);
+            ItemsTable.getColumnModel().getColumn(4).setMaxWidth(0);
+            ItemsTable.getColumnModel().getColumn(5).setMinWidth(0);
+            ItemsTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            ItemsTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         btnCreateCake.setText("Add Item");
         btnCreateCake.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +123,11 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         });
 
         btnDelete.setText("Delete");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
+            }
+        });
 
         ItemName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         ItemName.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,7 +157,12 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         ImageLabel.setForeground(new java.awt.Color(255, 255, 255));
         ImageLabel.setText("Image");
 
-        btnUploadImg.setText("Upload Image");
+        photo.setText("+ Add photo");
+        photo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                photoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -133,38 +172,37 @@ public class bakerItemsPanel extends javax.swing.JPanel {
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(85, 85, 85)
-                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(adminPanelCardLayout.createSequentialGroup()
                                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                            .addComponent(FlavourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(flavourValue, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                            .addComponent(ItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(cakeName, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                            .addComponent(ServesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(serveValue, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                            .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(PriceValue, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(adminPanelCardLayout.createSequentialGroup()
+                                        .addComponent(FlavourLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cakeName, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(adminPanelCardLayout.createSequentialGroup()
+                                        .addComponent(ItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(flavourValue, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(adminPanelCardLayout.createSequentialGroup()
+                                        .addComponent(ServesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(serveValue, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(adminPanelCardLayout.createSequentialGroup()
+                                        .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(PriceValue, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(photo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(255, 255, 255)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cakeImg, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(286, 286, 286)
-                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUploadImg)
-                            .addGroup(adminPanelCardLayout.createSequentialGroup()
-                                .addComponent(btnCreateCake, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(btnCreateCake, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(185, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
@@ -174,35 +212,39 @@ public class bakerItemsPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(cakeImg, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCreateCake, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(69, 69, 69))
-                    .addGroup(adminPanelCardLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ItemName)
-                            .addComponent(cakeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(FlavourLabel)
-                            .addComponent(flavourValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ServesLabel)
-                            .addComponent(serveValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(adminPanelCardLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(ImageLabel))
+                            .addGroup(adminPanelCardLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cakeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(FlavourLabel))))
+                        .addGap(4, 4, 4)
+                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(photo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(adminPanelCardLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(ItemName)
+                                    .addComponent(flavourValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(55, 55, 55)
+                                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(ServesLabel)
+                                    .addComponent(serveValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(55, 55, 55)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(priceLabel)
                             .addComponent(PriceValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(33, 33, 33)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ImageLabel)
-                            .addComponent(btnUploadImg))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnCreateCake, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(adminPanelCardLayout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(cakeImg, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         add(adminPanelCard);
@@ -214,34 +256,131 @@ public class bakerItemsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private Organization getOrganization (long orgId, EcoSystem system){
+//    private Organization getOrganization (long orgId, EcoSystem system){
+//       System.out.println("Searching for org "+ orgId);
 //       Network network = system.retriveNetwork(employee.getNetworkname());
-//       Organization org = null;
+//       Organization organisation = null;
 //       for(int i=0;i< network.getEnterpriseDirectory().getEnterpriseList().size(); i++){
 //           Enterprise enterprise = network.getEnterpriseDirectory().getEnterpriseList().get(i);
 //           for (Organization organization : enterprise.getOrganizationList().getOrganizationList()) {
 //               if(organization.getId() == orgId){
-//                   org=organization;
+//                   System.out.println("organization Found " + organization.getId() + " "+ organization.getName());
+//                   organisation=organization;
 //
 //               }
 //           }
 //       }
-       return org;
+//       return organisation;
+//    }
+    
+    private Bakery getBakery(long orgId){
+       Network network = system.retriveNetwork(employee.getNetworkname());
+        Bakery currentBakery=null;
+        ArrayList<Bakery> bakeries = network.getBakeryDirectory().getBakeries();
+        System.out.println("bakeries size "+ bakeries.size());
+        
+        for(int i=0; i < bakeries.size();i++){
+             System.out.println("bakery id " + bakeries.get(i).getId());
+            if(bakeries.get(i).getId() == orgId ){
+                System.out.println("bakery found");
+                currentBakery= bakeries.get(i);
+                System.out.println(currentBakery.getName());
+            }
+        }
+       
+       return currentBakery;
     }
+    
     
     private void btnCreateCakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCakeActionPerformed
         String name = cakeName.getText().trim();
         String flavour = flavourValue.getText().trim();
-        String serves = serveValue.getText().trim();
-        String price = PriceValue.getText().trim();
+        int serves =  Integer.valueOf(serveValue.getText().trim());
+        float price = Float.valueOf(PriceValue.getText().trim());
         System.out.println(name +" "+ flavour+  " "+serves + " "+ price);
         System.out.println(employee.getOrgId());
-        Organization organization = getOrganization(employee.getOrgId(), this.system);
+        bakery.getMenu().addBakeryMenuItem(new BakeryMenuItem(flavour, serves,photoPath, name,bakery.getMenu().getMenuItemId(),price));
+        populateTable(bakery.getMenu());
+        resetForm();
     }//GEN-LAST:event_btnCreateCakeActionPerformed
 
+    private void ItemsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemsTableMouseClicked
+        int selectedRowIndex = ItemsTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) ItemsTable.getModel();
+        BakeryMenuItem menuitem = (BakeryMenuItem) model.getValueAt(selectedRowIndex, 5); 
+        System.out.println(menuitem);
+        cakeName.setText(menuitem.getItemName());
+        flavourValue.setText(menuitem.getFlavour());
+        serveValue.setText( Integer.toString(menuitem.getServes()));
+        PriceValue.setText(Float.toString(menuitem.getPrice()));
+    }//GEN-LAST:event_ItemsTableMouseClicked
+
     
-    private void populateTable(){
+    
+    public ImageIcon ResizeImage(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(photo.getWidth(), photo.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
+    
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        int selectedRowIndex = ItemsTable.getSelectedRow();
         
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a item to delete it.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) ItemsTable.getModel();
+        BakeryMenuItem menuitem = (BakeryMenuItem) model.getValueAt(selectedRowIndex, 5);
+        bakery.getMenu().getBakeryMenu().remove(menuitem);
+        resetForm();
+        populateTable(bakery.getMenu());
+    }//GEN-LAST:event_btnDeleteMouseClicked
+
+    private void photoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoMouseClicked
+        JFileChooser file = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "gif", "png");
+        file.addChoosableFileFilter(filter);
+        int result = file.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = file.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+            photoPath = path;
+            photo.setIcon(ResizeImage(path));
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No File Select");
+        }
+    }//GEN-LAST:event_photoMouseClicked
+
+    private void resetForm() {
+        cakeName.setText("");
+        flavourValue.setText("");
+        serveValue.setText("");
+        PriceValue.setText("");
+        photo.setIcon(null);
+    }
+    
+    private void populateTable(BakeryMenu menu){
+        System.out.print("Bakery menu ");
+        System.out.print(menu);
+        DefaultTableModel model = (DefaultTableModel) ItemsTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i< menu.getBakeryMenu().size();i++){
+            BakeryMenuItem menuItem = menu.getBakeryMenu().get(i);
+            model.addRow(new Object[]{
+              menuItem.getItemName(),
+              menuItem.getFlavour(),
+              menuItem.getServes(),
+              menuItem.getPrice(),
+              menuItem.getPhoto(),
+              menuItem
+            });
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -255,11 +394,11 @@ public class bakerItemsPanel extends javax.swing.JPanel {
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JButton btnCreateCake;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnUploadImg;
     private javax.swing.JLabel cakeImg;
     private javax.swing.JTextField cakeName;
     private javax.swing.JTextField flavourValue;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel photo;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JTextField serveValue;
     // End of variables declaration//GEN-END:variables

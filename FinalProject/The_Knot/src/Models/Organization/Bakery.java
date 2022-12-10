@@ -13,14 +13,16 @@ import Models.Organization.Organization;
  * @author nageshsairam
  */
 public class Bakery extends Organization {
-
     public Bakery(String name,Type type) {
         super(name,type);
     }
     
-    private BakeryMenu menu;
+    private BakeryMenu menu = new BakeryMenu(1, this.getName() + "menu" );
 
     public BakeryMenu getMenu() {
+        if(menu ==null){
+            menu = new BakeryMenu(1, this.getName() + "menu" );
+        }
         return menu;
     }
 

@@ -25,30 +25,30 @@ public class OrganizatinDirectory {
 
     public Organization createOrganization(String name, Type type) {
         Organization organization = null;
-        long orgId= OrganizatinDirectory.orgId;
+        long newOrgId = OrganizatinDirectory.orgId;
         if (type.getValue().equals(Type.Bakery.getValue())) {
             organization = new Bakery(name, type);
-            organization.setId(orgId);
+            organization.setId(newOrgId);
             organizationList.add(organization);
         } else if (type.getValue().equals(Type.Catering.getValue())) {
             organization = new Catering(name, type);
-            organization.setId(orgId);
+            organization.setId(newOrgId);
             organizationList.add(organization);
         } else if (type.getValue().equals(Type.Decor.getValue())) {
             organization = new Decor(name, type);
-            organization.setId(orgId);
+            organization.setId(newOrgId);
             organizationList.add(organization);
         } else if (type.getValue().equals(Type.Designer.getValue())) {
             organization = new Designer(name, type);
-            organization.setId(orgId);
+            organization.setId(newOrgId);
             organizationList.add(organization);
         } else if (type.getValue().equals(Type.Stylist.getValue())) {
             organization = new Stylist(name, type);
-            organization.setId(orgId);
+            organization.setId(newOrgId);
             organizationList.add(organization);
         } else if (type.getValue().equals(Type.Venue.getValue())) {
             organization = new Venue(name, type);
-            organization.setId(orgId);
+            organization.setId(newOrgId);
             organizationList.add(organization);
         }
         OrganizatinDirectory.orgId++;

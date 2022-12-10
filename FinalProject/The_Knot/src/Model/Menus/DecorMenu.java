@@ -12,19 +12,22 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class DecorMenu extends Menu {
-    private ArrayList<DecorMenuItem> cateringMenu;
+    private ArrayList<DecorMenuItem> decorMenu = new ArrayList<>();
 
-    public DecorMenu(ArrayList<DecorMenuItem> cateringMenu, int id, String name) {
+    public DecorMenu(ArrayList<DecorMenuItem> decorMenu, int id, String name) {
         super(id, name);
-        this.cateringMenu = cateringMenu;
+        this.decorMenu = decorMenu;
     }
 
-    public ArrayList<DecorMenuItem> getCateringMenu() {
-        return cateringMenu;
+    public ArrayList<DecorMenuItem> getDecorMenu() {
+        if(decorMenu ==null){
+            decorMenu = new ArrayList<>();
+        }
+        return decorMenu;
     }
 
-    public void setCateringMenu(ArrayList<DecorMenuItem> cateringMenu) {
-        this.cateringMenu = cateringMenu;
+    public void setCateringMenu(ArrayList<DecorMenuItem> decorMenu) {
+        this.decorMenu = decorMenu;
     }
           
 }

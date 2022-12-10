@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class CateringMenu extends Menu {
-      private ArrayList<CateringMenuItem> cateringMenu;
+      private ArrayList<CateringMenuItem> cateringMenu = new ArrayList<>();
 
     public CateringMenu(ArrayList<CateringMenuItem> cateringMenu, int id, String name) {
         super(id, name);
@@ -20,6 +20,9 @@ public class CateringMenu extends Menu {
     }
 
     public ArrayList<CateringMenuItem> getCateringMenu() {
+        if(cateringMenu ==null){
+            cateringMenu = new ArrayList<>();
+        }
         return cateringMenu;
     }
 

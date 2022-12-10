@@ -186,10 +186,14 @@ public class organisationPanel extends javax.swing.JPanel {
             if (this.ent.getOrganizationList().isUnique(txtEnterpriseName.getText())) {
                 newOrg = this.ent.getOrganizationList().createOrganization(txtEnterpriseName.getText(), type);
                 if (newOrg.getType() == Organization.Type.Bakery) {
-                    network.getBakeryDirectory().getBakeries().add(new Bakery(newOrg.getName(), newOrg.getType()));
+                    Bakery bakery = new Bakery(newOrg.getName(), newOrg.getType());
+                    bakery.setId(newOrg.getId());
+                    network.getBakeryDirectory().getBakeries().add(bakery);
                 }
                 else if (newOrg.getType() == Organization.Type.Catering) {
-                    network.getCateringDirectory().getCateringList().add(new Catering(newOrg.getName(), newOrg.getType()));
+                    Catering catering = new Catering(newOrg.getName(), newOrg.getType());
+                    catering.setId(newOrg.getId());
+                    network.getCateringDirectory().getCateringList().add(catering);
                 }
                 JOptionPane.showMessageDialog(null, "Organization Successfully Created");
                 txtEnterpriseName.setText("");
