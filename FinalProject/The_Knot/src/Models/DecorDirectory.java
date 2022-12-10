@@ -18,6 +18,9 @@ public class DecorDirectory {
         return decorDirectory;
     }
 
+    public DecorDirectory() {
+    }
+
     public void setDecorDirectory(ArrayList<Decor> decorDirectory) {
         this.decorDirectory = decorDirectory;
     }

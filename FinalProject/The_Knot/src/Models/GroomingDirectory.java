@@ -18,6 +18,9 @@ public class GroomingDirectory {
         return groomingDirectory;
     }
 
+    public GroomingDirectory() {
+    }
+
     public void setGroomingDirectory(ArrayList<Stylist> groomingDirectory) {
         this.groomingDirectory = groomingDirectory;
     }

@@ -18,6 +18,9 @@ public class VenueDirectory {
         return venueDirectory;
     }
 
+    public VenueDirectory() {
+    }
+
     public void setVenueDirectory(ArrayList<Venue> venueDirectory) {
         this.venueDirectory = venueDirectory;
     }

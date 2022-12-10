@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public class CateringDirectory {
     private ArrayList<Catering> cateringList =  new ArrayList<>();
 
+    public CateringDirectory() {
+    }
+
     public ArrayList<Catering> getCateringList() {
         return cateringList;
     }

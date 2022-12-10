@@ -18,6 +18,9 @@ public class BakeryDirectory {
         return bakeries;
     }
 
+    public BakeryDirectory() {
+    }
+
     public void setBakeries(ArrayList<Bakery> bakeries) {
         this.bakeries = bakeries;
     }
