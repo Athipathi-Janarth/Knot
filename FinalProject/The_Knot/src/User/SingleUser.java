@@ -31,7 +31,7 @@ public class SingleUser {
         this.gender = gender;
         this.age = age;
         this.zodiacSign = zodiacSign;
-        this.zodiacSign = userName;
+        this.userName = userName;
         this.password = password;
         this.hobbies = hobbies;
         this.image = image;

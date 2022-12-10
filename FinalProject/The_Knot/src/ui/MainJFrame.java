@@ -8,6 +8,7 @@ import Business.EcoSystem;
 import DB4OUtil.DB4OUtil;
 import Employee.Employee;
 import User.CoupleUser;
+import User.SingleUser;
 import com.db4o.ObjectSet;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -32,6 +33,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ui.SingleUser.mainPanelSingleUser;
 
 /**
  *
@@ -45,9 +47,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     CoupleUser userAccount;
+    SingleUser singleuserAccount;
     Employee employeeAccount;
     mainPanelUser userpanel;
-
+    mainPanelSingleUser singleuserpanel;
     public MainJFrame() throws FileNotFoundException {
         initComponents();
         setTitle("The Knot");
@@ -159,7 +162,7 @@ public class MainJFrame extends javax.swing.JFrame {
         lblName17 = new javax.swing.JLabel();
         txtAge1 = new javax.swing.JTextField();
         lblName18 = new javax.swing.JLabel();
-        txtpreferedZodiac3 = new javax.swing.JTextField();
+        txtpreferedZodiac = new javax.swing.JTextField();
         lblName19 = new javax.swing.JLabel();
         lblName22 = new javax.swing.JLabel();
         btnRegisterUsr2 = new javax.swing.JButton();
@@ -679,7 +682,7 @@ public class MainJFrame extends javax.swing.JFrame {
                                     .addGroup(registerForm2Layout.createSequentialGroup()
                                         .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblName18, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtpreferedZodiac3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtpreferedZodiac, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(registerForm2Layout.createSequentialGroup()
                                         .addComponent(lblName19, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -721,7 +724,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblName18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtpreferedZodiac3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtpreferedZodiac, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(registerForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(registerForm2Layout.createSequentialGroup()
@@ -791,9 +794,20 @@ public class MainJFrame extends javax.swing.JFrame {
                 mainPanel.add("workArea",employeeAccount.getRole().createWorkArea(system,employeeAccount));
                 
                 clearLogin();
+             }else{
+            singleuserAccount = system.getSingleUserlist().authenticateUser(username, password);
+            if(singleuserAccount!=null){
+            loginPanel.setVisible(false);
+            upperPanel.setVisible(true);
+            mainPanel.setVisible(true);
+            singleuserpanel = new mainPanelSingleUser(singleuserAccount);
+            mainPanel.add("workArea",singleuserpanel);
+            clearLogin();
+           
              }
              else{
              JOptionPane.showMessageDialog(null, "No User Found");
+             }
              }
         }
         }
@@ -892,6 +906,31 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnRegisterUsr2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUsr2ActionPerformed
         // TODO add your handling code here:
+        if(validateSingleUser()){
+            if(system.checkIfUserIsUnique(system,txtUserName.getText())){
+            SingleUser user=new SingleUser(txtName.getText(),genderBtn.getSelection().toString(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().toString(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
+            system.getSingleUserlist().createUserAccount(txtName.getText(),genderBtn.getSelection().toString(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().toString(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
+            JOptionPane.showMessageDialog(null, "User Created Successfully");
+            singleuserpanel=new mainPanelSingleUser(user);
+            mainPanel.add("workArea",singleuserpanel);
+            CardLayout layout = (CardLayout) mainPanel.getLayout();
+            layout.next(mainPanel);
+            loginPanel.setVisible(false);
+            upperPanel.setVisible(true);
+            mainPanel.setVisible(true);
+            registerPanel.setVisible(false);
+            registerPanel1.setVisible(false);
+            clearRegister();
+            }
+            else{
+                txtUserName.setText("");
+                JOptionPane.showMessageDialog(null, "UserName Already Exists!!!");
+            }
+
+        }
+        else{
+             JOptionPane.showMessageDialog(null, "Please Enter All details!!!");
+        }
     }//GEN-LAST:event_btnRegisterUsr2ActionPerformed
     public boolean validateCoupleUser(){
         boolean valid = true;
@@ -915,6 +954,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public boolean validateSingleUser(){
         boolean valid = true;
         boolean radioSelected;
+        boolean radioSelected1;
         try {
             radioSelected = genderBtn.getSelection().isSelected();
         } catch (Exception e) {
@@ -926,14 +966,25 @@ public class MainJFrame extends javax.swing.JFrame {
         if(txtName.getText().isEmpty() || txtZodiac.getText().isEmpty()){
             valid=false;
         }
-        if(txtUserName.getText().isEmpty() || txtPassword.getText().isEmpty()){
-            valid=false;
-        }
-        if(txtEmail.getText().length()<2 || !txtEmail.getText().matches("^(.+)@(\\S+)$")){
+        if(txtUserName1.getText().isEmpty() || txtPassword1.getText().isEmpty()){
             valid=false;
         }
        if (!isInteger(txtAge.getText())) {
             valid = false;
+        }
+       if (!isInteger(txtAge1.getText())) {
+            valid = false;
+        }
+       try {
+            radioSelected1 = genderBtn1.getSelection().isSelected();
+        } catch (Exception e) {
+            radioSelected1 = false;
+        }
+        if (!radioSelected1) {
+            valid = false;
+        }
+        if(txtpreferedZodiac.getText().isEmpty()){
+            valid=false;
         }
         return valid;
     }
@@ -1085,7 +1136,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtUserName;
     private javax.swing.JTextField txtUserName1;
     private javax.swing.JTextField txtZodiac;
-    private javax.swing.JTextField txtpreferedZodiac3;
+    private javax.swing.JTextField txtpreferedZodiac;
     private javax.swing.JTextField txtuserName;
     private javax.swing.JTextField txtyourName;
     private javax.swing.JTextField txtyourName1;

@@ -9,6 +9,8 @@ import Employee.EmployeeDirectory;
 import Network.Network;
 import User.CoupleUser;
 import User.CoupleUserDirectory;
+import User.SingleUser;
+import User.SingleUserDirectory;
 import java.util.ArrayList;
 
 /**
@@ -29,6 +31,7 @@ public class EcoSystem {
     public EcoSystem() {
         this.employeeList=new EmployeeDirectory();
         this.coupleUserlist = new CoupleUserDirectory();
+        this.singleUserlist = new SingleUserDirectory();
         networkList=new ArrayList<Network>();
         this.Name = "System1";
     }
@@ -64,6 +67,7 @@ public class EcoSystem {
     String Name;
      private CoupleUserDirectory coupleUserlist;
      private EmployeeDirectory  employeeList;
+     private SingleUserDirectory  singleUserlist;
      private ArrayList<Network> networkList;
     
      public static EcoSystem getInstance(){
@@ -105,9 +109,26 @@ public class EcoSystem {
     public void setEmployeedirectory(EmployeeDirectory employeeList) {
         this.employeeList = employeeList;
     }
+
+    public SingleUserDirectory getSingleUserlist() {
+        if(singleUserlist==null){
+        this.singleUserlist = new SingleUserDirectory();
+        }
+        return singleUserlist;
+    }
+
+    public void setSingleUserlist(SingleUserDirectory singleUserlist) {
+        this.singleUserlist = singleUserlist;
+    }
+    
     public boolean checkIfUserIsUnique(EcoSystem system,String name){
         boolean flag=true;
         for(CoupleUser user : system.getCoupledirectory().getCoupleUserList()){
+            if(user.getUserName().equalsIgnoreCase(name)){
+                flag = false;
+            }
+        }
+        for(SingleUser user : system.getSingleUserlist().getSingleUserList()){
             if(user.getUserName().equalsIgnoreCase(name)){
                 flag = false;
             }
