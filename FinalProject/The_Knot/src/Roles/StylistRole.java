@@ -23,7 +23,7 @@ public class StylistRole extends Role{
 
     @Override
     public JPanel createWorkArea(EcoSystem system, Employee employee) {
-        return new mainPanelStylist();
+        return new mainPanelStylist(system,employee);
     }
     
     
