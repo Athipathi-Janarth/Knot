@@ -4,6 +4,8 @@
  */
 package ui.VenueManagerPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import ui.SystemAdmin.*;
 
 /**
@@ -15,9 +17,16 @@ public class mainPanelVenueManager extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-   venueManagerBookingsPanel bookings= new venueManagerBookingsPanel();
-   venueManagerItemsPanel menu=new venueManagerItemsPanel();
-    public mainPanelVenueManager() {
+    EcoSystem system;
+    Employee employee;
+    venueManagerBookingsPanel bookings= new venueManagerBookingsPanel();
+    venueManagerItemsPanel menu=new venueManagerItemsPanel();
+    public mainPanelVenueManager(){
+        initComponents();
+    }
+    public mainPanelVenueManager(EcoSystem system, Employee employee) {
+        this.system = system;
+        this.employee = employee;
         initComponents();
         splitPane.setRightComponent(bookings);
     }

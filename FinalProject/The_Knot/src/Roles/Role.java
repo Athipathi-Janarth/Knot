@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  */
 public abstract class Role {
     
-    public enum RoleType{
+    public enum RoleType {
         FoodAdmin("Food Admin"),
         Caterer("Caterer"),
         Baker("Baker"),
@@ -42,7 +42,7 @@ public abstract class Role {
     }
     
     public abstract JPanel createWorkArea();
-     public abstract JPanel createWorkArea(EcoSystem system,Employee employee);
+    public abstract JPanel createWorkArea(EcoSystem system,Employee employee);
     @Override
     public String toString() {
         return this.getClass().getName();

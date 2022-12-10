@@ -209,15 +209,15 @@ public class manageAdminPanel extends javax.swing.JPanel {
             if (system.checkIfUserIsUnique(system,username)) {
                 Employee employee;
                 if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.EventDecor){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new DecorAdminRole(),network.getName());
+                employee = system.getEmployeedirectory().createEmployee(name,username,password,new DecorAdminRole(),network.getName(), -1);
                 }else if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.FoodManagement){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FoodAdminRole(),network.getName());
+                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FoodAdminRole(),network.getName(), -1);
                 }
                 if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Grooming){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new GroomingAdminRole(),network.getName());
+                employee = system.getEmployeedirectory().createEmployee(name,username,password,new GroomingAdminRole(),network.getName(), -1);
                 }
                 if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Finance){
-                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FinanceAdminRole(),network.getName());
+                employee = system.getEmployeedirectory().createEmployee(name,username,password,new FinanceAdminRole(),network.getName(), -1);
                 }
                 txtAdminUsrName.setText("");
                 txtAdminPwd.setText("");

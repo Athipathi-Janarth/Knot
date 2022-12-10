@@ -12,6 +12,10 @@ import Models.Organization.Organization;
  * @author nageshsairam
  */
 public class Designer extends Organization {
+    
+    public Designer(String name,Type type) {
+        super(name,type);
+    }
 
     public GroomingMenu getMenu() {
         return menu;
@@ -21,9 +25,8 @@ public class Designer extends Organization {
         this.menu = menu;
     }
 
-    public Designer(String name,Type type) {
-        super(name,type);
-    }
+    
     private GroomingMenu menu;
     
 }
+

@@ -4,6 +4,8 @@
  */
 package ui.DecorationPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import ui.SystemAdmin.*;
 
 /**
@@ -15,9 +17,19 @@ public class mainPanelDecoration extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-   decorationBookingsPanel bookings= new decorationBookingsPanel();
-   decorationItemsPanel menu=new decorationItemsPanel();
+    
+    Employee employee;
+    EcoSystem system;
+    decorationBookingsPanel bookings= new decorationBookingsPanel();
+    decorationItemsPanel menu=new decorationItemsPanel();
     public mainPanelDecoration() {
+        initComponents();
+        splitPane.setRightComponent(bookings);
+    }
+    
+    public mainPanelDecoration(EcoSystem system, Employee employee) {
+        this.system = system;
+        this.employee = employee;
         initComponents();
         splitPane.setRightComponent(bookings);
     }

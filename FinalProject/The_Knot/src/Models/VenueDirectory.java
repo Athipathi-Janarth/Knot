@@ -12,14 +12,13 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class VenueDirectory {
-    private ArrayList<Venue> venueDirectory;
+    private ArrayList<Venue> venueDirectory = new ArrayList<>();
 
     public ArrayList<Venue> getVenueDirectory() {
         return venueDirectory;
     }
 
-    public VenueDirectory(ArrayList<Venue> venueDirectory) {
-        this.venueDirectory = venueDirectory;
+    public VenueDirectory() {
     }
 
     public void setVenueDirectory(ArrayList<Venue> venueDirectory) {

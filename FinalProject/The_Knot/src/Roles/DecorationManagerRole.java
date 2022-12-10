@@ -23,7 +23,8 @@ public class DecorationManagerRole extends Role{
 
     @Override
     public JPanel createWorkArea(EcoSystem system, Employee employee) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new mainPanelDecoration(system, employee);
+        
     }
     
     

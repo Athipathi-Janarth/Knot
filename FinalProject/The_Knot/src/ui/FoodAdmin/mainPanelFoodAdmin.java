@@ -23,6 +23,7 @@ public class mainPanelFoodAdmin extends javax.swing.JPanel {
     displayEmployee employee ;
     organisationPanel organisation; 
     manageBusinessUserPanel manageUser;
+    
     public mainPanelFoodAdmin() {
         initComponents();
    

@@ -7,6 +7,8 @@ package ui.FoodAdmin;
 import Business.EcoSystem;
 import Employee.Employee;
 import Enterprise.Enterprise;
+import Models.Organization.Bakery;
+import Models.Organization.Catering;
 import Models.Organization.Organization;
 import Network.Network;
 import java.awt.Color;
@@ -22,17 +24,19 @@ public class organisationPanel extends javax.swing.JPanel {
 //[7:41 PM, 12/5/2022] Athi Dsem: enterprisePanel->organisation Panel
 //[7:41 PM, 12/5/2022] Athi Dsem: manageAdminPanel->manageBusinessUserPanel
 //[7:42 PM, 12/5/2022] Athi Dsem: manage Networkpanel-> dsplay Employees
+
     /**
      * Creates new form networkPanel
      */
     EcoSystem system;
     Employee emp;
     Enterprise ent;
-    public organisationPanel(EcoSystem system,Employee emp) {
-        this.emp=emp;
+
+    public organisationPanel(EcoSystem system, Employee emp) {
+        this.emp = emp;
         this.system = system;
         initComponents();
-        adminPanelCard.setBackground(new Color(0,0,0,90));
+        adminPanelCard.setBackground(new Color(0, 0, 0, 90));
         populateCombo();
         populateTable();
     }
@@ -103,6 +107,11 @@ public class organisationPanel extends javax.swing.JPanel {
 
         dropdownNetwork.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         dropdownNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item1", "Item2" }));
+        dropdownNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownNetworkActionPerformed(evt);
+            }
+        });
 
         dropdownOrganisation.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         dropdownOrganisation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item1", "Item2" }));
@@ -168,13 +177,20 @@ public class organisationPanel extends javax.swing.JPanel {
 
     private void btnAddOrganisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrganisationActionPerformed
         // TODO add your handling code here:
-        
+        Organization newOrg;
+        Network network= system.retriveNetwork(emp.getNetworkname());
         Organization.Type type = (Organization.Type) dropdownOrganisation.getSelectedItem();
         if ("".equals(txtEnterpriseName.getText())) {
             JOptionPane.showMessageDialog(null, "Enter organization name!");
         } else {
             if (this.ent.getOrganizationList().isUnique(txtEnterpriseName.getText())) {
-                this.ent.getOrganizationList().createOrganization(txtEnterpriseName.getText(), type);
+                newOrg = this.ent.getOrganizationList().createOrganization(txtEnterpriseName.getText(), type);
+                if (newOrg.getType() == Organization.Type.Bakery) {
+                    network.getBakeryDirectory().getBakeries().add(new Bakery(newOrg.getName(), newOrg.getType()));
+                }
+                else if (newOrg.getType() == Organization.Type.Catering) {
+                    network.getCateringDirectory().getCateringList().add(new Catering(newOrg.getName(), newOrg.getType()));
+                }
                 JOptionPane.showMessageDialog(null, "Organization Successfully Created");
                 txtEnterpriseName.setText("");
                 populateTable();
@@ -184,30 +200,35 @@ public class organisationPanel extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_btnAddOrganisationActionPerformed
-     private void populateCombo(){
+
+    private void dropdownNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownNetworkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropdownNetworkActionPerformed
+    private void populateCombo() {
         dropdownNetwork.removeAllItems();
         dropdownOrganisation.removeAllItems();
-        for (Network network :system.getNetworkList()){
-            if(emp.getNetworkname().equals(network.getName())){
-            for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
-                if (ent.getEnterpriseType()==Enterprise.EnterpriseType.FoodManagement){
-                    dropdownNetwork.addItem(ent.getEnterpriseName());  
-                    this.ent=ent;
+        for (Network network : system.getNetworkList()) {
+            if (emp.getNetworkname().equals(network.getName())) {
+                for (Enterprise ent : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (ent.getEnterpriseType() == Enterprise.EnterpriseType.FoodManagement) {
+                        dropdownNetwork.addItem(ent.getEnterpriseName());
+                        this.ent = ent;
+                    }
                 }
-            }
             }
         }
         dropdownOrganisation.addItem(Organization.Type.Catering);
         dropdownOrganisation.addItem(Organization.Type.Bakery);
     }
-     private void populateTable(){
+
+    private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) organisationTable.getModel();
         model.setRowCount(0);
-        for (Organization organization : ent.getOrganizationList().getOrganizationList()){
+        for (Organization organization : ent.getOrganizationList().getOrganizationList()) {
             Object[] row = new Object[2];
             row[1] = organization.getType();
             row[0] = organization.getName();
-            
+
             model.addRow(row);
         }
     }

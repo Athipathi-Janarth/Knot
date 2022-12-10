@@ -4,6 +4,9 @@
  */
 package ui.DecorAdmin;
 
+import Business.EcoSystem;
+import Employee.Employee;
+
 /**
  *
  * @author vikashsingh
@@ -14,12 +17,24 @@ public class mainPanelDecorAdmin extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-    displayEmployee employee = new displayEmployee();
-    organisationPanel organisation = new organisationPanel();
-    manageBusinessUserPanel manageUser=new manageBusinessUserPanel();
+    EcoSystem system;
+    Employee employeeAccount;
+    displayEmployee employee ;
+    organisationPanel organisation; 
+    manageBusinessUserPanel manageUser;
+    
+    
     public mainPanelDecorAdmin() {
         initComponents();
+   
+    }
+    public mainPanelDecorAdmin(EcoSystem system,Employee emp) {
+        initComponents();
+        this.system = system;
+        this.employeeAccount=emp;
+        organisation = new organisationPanel(system,emp);
         splitPane.setRightComponent(organisation);
+        
     }
 
     /**
@@ -131,18 +146,20 @@ public class mainPanelDecorAdmin extends javax.swing.JPanel {
 
     private void btnOrganisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrganisationActionPerformed
         // TODO add your handling code here:
-        
+        organisation = new ui.DecorAdmin.organisationPanel(system,employeeAccount);
         splitPane.setRightComponent(organisation);
         
     }//GEN-LAST:event_btnOrganisationActionPerformed
 
     private void btnUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersActionPerformed
         // TODO add your handling code here:
+        manageUser=new ui.DecorAdmin.manageBusinessUserPanel(system,employeeAccount);
         splitPane.setRightComponent(manageUser);
     }//GEN-LAST:event_btnUsersActionPerformed
 
     private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
         // TODO add your handling code here:
+        employee = new ui.DecorAdmin.displayEmployee(system,employeeAccount);
         splitPane.setRightComponent(employee);
     }//GEN-LAST:event_btnDisplayActionPerformed
 
