@@ -23,7 +23,7 @@ public class GroomingAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(EcoSystem system, Employee employee) {
-        return new mainPanelGroomingAdmin();
+        return new mainPanelGroomingAdmin(system,employee);
     }
     
     

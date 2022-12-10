@@ -26,7 +26,7 @@ public class mainPanelGroomingAdmin extends javax.swing.JPanel {
     
     public mainPanelGroomingAdmin() {
         initComponents();
-        splitPane.setRightComponent(organisation);
+       
     }
     
     public mainPanelGroomingAdmin(EcoSystem system, Employee emp) {
