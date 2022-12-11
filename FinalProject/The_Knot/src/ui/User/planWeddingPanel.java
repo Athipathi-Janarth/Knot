@@ -749,7 +749,7 @@ public class planWeddingPanel extends javax.swing.JPanel {
     private void btnBookVenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookVenueActionPerformed
         int selectedRowIndex = venueTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) venueTable.getModel();
-        Venue organization = (Venue) model.getValueAt(selectedRowIndex, 5);
+        Venue organization = (Venue) model.getValueAt(selectedRowIndex, 6);
         VenueMenuItem venuMenuItem = (VenueMenuItem) model.getValueAt(selectedRowIndex, 4);
         Order order = new Order(new Date(), Order.OrderStatus.PENDING,  user.getUserName(), organization.getId(), organization.getName(), venuMenuItem.getPrice(),venuMenuItem.getItemName() );
         System.out.println(venuMenuItem.getItemName());
