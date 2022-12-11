@@ -793,7 +793,7 @@ public class MainJFrame extends javax.swing.JFrame {
             loginPanel.setVisible(false);
             upperPanel.setVisible(true);
             mainPanel.setVisible(true);
-            userpanel = new mainPanelUser(userAccount);
+            userpanel = new mainPanelUser(userAccount, system);
             mainPanel.add("workArea",userpanel);
             clearLogin();
            
@@ -865,7 +865,7 @@ public class MainJFrame extends javax.swing.JFrame {
             CoupleUser user = new CoupleUser(txtyourName.getText(),txtyourName1.getText(),txtyourZodiac.getText(),txtyourZodiac1.getText(),txtUserName.getText(),txtPassword.getText(),txtEmail.getText(),weddingDateChooser.getDate());
             system.getCoupledirectory().createUserAccount(user);
             JOptionPane.showMessageDialog(null, "User Created Successfully");
-            userpanel=new mainPanelUser(user);
+            userpanel=new mainPanelUser(user, system);
             mainPanel.add("workArea",userpanel);
             CardLayout layout = (CardLayout) mainPanel.getLayout();
             layout.next(mainPanel);

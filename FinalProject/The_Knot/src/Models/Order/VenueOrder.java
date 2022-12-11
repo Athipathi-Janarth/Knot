@@ -4,8 +4,6 @@
  */
 package Models.Order;
 
-import Model.Menus.MenuItem;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,9 +12,18 @@ import java.util.Date;
  */
 public class VenueOrder extends Order {
 
-    public VenueOrder(float total, Date orderDate, ArrayList<MenuItem> items, OrderStatus status) {
-        super(total, orderDate, items, status);
+    public VenueOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
+        super(orderDate, status, username, orgId, orgName, price, itemName);
+    }
+    
+    private Date weddingDate;
+
+    public Date getWeddingDate() {
+        return weddingDate;
     }
 
-   
+    public void setWeddingDate(Date weddingDate) {
+        this.weddingDate = weddingDate;
+    }
+
 }

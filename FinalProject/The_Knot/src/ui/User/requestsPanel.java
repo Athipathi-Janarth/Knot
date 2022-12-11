@@ -4,8 +4,15 @@
  */
 package ui.User;
 
+import Business.EcoSystem;
+import Models.Order.MasterOrderDirectory;
+import Models.Order.Order;
+import Models.Order.VenueOrder;
+import Models.Order.VenueOrderDirectory;
+import User.CoupleUser;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,11 +23,64 @@ public class requestsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public requestsPanel() {
+    EcoSystem system;
+    CoupleUser user;
+    public requestsPanel(EcoSystem system, CoupleUser user)  {
         initComponents();
+        this.system = system;
+        this.user = user;
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        
+        System.out.println(user.getUserName());
+        
+        populateRequestTable(system.getMasterOrderList());
+        populateBookingTable(system.getMasterOrderList());
     }
 
+    
+   private void populateRequestTable(MasterOrderDirectory masterOrderDirectory){  
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i< masterOrderDirectory.getMasterOrderList().size();i++){
+            Order order = masterOrderDirectory.getMasterOrderList().get(i);
+            System.out.println(order.getStatus());
+            if(order.getUserName().equals(user.getUserName()) && !order.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue())){
+              System.out.println("Adding request row");
+              model.addRow(new Object[]{
+                    order.getOrderId(),
+                    order.getItemName(),
+                    order.getOrgName(),
+                    order.getPrice(),
+                    order.getOrderDate(),
+                    order.getStatus(),
+                    order.getUserName(),
+                    order
+              });  
+            }
+        }
+    }
+    
+    
+    private void populateBookingTable(MasterOrderDirectory masterOrderDirectory){  
+       DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i< masterOrderDirectory.getMasterOrderList().size();i++){
+            Order order = masterOrderDirectory.getMasterOrderList().get(i);
+            if(order.getUserName().equals(user.getUserName()) && order.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue())){
+              System.out.println("Adding request row");
+              model.addRow(new Object[]{
+                    order.getOrderId(),
+                    order.getItemName(),
+                    order.getOrgName(),
+                    order.getPrice(),
+                    order.getOrderDate(),
+                    order.getStatus(),
+                    order.getUserName(),
+                    order
+              });  
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +95,7 @@ public class requestsPanel extends javax.swing.JPanel {
         requestTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        requestTable1 = new javax.swing.JTable();
+        bookingTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnAccept = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -50,17 +110,17 @@ public class requestsPanel extends javax.swing.JPanel {
         requestTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "Order ID", "Item Name", "Shop Name", "Price", "Booking Date", "Status", "User", "OrderObject"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -68,40 +128,60 @@ public class requestsPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(requestTable);
+        if (requestTable.getColumnModel().getColumnCount() > 0) {
+            requestTable.getColumnModel().getColumn(7).setMinWidth(0);
+            requestTable.getColumnModel().getColumn(7).setPreferredWidth(0);
+            requestTable.getColumnModel().getColumn(7).setMaxWidth(0);
+        }
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Your Requests");
 
-        requestTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        requestTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bookingTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "Order ID", "Item Name", "Shop name", "Price", "Booking Date", "Status", "User", "Order Object"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(requestTable1);
+        jScrollPane2.setViewportView(bookingTable);
+        if (bookingTable.getColumnModel().getColumnCount() > 0) {
+            bookingTable.getColumnModel().getColumn(7).setMinWidth(0);
+            bookingTable.getColumnModel().getColumn(7).setPreferredWidth(0);
+            bookingTable.getColumnModel().getColumn(7).setMaxWidth(0);
+        }
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Orders/Bookings");
 
         btnAccept.setText("Confirm");
+        btnAccept.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAcceptMouseClicked(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -151,10 +231,31 @@ public class requestsPanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 970, 630);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptMouseClicked
+        int selectedRowIndex = requestTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        Order order  = (Order) model.getValueAt(selectedRowIndex, 7); 
+        order.setStatus(Order.OrderStatus.CONFIRM);
+        system.getMasterOrderList().updateOrder(order);
+        populateRequestTable(system.getMasterOrderList());
+        populateBookingTable(system.getMasterOrderList());
+    }//GEN-LAST:event_btnAcceptMouseClicked
+
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        int selectedRowIndex = requestTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        Order order  = (Order) model.getValueAt(selectedRowIndex, 7); 
+        order.setStatus(Order.OrderStatus.REJECT);
+        system.getMasterOrderList().updateOrder(order);
+        populateRequestTable(system.getMasterOrderList());
+        populateBookingTable(system.getMasterOrderList());
+    }//GEN-LAST:event_btnCancelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
+    private javax.swing.JTable bookingTable;
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnCancel;
     private javax.swing.JLabel jLabel1;
@@ -162,6 +263,5 @@ public class requestsPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable requestTable;
-    private javax.swing.JTable requestTable1;
     // End of variables declaration//GEN-END:variables
 }

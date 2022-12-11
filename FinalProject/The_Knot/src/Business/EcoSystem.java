@@ -6,7 +6,11 @@ package Business;
 
 import Employee.Employee;
 import Employee.EmployeeDirectory;
+import Models.Order.MasterOrderDirectory;
+import Models.Order.Order;
+import Models.Order.OrderDirectory;
 import Network.Network;
+import Payment.PaymentDirectory;
 import User.CoupleUser;
 import User.CoupleUserDirectory;
 import User.SingleUser;
@@ -18,6 +22,17 @@ import java.util.ArrayList;
  * @author athipathi
  */
 public class EcoSystem {
+
+    public MasterOrderDirectory getMasterOrderList() {
+        if(masterOrderList ==null){
+            masterOrderList = new MasterOrderDirectory();
+        }
+        return masterOrderList;
+    }
+
+    public void setMasterOrderList(MasterOrderDirectory masterOrderList) {
+        this.masterOrderList = masterOrderList;
+    }
     private static EcoSystem business;
     
     
@@ -64,11 +79,24 @@ public class EcoSystem {
         }
         return net;
     }
-    String Name;
+     String Name;
      private CoupleUserDirectory coupleUserlist;
      private EmployeeDirectory  employeeList;
      private SingleUserDirectory  singleUserlist;
      private ArrayList<Network> networkList;
+     private MasterOrderDirectory masterOrderList;
+     private PaymentDirectory paymentList;
+
+    public PaymentDirectory getPaymentList() {
+        if(paymentList == null){
+            paymentList = new PaymentDirectory();
+        }
+        return paymentList;
+    }
+
+    public void setPaymentList(PaymentDirectory paymentList) {
+        this.paymentList = paymentList;
+    }
     
      public static EcoSystem getInstance(){
         if(business==null){

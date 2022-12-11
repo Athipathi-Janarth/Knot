@@ -4,8 +4,6 @@
  */
 package Models.Order;
 
-import Model.Menus.MenuItem;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,8 +12,8 @@ import java.util.Date;
  */
 public class StylistOrder extends Order {
 
-    public StylistOrder(float total, Date orderDate, ArrayList<MenuItem> items, OrderStatus status) {
-        super(total, orderDate, items, status);
+    public StylistOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
+        super(orderDate, status, username, orgId, orgName, price, itemName);
     }
 
 

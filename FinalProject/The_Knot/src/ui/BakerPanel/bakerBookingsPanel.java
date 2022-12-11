@@ -6,9 +6,16 @@ package ui.BakerPanel;
 
 import Business.EcoSystem;
 import Employee.Employee;
+import Model.MenuItem.BakeryMenuItem;
+import Model.Menus.BakeryMenu;
+import Models.Order.BakeryOrderDirectory;
+import Models.Organization.Bakery;
 import Models.Organization.Organization;
+import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,12 +30,54 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
     EcoSystem system;
     Organization org;
     Employee employee;
+    Bakery bakery;
     
     public bakerBookingsPanel(EcoSystem system, Employee employee) {
-        initComponents();
+        initComponents();        
         this.system = system;
         this.employee = employee;
+        System.out.println("Baker bookings panel");
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        bakery = getBakery(employee.getOrgId());
+        System.out.println("Bakery order size " + bakery.getOrders().getBakeryOrders().size());
+//        populateTable(bakery.getOrders());
+    }
+    
+     private void populateTable(BakeryOrderDirectory bakeryDirectory){
+        System.out.print("Bakery Ordr ");
+        System.out.print(bakeryDirectory);
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        model.setRowCount(0);
+//        for(int i=0;i< menu.getBakeryMenu().size();i++){
+//            BakeryMenuItem menuItem = menu.getBakeryMenu().get(i);
+//            model.addRow(new Object[]{
+//              menuItem.getItemName(),
+//              menuItem.getFlavour(),
+//              menuItem.getServes(),
+//              menuItem.getPrice(),
+//              menuItem.getPhoto(),
+//              menuItem
+//            });
+//        }
+    }
+    
+    
+    private Bakery getBakery(long orgId){
+       Network network = system.retriveNetwork(employee.getNetworkname());
+        Bakery currentBakery=null;
+        ArrayList<Bakery> bakeries = network.getBakeryDirectory().getBakeries();
+        System.out.println("bakeries size "+ bakeries.size());
+        
+        for(int i=0; i < bakeries.size();i++){
+             System.out.println("bakery id " + bakeries.get(i).getId());
+            if(bakeries.get(i).getId() == orgId ){
+                System.out.println("bakery found");
+                currentBakery= bakeries.get(i);
+                System.out.println(currentBakery.getName());
+            }
+        }
+       
+       return currentBakery;
     }
 
     /**

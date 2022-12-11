@@ -5,8 +5,7 @@
 package Models.Organization;
 
 import Model.Menus.CateringMenu;
-import Model.Menus.CateringMenu;
-import Models.Order.OrderDirectory;
+import Models.Order.CateringOrderDirectory;
 
 /**
  *
@@ -30,14 +29,15 @@ public class Catering extends Organization {
         this.menu = menu;
     }
     
-    private OrderDirectory orders;
+    private CateringOrderDirectory orders = new CateringOrderDirectory();
 
-    public OrderDirectory getOrders() {
+    public CateringOrderDirectory getOrders() {
         return orders;
     }
 
-    public void setOrders(OrderDirectory orders) {
+    public void setOrders(CateringOrderDirectory orders) {
         this.orders = orders;
     }
+
     
 }

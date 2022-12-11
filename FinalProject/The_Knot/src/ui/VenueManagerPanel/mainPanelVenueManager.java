@@ -6,7 +6,6 @@ package ui.VenueManagerPanel;
 
 import Business.EcoSystem;
 import Employee.Employee;
-import ui.SystemAdmin.*;
 
 /**
  *
@@ -19,7 +18,7 @@ public class mainPanelVenueManager extends javax.swing.JPanel {
      */
     EcoSystem system;
     Employee employee;
-    venueManagerBookingsPanel bookings= new venueManagerBookingsPanel();
+    venueManagerBookingsPanel bookings;
     venueManagerItemsPanel menu;
     public mainPanelVenueManager(){
         initComponents();
@@ -28,9 +27,11 @@ public class mainPanelVenueManager extends javax.swing.JPanel {
         this.system = system;
         this.employee = employee;
         initComponents();
+        bookings= new venueManagerBookingsPanel(system,employee);
         splitPane.setRightComponent(bookings);
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,7 +128,7 @@ public class mainPanelVenueManager extends javax.swing.JPanel {
 
     private void btnBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingsActionPerformed
         // TODO add your handling code here:
-        
+        bookings= new venueManagerBookingsPanel(system,employee);
         splitPane.setRightComponent(bookings);
         
     }//GEN-LAST:event_btnBookingsActionPerformed

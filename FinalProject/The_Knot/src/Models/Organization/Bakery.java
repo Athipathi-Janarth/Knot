@@ -5,8 +5,8 @@
 package Models.Organization;
 
 import Model.Menus.BakeryMenu;
-import Models.Order.OrderDirectory;
-import Models.Organization.Organization;
+import Models.Order.BakeryOrderDirectory;
+import Models.Order.Order;
 
 /**
  *
@@ -26,17 +26,17 @@ public class Bakery extends Organization {
         return menu;
     }
 
+    public BakeryOrderDirectory getOrders() {
+        return orders;
+    }
+
+    public void setOrders(BakeryOrderDirectory orders) {
+        this.orders = orders;
+    }
+
     public void setMenu(BakeryMenu menu) {
         this.menu = menu;
     }
     
-    private OrderDirectory orders;
-
-    public OrderDirectory getOrders() {
-        return orders;
-    }
-
-    public void setOrders(OrderDirectory orders) {
-        this.orders = orders;
-    }
+    private BakeryOrderDirectory orders = new BakeryOrderDirectory();
 }

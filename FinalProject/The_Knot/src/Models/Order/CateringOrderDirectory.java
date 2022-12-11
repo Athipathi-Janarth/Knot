@@ -4,12 +4,10 @@
  */
 package Models.Order;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author nageshsairam
  */
-public abstract class OrderDirectory {
+public class CateringOrderDirectory {
     
 }

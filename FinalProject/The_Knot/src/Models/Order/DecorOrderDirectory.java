@@ -11,18 +11,30 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class DecorOrderDirectory extends OrderDirectory {
-    private ArrayList<DecorOrder> decorOrderDirectory;
+    private int orderId;
 
-    public ArrayList<DecorOrder> getDecorOrderDirectory() {
-        return decorOrderDirectory;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setDecorOrderDirectory(ArrayList<DecorOrder> decorOrderDirectory) {
-        this.decorOrderDirectory = decorOrderDirectory;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+    private ArrayList<DecorOrder> decorOrders =  new ArrayList<>();
+
+    public DecorOrderDirectory() {
     }
 
-    public DecorOrderDirectory(ArrayList<DecorOrder> decorOrderDirectory, ArrayList<Order> orderDirectory) {
-        super(orderDirectory);
-        this.decorOrderDirectory = decorOrderDirectory;
+    public ArrayList<DecorOrder> getDecorOrders() {
+        return decorOrders;
+    }
+
+    public void setDecorOrders(ArrayList<DecorOrder> decorOrders) {
+        this.decorOrders = decorOrders;
+    }
+
+    public void addDecorOrder(DecorOrder order){
+        this.decorOrders.add(order);
+        this.orderId++;
     }
 }

@@ -4,8 +4,22 @@
  */
 package ui.VenueManagerPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Model.MenuItem.BakeryMenuItem;
+import Model.MenuItem.VenueMenuItem;
+import Model.Menus.VenueMenu;
+import Models.Order.Order;
+import Models.Order.VenueOrder;
+import Models.Order.VenueOrderDirectory;
+import Models.Organization.Organization;
+import Models.Organization.Venue;
+import Models.VenueDirectory;
+import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,10 +30,74 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public venueManagerBookingsPanel() {
+   EcoSystem system;
+   Organization org;
+   Employee employee;
+   Venue venue;
+   
+    public venueManagerBookingsPanel(EcoSystem system,Employee employee) {
         initComponents();
+        this.system=system;
+        this.employee=employee;
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        venue = getVenue(employee.getOrgId());
+        System.out.println("venue Orders " +venue.getOrders().getVenueOrder().size());
+        populateRequestTable(venue.getOrders());
+        populateBookingTable(venue.getOrders());
     }
+    
+    private Venue getVenue(long orgId){
+       Network network = system.retriveNetwork(employee.getNetworkname());
+        Venue currentVenue=null;
+        ArrayList<Venue> venues = network.getVenueDirectory().getVenueDirectory();
+       
+        for(int i=0; i < venues.size();i++){         
+            if(venues.get(i).getId() == orgId ){
+                System.out.println("Venue found");
+                currentVenue= venues.get(i);
+            }
+        }
+       return currentVenue;
+    }
+        
+    private void populateRequestTable(VenueOrderDirectory venueOrderDirectory){  
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i< venueOrderDirectory.getVenueOrder().size();i++){
+            VenueOrder venuOrderItem = venueOrderDirectory.getVenueOrder().get(i);
+            if(venuOrderItem.getStatus() == Order.OrderStatus.PENDING){
+              model.addRow(new Object[]{
+                    venuOrderItem.getUserName(),
+                    venuOrderItem.getPrice(),
+                    venuOrderItem.getStatus(),
+                    venuOrderItem.getWeddingDate(),
+                    venuOrderItem.getOrderDate(),
+                    venuOrderItem
+              });  
+            }
+        }
+    }
+    
+    
+    private void populateBookingTable(VenueOrderDirectory venueOrderDirectory){  
+        DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i< venueOrderDirectory.getVenueOrder().size();i++){
+            VenueOrder venuOrderItem = venueOrderDirectory.getVenueOrder().get(i);
+            System.out.println(venuOrderItem.getStatus());
+            if(venuOrderItem.getStatus() == Order.OrderStatus.CONFIRM  || venuOrderItem.getStatus() ==  Order.OrderStatus.ACCEPT){
+                model.addRow(new Object[]{
+                    venuOrderItem.getUserName(),
+                    venuOrderItem.getPrice(),
+                    venuOrderItem.getStatus(),
+                    venuOrderItem.getWeddingDate(),
+                    venuOrderItem.getOrderDate(),
+                    venuOrderItem
+                });
+            }
+        }
+    }
+//    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +113,7 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
         requestTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        requestTable1 = new javax.swing.JTable();
+        bookingTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnAccept = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -47,17 +125,17 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
         requestTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Capacity", "Price", "Status"
+                "User", "Price", "Status", "WeddingDate", "Booking Date", "Order"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -65,40 +143,65 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(requestTable);
+        if (requestTable.getColumnModel().getColumnCount() > 0) {
+            requestTable.getColumnModel().getColumn(5).setMinWidth(0);
+            requestTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            requestTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Order Requests");
 
-        requestTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        requestTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bookingTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Capacity", "Price", "Status"
+                "User", "Price", "Status", "Wedding Date", "Booking Date", "order"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(requestTable1);
+        jScrollPane2.setViewportView(bookingTable);
+        if (bookingTable.getColumnModel().getColumnCount() > 0) {
+            bookingTable.getColumnModel().getColumn(5).setMinWidth(0);
+            bookingTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            bookingTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Upcoming / Past Orders");
 
         btnAccept.setText("Accept");
+        btnAccept.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAcceptMouseClicked(evt);
+            }
+        });
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -146,10 +249,35 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 1090, 640);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        int selectedRowIndex = requestTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        VenueOrder venuOrderItem  = (VenueOrder) model.getValueAt(selectedRowIndex, 5); 
+        venuOrderItem.setStatus(Order.OrderStatus.ACCEPT);
+        populateRequestTable(venue.getOrders());
+        populateBookingTable(venue.getOrders());
+        system.getMasterOrderList().updateOrder(venuOrderItem);
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnAcceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAcceptMouseClicked
+
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        int selectedRowIndex = requestTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        VenueOrder venuOrderItem  = (VenueOrder) model.getValueAt(selectedRowIndex, 5); 
+        venuOrderItem.setStatus(Order.OrderStatus.REJECT);
+        populateRequestTable(venue.getOrders());
+        populateBookingTable(venue.getOrders());
+        system.getMasterOrderList().updateOrder(venuOrderItem);
+    }//GEN-LAST:event_btnCancelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
+    private javax.swing.JTable bookingTable;
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnCancel;
     private javax.swing.JLabel jLabel1;
@@ -157,6 +285,5 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable requestTable;
-    private javax.swing.JTable requestTable1;
     // End of variables declaration//GEN-END:variables
 }

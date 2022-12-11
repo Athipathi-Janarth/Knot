@@ -4,9 +4,8 @@
  */
 package Models.Organization;
 
-import Model.Menus.BakeryMenu;
 import Model.Menus.VenueMenu;
-import Models.Organization.Organization;
+import Models.Order.VenueOrderDirectory;
 
 /**
  *
@@ -42,5 +41,17 @@ public class Venue extends Organization {
             menu = new VenueMenu(1, this.getName() + "menu" );
         }
         return menu;
+    }
+    private VenueOrderDirectory orders;
+
+    public VenueOrderDirectory getOrders() {
+        if(orders ==null){
+            orders = new VenueOrderDirectory();
+        }
+        return orders;
+    }
+
+    public void setOrders(VenueOrderDirectory orders) {
+        this.orders = orders;
     }
 }

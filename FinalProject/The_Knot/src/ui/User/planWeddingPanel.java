@@ -4,8 +4,23 @@
  */
 package ui.User;
 
-import ui.SystemAdmin.*;
+import Business.EcoSystem;
+import Model.MenuItem.BakeryMenuItem;
+import Model.MenuItem.CateringMenuItem;
+import Model.MenuItem.DecorMenuItem;
+import Model.MenuItem.VenueMenuItem;
+import Models.Order.Order;
+import Models.Order.VenueOrder;
+import Models.Organization.Bakery;
+import Models.Organization.Catering;
+import Models.Organization.Decor;
+import Models.Organization.Venue;
+import Network.Network;
+import User.CoupleUser;
 import java.awt.Color;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,10 +31,109 @@ public class planWeddingPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public planWeddingPanel() {
+     EcoSystem system;
+    CoupleUser user;
+    public planWeddingPanel(EcoSystem system,CoupleUser user) {
         initComponents();
+        this.system= system;
+        this.user = user;
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        displayAlltables(system);
     }
+    
+    public void displayAlltables(EcoSystem system){
+        displayVenueTable(system);
+        displayCateringTable(system);
+        displayDecorTable(system);
+        displayCakeTable(system);
+    }
+    
+    public void displayVenueTable(EcoSystem system){
+        DefaultTableModel model = (DefaultTableModel) venueTable.getModel();
+         model.setRowCount(0);
+        for(int i=0; i < system.getNetworkList().size();i++){
+            Network network = system.getNetworkList().get(i);
+            for(int j=0; j < network.getVenueDirectory().getVenueDirectory().size();j++){
+                Venue venue = network.getVenueDirectory().getVenueDirectory().get(j);
+                for(int k=0; k < venue.getMenu().getVenueMenu().size(); k++){
+                    VenueMenuItem menuItem = venue.getMenu().getVenueMenu().get(k);
+                    model.addRow(new Object[]{
+                      menuItem.getItemName(),
+                      menuItem.getType(),
+                      menuItem.getCapacity(),
+                      menuItem.getPrice(),
+                      menuItem,
+                      venue
+                    });
+                }
+            }
+        }
+    }
+    
+    public void displayCakeTable(EcoSystem system){
+        DefaultTableModel model = (DefaultTableModel) cakeTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i<system.getNetworkList().size();i++){
+            Network network = system.getNetworkList().get(i);
+            for (int j=0;  j <  network.getBakeryDirectory().getBakeries().size(); j++) {
+                Bakery bakery = network.getBakeryDirectory().getBakeries().get(j);
+                for (int k=0; k < bakery.getMenu().getBakeryMenu().size();k++) {
+                    BakeryMenuItem menuItem = bakery.getMenu().getBakeryMenu().get(k);
+                    model.addRow(new Object[]{
+                        menuItem.getItemName(),
+                        menuItem.getFlavour(),
+                        menuItem.getServes(),
+                        menuItem.getPrice(),
+                        menuItem,
+                        bakery
+                    });
+                }
+            }
+        }
+    }
+    
+    public void displayDecorTable(EcoSystem system){
+        DefaultTableModel model = (DefaultTableModel) decorTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i<system.getNetworkList().size();i++){
+            Network network = system.getNetworkList().get(i);
+            for(int j=0; j < network.getDecorDirectory().getDecorDirectory().size();j++){
+                Decor decor = network.getDecorDirectory().getDecorDirectory().get(j);
+                for(int k=0; k < decor.getMenu().getDecorMenu().size(); k++){
+                        DecorMenuItem menuItem = decor.getMenu().getDecorMenu().get(k);
+                        model.addRow(new Object[]{
+                          menuItem.getItemName(),
+                          menuItem.getEventtype(),
+                          menuItem.getTheme(),
+                          menuItem.getPrice(),
+                          menuItem,
+                          decor
+                        });
+                }
+            }
+        }
+    }
+    
+    public void displayCateringTable(EcoSystem system){
+        DefaultTableModel model = (DefaultTableModel) cateringTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i<system.getNetworkList().size();i++){
+            Network network = system.getNetworkList().get(i);
+            for(int j=0 ; j < network.getCateringDirectory().getCateringList().size(); j++){
+                Catering catering = network.getCateringDirectory().getCateringList().get(j);
+                for(int k=0; k < catering.getMenu().getCateringMenu().size(); k++){
+                        CateringMenuItem menuItem = catering.getMenu().getCateringMenu().get(k);
+                        model.addRow(new Object[]{
+                          menuItem.getItemName(),
+                          menuItem.getPrice(),
+                          menuItem,
+                          catering
+                        });
+                }
+            }
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,20 +155,20 @@ public class planWeddingPanel extends javax.swing.JPanel {
         decoartionPanel = new javax.swing.JPanel();
         tabCard1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        venueTable1 = new javax.swing.JTable();
+        decorTable = new javax.swing.JTable();
         btnBookVenue1 = new javax.swing.JButton();
         tabBg1 = new javax.swing.JLabel();
         cateringPanel = new javax.swing.JPanel();
         tabCard2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        venueTable2 = new javax.swing.JTable();
+        cateringTable = new javax.swing.JTable();
         btnBookVenue2 = new javax.swing.JButton();
         tabBg2 = new javax.swing.JLabel();
         cakePanel = new javax.swing.JPanel();
         tabCard3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        venueTable3 = new javax.swing.JTable();
-        btnBookVenue3 = new javax.swing.JButton();
+        cakeTable = new javax.swing.JTable();
+        orderCake = new javax.swing.JButton();
         tabBg3 = new javax.swing.JLabel();
         groomingPanel = new javax.swing.JPanel();
         tabCard4 = new javax.swing.JPanel();
@@ -93,11 +207,11 @@ public class planWeddingPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Image", "Venue Name", "Event Type", "Location", "Capacity", "Price"
+                "Venue Name", "Event Type", "Capacity", "Price", "menuItem", "venueObject"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -105,8 +219,21 @@ public class planWeddingPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(venueTable);
+        if (venueTable.getColumnModel().getColumnCount() > 0) {
+            venueTable.getColumnModel().getColumn(4).setMinWidth(0);
+            venueTable.getColumnModel().getColumn(4).setPreferredWidth(0);
+            venueTable.getColumnModel().getColumn(4).setMaxWidth(0);
+            venueTable.getColumnModel().getColumn(5).setMinWidth(0);
+            venueTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            venueTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         btnBookVenue.setText("Book Venue");
+        btnBookVenue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookVenueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabCardLayout = new javax.swing.GroupLayout(tabCard);
         tabCard.setLayout(tabCardLayout);
@@ -146,7 +273,7 @@ public class planWeddingPanel extends javax.swing.JPanel {
         decoartionPanel.setOpaque(false);
         decoartionPanel.setLayout(null);
 
-        venueTable1.setModel(new javax.swing.table.DefaultTableModel(
+        decorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -154,18 +281,26 @@ public class planWeddingPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Image", "Venue Name", "Event Type", "Location", "Capacity", "Price"
+                "Name", "Event Type", "Theme", "Price", "menuItem", "decorObject"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(venueTable1);
+        jScrollPane2.setViewportView(decorTable);
+        if (decorTable.getColumnModel().getColumnCount() > 0) {
+            decorTable.getColumnModel().getColumn(4).setMinWidth(0);
+            decorTable.getColumnModel().getColumn(4).setPreferredWidth(0);
+            decorTable.getColumnModel().getColumn(4).setMaxWidth(0);
+            decorTable.getColumnModel().getColumn(5).setMinWidth(0);
+            decorTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            decorTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         btnBookVenue1.setText("Book Venue");
 
@@ -207,26 +342,34 @@ public class planWeddingPanel extends javax.swing.JPanel {
         cateringPanel.setOpaque(false);
         cateringPanel.setLayout(null);
 
-        venueTable2.setModel(new javax.swing.table.DefaultTableModel(
+        cateringTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Image", "Venue Name", "Event Type", "Location", "Capacity", "Price"
+                "cuisine", "price", "cateringObject", "menuItem"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(venueTable2);
+        jScrollPane3.setViewportView(cateringTable);
+        if (cateringTable.getColumnModel().getColumnCount() > 0) {
+            cateringTable.getColumnModel().getColumn(2).setMinWidth(0);
+            cateringTable.getColumnModel().getColumn(2).setPreferredWidth(0);
+            cateringTable.getColumnModel().getColumn(2).setMaxWidth(0);
+            cateringTable.getColumnModel().getColumn(3).setMinWidth(0);
+            cateringTable.getColumnModel().getColumn(3).setPreferredWidth(0);
+            cateringTable.getColumnModel().getColumn(3).setMaxWidth(0);
+        }
 
         btnBookVenue2.setText("Book Venue");
 
@@ -268,7 +411,7 @@ public class planWeddingPanel extends javax.swing.JPanel {
         cakePanel.setOpaque(false);
         cakePanel.setLayout(null);
 
-        venueTable3.setModel(new javax.swing.table.DefaultTableModel(
+        cakeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -276,20 +419,33 @@ public class planWeddingPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Image", "Venue Name", "Event Type", "Location", "Capacity", "Price"
+                "Name", "Flavour", "Price", "Serves", "BakeryObject", "menuItem"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(venueTable3);
+        jScrollPane4.setViewportView(cakeTable);
+        if (cakeTable.getColumnModel().getColumnCount() > 0) {
+            cakeTable.getColumnModel().getColumn(4).setMinWidth(0);
+            cakeTable.getColumnModel().getColumn(4).setPreferredWidth(0);
+            cakeTable.getColumnModel().getColumn(4).setMaxWidth(0);
+            cakeTable.getColumnModel().getColumn(5).setMinWidth(0);
+            cakeTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            cakeTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
-        btnBookVenue3.setText("Book Venue");
+        orderCake.setText("Order Cake");
+        orderCake.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderCakeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabCard3Layout = new javax.swing.GroupLayout(tabCard3);
         tabCard3.setLayout(tabCard3Layout);
@@ -302,7 +458,7 @@ public class planWeddingPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabCard3Layout.createSequentialGroup()
                         .addGap(375, 375, 375)
-                        .addComponent(btnBookVenue3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(orderCake, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
         tabCard3Layout.setVerticalGroup(
@@ -311,7 +467,7 @@ public class planWeddingPanel extends javax.swing.JPanel {
                 .addGap(73, 73, 73)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(139, 139, 139)
-                .addComponent(btnBookVenue3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(orderCake, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
@@ -475,6 +631,36 @@ public class planWeddingPanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBookVenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookVenueActionPerformed
+        int selectedRowIndex = venueTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) venueTable.getModel();
+        Venue organization = (Venue) model.getValueAt(selectedRowIndex, 5);
+        VenueMenuItem venuMenuItem = (VenueMenuItem) model.getValueAt(selectedRowIndex, 4);
+        Order order = new Order(new Date(), Order.OrderStatus.PENDING,  user.getUserName(), organization.getId(), organization.getName(), venuMenuItem.getPrice(),venuMenuItem.getItemName() );
+        System.out.println(venuMenuItem.getItemName());
+        VenueOrder venueOrder = new VenueOrder(new Date(), Order.OrderStatus.PENDING,  user.getUserName(), organization.getId(), organization.getName(), venuMenuItem.getPrice(),venuMenuItem.getItemName());
+        System.out.println(system.getMasterOrderList());
+        order = system.getMasterOrderList().addOrder(order);
+        venueOrder.setOrderId(order.getOrderId());
+        venueOrder.setWeddingDate(user.getWeddingDate());
+        organization.getOrders().addVenueOrder(venueOrder);
+    }//GEN-LAST:event_btnBookVenueActionPerformed
+
+    private void orderCakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderCakeActionPerformed
+//        int selectedRowIndex = cakeTable.getSelectedRow();
+//        DefaultTableModel model = (DefaultTableModel) cakeTable.getModel();
+//        
+//        Bakery organization = (Bakery) model.getValueAt(selectedRowIndex, 5);
+//        VenueMenuItem venuMenuItem = (VenueMenuItem) model.getValueAt(selectedRowIndex, 4);
+//        Order order = new Order(new Date(), Order.OrderStatus.PENDING,  user.getUserName(), organization.getId(), organization.getName(), venuMenuItem.getPrice());
+//        VenueOrder venueOrder = new VenueOrder(new Date(), Order.OrderStatus.PENDING,  user.getUserName(), organization.getId(), organization.getName(), venuMenuItem.getPrice());
+//        System.out.println(system.getMasterOrderList());
+//        order = system.getMasterOrderList().addOrder(order);
+//        venueOrder.setOrderId(order.getOrderId());
+//        venueOrder.setWeddingDate(user.getWeddingDate());
+//        organization.getOrders().addVenueOrder(venueOrder);
+    }//GEN-LAST:event_orderCakeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
@@ -482,12 +668,14 @@ public class planWeddingPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBookVenue;
     private javax.swing.JButton btnBookVenue1;
     private javax.swing.JButton btnBookVenue2;
-    private javax.swing.JButton btnBookVenue3;
     private javax.swing.JButton btnBookVenue4;
     private javax.swing.JButton btnBookVenue5;
     private javax.swing.JPanel cakePanel;
+    private javax.swing.JTable cakeTable;
     private javax.swing.JPanel cateringPanel;
+    private javax.swing.JTable cateringTable;
     private javax.swing.JPanel decoartionPanel;
+    private javax.swing.JTable decorTable;
     private javax.swing.JPanel designerPanel;
     private javax.swing.JPanel groomingPanel;
     private javax.swing.JScrollPane jScrollPane1;
@@ -496,6 +684,7 @@ public class planWeddingPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JButton orderCake;
     private javax.swing.JLabel tabBg;
     private javax.swing.JLabel tabBg1;
     private javax.swing.JLabel tabBg2;
@@ -511,9 +700,6 @@ public class planWeddingPanel extends javax.swing.JPanel {
     private javax.swing.JTabbedPane userTabs;
     private javax.swing.JPanel venuePanel;
     private javax.swing.JTable venueTable;
-    private javax.swing.JTable venueTable1;
-    private javax.swing.JTable venueTable2;
-    private javax.swing.JTable venueTable3;
     private javax.swing.JTable venueTable4;
     private javax.swing.JTable venueTable5;
     // End of variables declaration//GEN-END:variables

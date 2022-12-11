@@ -10,18 +10,31 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class VenueOrderDirectory extends OrderDirectory {
+    private int orderId;
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+    public VenueOrderDirectory() {
+    }
 
     public ArrayList<VenueOrder> getVenueOrder() {
-        return venueOrder;
+        return venueOrders;
     }
 
     public void setVenueOrder(ArrayList<VenueOrder> venueOrder) {
-        this.venueOrder = venueOrder;
+        this.venueOrders = venueOrder;
     }
-    
-    private ArrayList<VenueOrder> venueOrder;
-    public VenueOrderDirectory(ArrayList<Order> orderDirectory) {
-        super(orderDirectory);
+
+ 
+   private ArrayList<VenueOrder> venueOrders = new ArrayList<>();
+   public void addVenueOrder(VenueOrder order){
+        this.venueOrders.add(order);
+        this.orderId++;
     }
 
 }

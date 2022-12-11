@@ -11,18 +11,47 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class StylistOrderDirectory extends OrderDirectory {
+    private int orderId;
 
-    public StylistOrderDirectory(ArrayList<StylistOrder> stylingDirectory, ArrayList<Order> orderDirectory) {
-        super(orderDirectory);
-        this.stylingDirectory = stylingDirectory;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public ArrayList<StylistOrder> getStylingDirectory() {
-        return stylingDirectory;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+    private ArrayList<StylistOrder> stylistOrders = new ArrayList<>();
+
+    public StylistOrderDirectory() {
+
     }
 
-    public void setStylingDirectory(ArrayList<StylistOrder> stylingDirectory) {
-        this.stylingDirectory = stylingDirectory;
+    public ArrayList<StylistOrder> getStylistOrders() {
+        return stylistOrders;
     }
-    private ArrayList<StylistOrder> stylingDirectory;
+
+    public void setStylistOrders(ArrayList<StylistOrder> stylistOrders) {
+        this.stylistOrders = stylistOrders;
+    }
+    
+    public void addStylistOrder(StylistOrder order){
+        this.stylistOrders.add(order);
+        this.orderId++;
+    }
+        
+    public StylistOrder updateOrder(StylistOrder order) {
+        System.out.println("Updating emploee");
+        if (order != null) {
+            for (int i = 0; i < stylistOrders.size(); i++) {
+                System.out.println("gng to update Order "+ order.getOrderId());
+                if (order.getOrderId() == stylistOrders.get(i).getOrderId()) {
+                    stylistOrders.set(i, order);
+                    return order;
+                }
+            }
+        }
+        return null;
+    }
+    
+    
 }

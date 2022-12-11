@@ -14,8 +14,9 @@ import java.util.Date;
  */
 public class BakeryOrder extends Order {
 
-    public BakeryOrder(float total, Date orderDate, ArrayList<MenuItem> items, OrderStatus status) {
-        super(total, orderDate, items, status);
+    public BakeryOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
+        super(orderDate, status, username, orgId, orgName, price, itemName);
     }
+
 
 }

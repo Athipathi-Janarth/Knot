@@ -53,7 +53,8 @@ public class venueManagerItemsPanel extends javax.swing.JPanel {
         ItemsTable.getColumn("Image").setCellRenderer(new venueManagerItemsPanel.CellRenderer());
         populateTable(venue.getMenu());
     }
-     private Venue getVenue(long orgId){
+    
+    private Venue getVenue(long orgId){
        Network network = system.retriveNetwork(employee.getNetworkname());
         Venue currentVenue=null;
         ArrayList<Venue> venues = network.getVenueDirectory().getVenueDirectory();

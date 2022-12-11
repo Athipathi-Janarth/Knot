@@ -4,6 +4,7 @@
  */
 package ui.User;
 
+import Business.EcoSystem;
 import User.CoupleUser;
 import ui.SystemAdmin.*;
 
@@ -16,13 +17,18 @@ public class mainPanelUser extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-    planWeddingPanel planPanel = new planWeddingPanel();
-    requestsPanel requestPanel= new requestsPanel();
-    estimationsPanel estimationPanel = new estimationsPanel();
-    public mainPanelUser(CoupleUser user) {
+    planWeddingPanel planPanel;
+    requestsPanel requestPanel;
+    estimationsPanel estimationPanel;
+    EcoSystem system;
+    CoupleUser user;
+    public mainPanelUser(CoupleUser user, EcoSystem system) {
         initComponents();
+        this.system = system;
+        this.user = user;
         jLabel1.setText("Welcome "+user.getName());
         jLabel3.setText(user.getPartnerName());
+        planPanel = new planWeddingPanel(system, user);
         splitPane.setRightComponent(planPanel);
     }
 
@@ -158,11 +164,13 @@ public class mainPanelUser extends javax.swing.JPanel {
 
     private void btnRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestsActionPerformed
         // TODO add your handling code here:
+        requestPanel = new requestsPanel(system, user);
         splitPane.setRightComponent(requestPanel);
     }//GEN-LAST:event_btnRequestsActionPerformed
 
     private void btnEstimationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstimationsActionPerformed
         // TODO add your handling code here:
+        estimationPanel = new estimationsPanel(system, user);
         splitPane.setRightComponent(estimationPanel);
     }//GEN-LAST:event_btnEstimationsActionPerformed
 

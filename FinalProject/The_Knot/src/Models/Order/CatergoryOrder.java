@@ -4,18 +4,17 @@
  */
 package Models.Order;
 
-import Model.Menus.MenuItem;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
  *
  * @author nageshsairam
  */
-public class DecorOrder extends Order  {
+public class CatergoryOrder extends Order {
 
-    public DecorOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
+    public CatergoryOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
         super(orderDate, status, username, orgId, orgName, price, itemName);
     }
-    
+
+
 }

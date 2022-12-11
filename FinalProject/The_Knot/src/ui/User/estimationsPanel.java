@@ -4,8 +4,15 @@
  */
 package ui.User;
 
+import Business.EcoSystem;
+import Models.Order.MasterOrderDirectory;
+import Models.Order.Order;
+import Payment.Payment;
+import User.CoupleUser;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,11 +23,48 @@ public class estimationsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public estimationsPanel() {
+    EcoSystem system;
+    CoupleUser user;
+    public estimationsPanel(EcoSystem system,CoupleUser user) {
         initComponents();
+        this.system= system;
+        this.user = user;
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        populateCardTable(system.getMasterOrderList());
+        setTotal();
     }
-
+    
+    public void populateCardTable(MasterOrderDirectory masterOrderDirectory){
+        DefaultTableModel model = (DefaultTableModel) cartTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i< masterOrderDirectory.getMasterOrderList().size();i++){
+            Order order = masterOrderDirectory.getMasterOrderList().get(i);
+            if(order.getUserName().equals(user.getUserName()) && order.getStatus().getValue().equals( Order.OrderStatus.CONFIRM.getValue())){
+              System.out.println("User order found");
+              model.addRow(new Object[]{
+                    order.getOrderId(),
+                    order.getItemName(),
+                    order.getOrgName(),
+                    order.getStatus(),
+                    order.getPrice(),
+                    order
+              });  
+            }
+        }
+    }
+    
+    
+    public void setTotal(){
+        float total = 0;
+        for(int i=0;i< system.getMasterOrderList().getMasterOrderList().size();i++){
+            Order order = system.getMasterOrderList().getMasterOrderList().get(i);
+            if(order.getUserName().equals(user.getUserName()) && order.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue())){
+                total = total + order.getPrice();
+            }
+        }
+        System.out.println(total);
+        totalValue.setText(Float.toString(total));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +75,11 @@ public class estimationsPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         adminPanelCard = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        cartTable = new javax.swing.JTable();
+        pay = new javax.swing.JButton();
+        totalLabel = new javax.swing.JLabel();
+        totalValue = new javax.swing.JLabel();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(977, 630));
@@ -39,15 +88,76 @@ public class estimationsPanel extends javax.swing.JPanel {
 
         adminPanelCard.setFocusable(false);
 
+        cartTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Request ID", "Item Name", "Org Name", "Status", "Price", "Order"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(cartTable);
+        if (cartTable.getColumnModel().getColumnCount() > 0) {
+            cartTable.getColumnModel().getColumn(5).setMinWidth(0);
+            cartTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            cartTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
+
+        pay.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        pay.setText("Checkout and Pay");
+        pay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                payMouseClicked(evt);
+            }
+        });
+
+        totalLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        totalLabel.setText("Total:");
+
+        totalValue.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
         adminPanelCardLayout.setHorizontalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 970, Short.MAX_VALUE)
+            .addGroup(adminPanelCardLayout.createSequentialGroup()
+                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(adminPanelCardLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(adminPanelCardLayout.createSequentialGroup()
+                                .addComponent(totalLabel)
+                                .addGap(77, 77, 77)
+                                .addComponent(totalValue, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(adminPanelCardLayout.createSequentialGroup()
+                        .addGap(395, 395, 395)
+                        .addComponent(pay, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+            .addGroup(adminPanelCardLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalLabel)
+                    .addComponent(totalValue, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addComponent(pay, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(153, 153, 153))
         );
 
         add(adminPanelCard);
@@ -60,9 +170,28 @@ public class estimationsPanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 970, 630);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void payMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_payMouseClicked
+       for(int i=0;i< system.getMasterOrderList().getMasterOrderList().size();i++){
+            Order order = system.getMasterOrderList().getMasterOrderList().get(i);
+            if(order.getUserName().equals(user.getUserName()) && order.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue())){
+                order.setStatus(Order.OrderStatus.DONE);
+                system.getMasterOrderList().updateOrder(order);
+                Payment payment = new Payment(user.getName(), order.getOrderId(),order.getOrgName(), new Date(), Order.OrderStatus.DONE, order.getPrice() );
+                system.getPaymentList().addPayment(payment);
+            }
+        }
+       populateCardTable(system.getMasterOrderList());
+       System.out.println("add masterlist");
+    }//GEN-LAST:event_payMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
+    private javax.swing.JTable cartTable;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton pay;
+    private javax.swing.JLabel totalLabel;
+    private javax.swing.JLabel totalValue;
     // End of variables declaration//GEN-END:variables
 }
