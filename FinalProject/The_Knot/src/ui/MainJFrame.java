@@ -38,6 +38,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import ui.SingleUser.mainPanelSingleUser;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage; 
 
 /**
  *
@@ -56,6 +63,9 @@ public class MainJFrame extends javax.swing.JFrame {
     mainPanelUser userpanel;
     mainPanelSingleUser singleuserpanel;
     public String photoPath;
+    private final static String system_mail="knot1610@gmail.com";
+    private final static String system_mail_pwd="ysxyebfkcmupvhdk";
+    private final static String reg_Subject="Account Created Successfully";
     public MainJFrame() throws FileNotFoundException {
         initComponents();
         setTitle("The Knot");
@@ -856,7 +866,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_backImageMouseClicked
 
     private void btnRegisterUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUsrActionPerformed
-        // TODO add your handling code here:
+
         if(validateCoupleUser()){
             if(system.checkIfUserIsUnique(system,txtUserName.getText())){
             CoupleUser user = new CoupleUser(txtyourName.getText(),txtyourName1.getText(),txtyourZodiac.getText(),txtyourZodiac1.getText(),txtUserName.getText(),txtPassword.getText(),txtEmail.getText(),weddingDateChooser.getDate());
@@ -872,17 +882,47 @@ public class MainJFrame extends javax.swing.JFrame {
             registerPanel.setVisible(false);
             registerPanel1.setVisible(false);
             clearRegister();
+            sendMail(user);
             }
             else{
                 txtUserName.setText("");
                 JOptionPane.showMessageDialog(null, "UserName Already Exists!!!");
             }
+          
         }
         else{
             JOptionPane.showMessageDialog(null, "Please Enter All Details");
         }
     }//GEN-LAST:event_btnRegisterUsrActionPerformed
-
+    public void sendMail(CoupleUser user){
+     Properties properties = new Properties ();
+           //properties.put("mail.smtp. auth","true");
+           //properties.put("mail.smtp.starttls.enable","true");
+           properties.put("mail.smtp.host", "smtp.gmail.com");
+           //properties.put("mail.smtp.port","587");
+           properties.put("mail.smtp.socketFactory.port", "465"); //SSL Port
+            properties.put("mail.smtp.socketFactory.class",
+                            "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+            properties.put("mail.smtp.auth", "true"); //Enabling SMTP Authentication
+            properties.put("mail.smtp.port", "465");
+           
+           Session session= Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+               protected  PasswordAuthentication getPasswordAuthentication(){
+               return new PasswordAuthentication(system_mail,system_mail_pwd);
+               }
+           });
+           try{
+            MimeMessage message = new MimeMessage (session) ;
+            message. setFrom (new InternetAddress (system_mail));
+            message.addRecipient (Message. RecipientType.TO, new InternetAddress (user.getEmail()));
+            message.setSubject (reg_Subject);
+            message.setText ("Welcome to The Knot\n Your Account has been Created\n"+ user.getName()+" and "+ user.getPartnerName()+" Congrats on getting Engaged..");
+            Transport.send(message);
+            System.out.println("Email Sent");
+            } catch (Exception ex) {
+            System.out.println(""+ex);
+            }           
+    }
     private void backImage1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backImage1MouseClicked
         // TODO add your handling code here:
         loginPanel.setVisible(true);
