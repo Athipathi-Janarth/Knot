@@ -4,8 +4,17 @@
  */
 package ui.DecorationPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Models.Organization.Decor;
+import Models.Organization.Organization;
+import Models.Organization.Venue;
+import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.awt.Image;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -16,6 +25,11 @@ public class decorationBookingsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
+   EcoSystem system;
+   Organization org;
+   Employee employee;
+   //Decor decor;
+   public String photoPath;
     public decorationBookingsPanel() {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));

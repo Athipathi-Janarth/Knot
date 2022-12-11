@@ -12,7 +12,27 @@ import Model.Menus.MenuItem;
  */
 public class VenueMenuItem  extends MenuItem {
 
-    public VenueMenuItem(String itemName, int id, float price) {
+     private String type;
+    private int capacity;
+    private String photo;
+
+    public VenueMenuItem(String type, int capacity, String photo, String itemName, int id, float price) {
         super(itemName, id, price);
+        this.type = type;
+        this.capacity = capacity;
+        this.photo = photo;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
 }

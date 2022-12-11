@@ -5,6 +5,7 @@
 package Models.Organization;
 
 import Model.Menus.DecorMenu;
+import Model.Menus.VenueMenu;
 
 /**
  *
@@ -16,7 +17,9 @@ public class Decor extends Organization {
         super(name,type);
     }
     
-    private DecorMenu menu;
+    private DecorMenu menu = new DecorMenu(1, this.getName() + "menu" );
+   
+   
 
     public DecorMenu getMenu() {
         return menu;

@@ -4,6 +4,7 @@
  */
 package Model.Menus;
 
+import Model.MenuItem.BakeryMenuItem;
 import Model.MenuItem.DecorMenuItem;
 import java.util.ArrayList;
 
@@ -12,11 +13,20 @@ import java.util.ArrayList;
  * @author nageshsairam
  */
 public class DecorMenu extends Menu {
+     private int menuItemId = 0;
     private ArrayList<DecorMenuItem> decorMenu = new ArrayList<>();
 
-    public DecorMenu(ArrayList<DecorMenuItem> decorMenu, int id, String name) {
+    public int getMenuItemId() {
+        return menuItemId;
+    }
+
+    public void setMenuItemId(int menuItemId) {
+        this.menuItemId = menuItemId;
+    }
+
+    public DecorMenu( int id, String name) {
         super(id, name);
-        this.decorMenu = decorMenu;
+      
     }
 
     public ArrayList<DecorMenuItem> getDecorMenu() {
@@ -26,8 +36,26 @@ public class DecorMenu extends Menu {
         return decorMenu;
     }
 
-    public void setCateringMenu(ArrayList<DecorMenuItem> decorMenu) {
-        this.decorMenu = decorMenu;
+    public DecorMenuItem getMenuItem(int menuItemId) {
+        for (DecorMenuItem menuItem : decorMenu) {
+            if (menuItem.getId() == menuItemId) {
+                return menuItem;
+            }
+        }
+        return null;
+    }
+     public void addDecorMenuItem (DecorMenuItem menuItem){
+        this.decorMenu.add(menuItem);
+        this.incrementId();
+    }
+    
+    public void deleteDecorMenuItem (int menuItemId){
+        this.decorMenu.remove(getMenuItem(menuItemId));
+        this.incrementId();
+    }
+    
+    public void incrementId(){
+        this.menuItemId++;
     }
           
 }

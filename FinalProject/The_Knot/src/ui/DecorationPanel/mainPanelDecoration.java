@@ -20,8 +20,8 @@ public class mainPanelDecoration extends javax.swing.JPanel {
     
     Employee employee;
     EcoSystem system;
-    decorationBookingsPanel bookings= new decorationBookingsPanel();
-    decorationItemsPanel menu=new decorationItemsPanel();
+    decorationBookingsPanel bookings;
+    decorationItemsPanel menu;
     public mainPanelDecoration() {
         initComponents();
         splitPane.setRightComponent(bookings);
@@ -31,6 +31,7 @@ public class mainPanelDecoration extends javax.swing.JPanel {
         this.system = system;
         this.employee = employee;
         initComponents();
+        bookings= new decorationBookingsPanel();
         splitPane.setRightComponent(bookings);
     }
 
@@ -130,13 +131,14 @@ public class mainPanelDecoration extends javax.swing.JPanel {
 
     private void btnBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingsActionPerformed
         // TODO add your handling code here:
-        
+        bookings= new decorationBookingsPanel();
         splitPane.setRightComponent(bookings);
         
     }//GEN-LAST:event_btnBookingsActionPerformed
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
         // TODO add your handling code here:
+        menu=new decorationItemsPanel(system,employee);
         splitPane.setRightComponent(menu);
     }//GEN-LAST:event_btnServicesActionPerformed
 

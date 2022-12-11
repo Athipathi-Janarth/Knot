@@ -128,6 +128,11 @@ public class bakerItemsPanel extends javax.swing.JPanel {
                 btnDeleteMouseClicked(evt);
             }
         });
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         ItemName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         ItemName.setForeground(new java.awt.Color(255, 255, 255));
@@ -356,6 +361,23 @@ public class bakerItemsPanel extends javax.swing.JPanel {
             System.out.println("No File Select");
         }
     }//GEN-LAST:event_photoMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = ItemsTable.getSelectedRow();
+        
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a item to delete it.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) ItemsTable.getModel();
+        BakeryMenuItem menuitem = (BakeryMenuItem) model.getValueAt(selectedRowIndex, 5);
+        bakery.getMenu().getBakeryMenu().remove(menuitem);
+        resetForm();
+        populateTable(bakery.getMenu());
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void resetForm() {
         cakeName.setText("");

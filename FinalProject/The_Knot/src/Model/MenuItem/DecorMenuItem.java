@@ -16,30 +16,40 @@ public class DecorMenuItem  extends MenuItem {
         super(itemName, id, price);
     }
 
-    public String getDecorType() {
-        return decorType;
+    public DecorMenuItem(String eventtype, String Theme, String photo, String itemName, int id, float price) {
+        super(itemName, id, price);
+        this.eventtype = eventtype;
+        this.Theme = Theme;
+        this.photo = photo;
     }
 
-    public void setDecorType(String decorType) {
-        this.decorType = decorType;
+
+     private String eventtype;
+    private String Theme;
+     private String photo;
+
+    public String getEventtype() {
+        return eventtype;
+    }
+
+    public void setEventtype(String eventtype) {
+        this.eventtype = eventtype;
     }
 
     public String getTheme() {
-        return theme;
+        return Theme;
     }
 
-    public void setTheme(String theme) {
-        this.theme = theme;
+    public void setTheme(String Theme) {
+        this.Theme = Theme;
     }
 
-    public long getVenueId() {
-        return venueId;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setVenueId(long venueId) {
-        this.venueId = venueId;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
-    private String decorType;
-    private String theme;
-    private long venueId;
+   
 }
