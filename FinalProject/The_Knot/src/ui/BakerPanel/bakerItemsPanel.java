@@ -75,6 +75,7 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         ImageLabel = new javax.swing.JLabel();
         cakeImg = new javax.swing.JLabel();
         photo = new javax.swing.JLabel();
+        Update = new javax.swing.JButton();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setSize(new java.awt.Dimension(977, 630));
@@ -169,6 +170,18 @@ public class bakerItemsPanel extends javax.swing.JPanel {
             }
         });
 
+        Update.setText("Update");
+        Update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateMouseClicked(evt);
+            }
+        });
+        Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
         adminPanelCardLayout.setHorizontalGroup(
@@ -204,10 +217,12 @@ public class bakerItemsPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cakeImg, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
-                        .addGap(286, 286, 286)
+                        .addGap(122, 122, 122)
                         .addComponent(btnCreateCake, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(120, 120, 120)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115)
+                        .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(185, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
@@ -245,7 +260,8 @@ public class bakerItemsPanel extends javax.swing.JPanel {
                         .addGap(33, 33, 33)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCreateCake, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(cakeImg, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -313,7 +329,7 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         int selectedRowIndex = ItemsTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) ItemsTable.getModel();
         BakeryMenuItem menuitem = (BakeryMenuItem) model.getValueAt(selectedRowIndex, 5); 
-        System.out.println(menuitem);
+        System.out.println(menuitem.getId());
         cakeName.setText(menuitem.getItemName());
         flavourValue.setText(menuitem.getFlavour());
         serveValue.setText( Integer.toString(menuitem.getServes()));
@@ -379,6 +395,26 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         populateTable(bakery.getMenu());
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+        int selectedRowIndex = ItemsTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) ItemsTable.getModel();
+        BakeryMenuItem menuitem = (BakeryMenuItem) model.getValueAt(selectedRowIndex, 5); 
+        String name = cakeName.getText().trim();
+        String flavour = flavourValue.getText().trim();
+        int serves =  Integer.valueOf(serveValue.getText().trim());
+        float price = Float.valueOf(PriceValue.getText().trim());
+        System.out.println(name +" "+ flavour+  " "+serves + " "+ price);
+        System.out.println(employee.getOrgId());
+        bakery.getMenu().updateMenuItem(new BakeryMenuItem(flavour, serves,photoPath, name,menuitem.getId(),price));
+        populateTable(bakery.getMenu());
+        resetForm();
+    }//GEN-LAST:event_UpdateActionPerformed
+
+    private void UpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UpdateMouseClicked
+
+
     private void resetForm() {
         cakeName.setText("");
         flavourValue.setText("");
@@ -412,6 +448,7 @@ public class bakerItemsPanel extends javax.swing.JPanel {
     private javax.swing.JTable ItemsTable;
     private javax.swing.JTextField PriceValue;
     private javax.swing.JLabel ServesLabel;
+    private javax.swing.JButton Update;
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JButton btnCreateCake;
