@@ -35,9 +35,9 @@ public class EmployeeDirectory {
     
     public Employee authenticateUser(String username, String password){
         for (Employee emp : employeeList){
-//            System.out.print(emp.getUserName());
-//            System.out.print(" ");
-//            System.out.print(emp.getPassword());
+            System.out.print(emp.getUserName());
+            System.out.print(" ");
+            System.out.print(emp.getPassword());
             System.out.println();
             if (emp.getUserName().equals(username) && emp.getPassword().equals(password)){
                 return emp;

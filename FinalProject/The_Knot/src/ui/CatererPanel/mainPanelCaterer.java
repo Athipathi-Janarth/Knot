@@ -6,6 +6,8 @@ package ui.CatererPanel;
 
 import Business.EcoSystem;
 import Employee.Employee;
+import ui.BakerPanel.bakerBookingsPanel;
+import ui.BakerPanel.bakerItemsPanel;
 import ui.SystemAdmin.*;
 
 /**
@@ -17,14 +19,23 @@ public class mainPanelCaterer extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
-   catererBookingsPanel bookings= new catererBookingsPanel();
-   catererItemsPanel menu=new catererItemsPanel();
+    
+   EcoSystem system;
+   Employee employee;
+   
+   catererBookingsPanel bookings;
+   catererItemsPanel menu;
     public mainPanelCaterer() {
         initComponents();
+        this.employee = employee;
+        this.system= system;
         splitPane.setRightComponent(bookings);
     }
-    public mainPanelCaterer(EcoSystem system,Employee emp) {
+    public mainPanelCaterer(EcoSystem system,Employee employee) {
         initComponents();
+        this.employee = employee;
+        this.system= system;
+        bookings= new catererBookingsPanel(system,employee);
         splitPane.setRightComponent(bookings);
     }
 
@@ -124,13 +135,14 @@ public class mainPanelCaterer extends javax.swing.JPanel {
 
     private void btnBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingsActionPerformed
         // TODO add your handling code here:
-        
+        bookings= new catererBookingsPanel(system, employee);
         splitPane.setRightComponent(bookings);
         
     }//GEN-LAST:event_btnBookingsActionPerformed
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
         // TODO add your handling code here:
+        menu=new catererItemsPanel(system,employee);
         splitPane.setRightComponent(menu);
     }//GEN-LAST:event_btnServicesActionPerformed
 

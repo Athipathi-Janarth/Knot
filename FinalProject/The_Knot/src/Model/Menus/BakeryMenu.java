@@ -52,11 +52,27 @@ public class BakeryMenu extends Menu {
     public void addBakeryMenuItem (BakeryMenuItem menuItem){
         this.bakeryMenu.add(menuItem);
         this.incrementId();
+        System.out.println("creating menu Item "+ this.getMenuItemId());
     }
+    
+    public BakeryMenuItem updateMenuItem(BakeryMenuItem menuItem){    
+        System.out.println("updating menu Item Id" + menuItem.getId());
+        if (menuItem != null) {
+            for (int i = 0; i < bakeryMenu.size(); i++) {
+                System.out.println("gng to update menu "+ menuItem.getId());
+                if (menuItem.getId() == bakeryMenu.get(i).getId()) {
+                    System.out.println("found item to be updated");
+                    bakeryMenu.set(i, menuItem);
+                    return menuItem;
+                }
+            }
+        }
+        return null;
+    }
+    
     
     public void deleteBakeryMenuItem (int menuItemId){
         this.bakeryMenu.remove(getMenuItem(menuItemId));
-        this.incrementId();
     }
     
     public void incrementId(){

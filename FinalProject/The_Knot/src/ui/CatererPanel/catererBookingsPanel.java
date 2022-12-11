@@ -4,6 +4,8 @@
  */
 package ui.CatererPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import ui.SystemAdmin.*;
 import java.awt.Color;
 
@@ -16,7 +18,7 @@ public class catererBookingsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public catererBookingsPanel() {
+    public catererBookingsPanel(EcoSystem system, Employee employee) {
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
     }
