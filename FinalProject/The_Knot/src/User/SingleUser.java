@@ -4,6 +4,9 @@
  */
 package User;
 
+import UserRequest.UserRequest;
+import java.util.ArrayList;
+
 /**
  *
  * @author vikashsingh
@@ -25,6 +28,7 @@ public class SingleUser {
     String preferredGender;
     String preferredZodiac;
     String preferredHobbies;
+    ArrayList<UserRequest> requests;
 
     public SingleUser(String name, String gender, int age, String zodiacSign, String userName, String password, String hobbies, String image, int preferredAge, String preferredGender, String preferredHobbies,String preferredZodiac) {
         this.name = name;
@@ -39,6 +43,18 @@ public class SingleUser {
         this.preferredGender = preferredGender;
         this.preferredHobbies = preferredHobbies;
         this.preferredZodiac=preferredZodiac;
+        this.requests= new ArrayList();
+    }
+
+    public ArrayList<UserRequest> getRequests() {
+        if(requests==null){
+            requests=new ArrayList();
+        }
+        return requests;
+    }
+
+    public void setRequests(ArrayList<UserRequest> requests) {
+        this.requests = requests;
     }
 
     public int getSingleUserID() {

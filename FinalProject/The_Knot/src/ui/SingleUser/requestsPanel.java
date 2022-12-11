@@ -4,9 +4,25 @@
  */
 package ui.SingleUser;
 
+import Business.EcoSystem;
+import Model.MenuItem.StylistMenuItem;
+import User.CoupleUser;
+import User.SingleUser;
+import UserRequest.UserRequest;
 import ui.User.*;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -17,9 +33,43 @@ public class requestsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public requestsPanel() {
+    EcoSystem system;
+    SingleUser user;
+    public requestsPanel(EcoSystem system,SingleUser user) {
         initComponents();
+        this.system=system;
+        this.user=user;
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        requestTable.getColumn("Image").setCellRenderer(new requestsPanel.CellRenderer());
+        populateTable();
+    }
+    public ImageIcon ResizeImageTable(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
+    class CellRenderer implements TableCellRenderer {
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value,
+                boolean isSelected,
+                boolean hasFocus,
+                int row,
+                int column) {
+
+            TableColumn tb = requestTable.getColumn("Image");
+            tb.setMaxWidth(60);
+            tb.setMinWidth(60);
+
+            requestTable.setRowHeight(60);
+            
+
+            return (Component) value;
+        }
+
     }
 
     /**
@@ -51,17 +101,17 @@ public class requestsPanel extends javax.swing.JPanel {
         requestTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "Image", "Name", "Zodiac", "Hobbies", "Status", "Req"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -69,10 +119,15 @@ public class requestsPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(requestTable);
+        if (requestTable.getColumnModel().getColumnCount() > 0) {
+            requestTable.getColumnModel().getColumn(5).setMinWidth(0);
+            requestTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            requestTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Your Requests");
+        jLabel1.setText("Request You Recieved");
 
         requestTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         requestTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -83,11 +138,11 @@ public class requestsPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "Name", "Zodiac", "Hobbies", "Status", "User"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -95,14 +150,29 @@ public class requestsPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(requestTable1);
+        if (requestTable1.getColumnModel().getColumnCount() > 0) {
+            requestTable1.getColumnModel().getColumn(4).setMinWidth(0);
+            requestTable1.getColumnModel().getColumn(4).setPreferredWidth(0);
+            requestTable1.getColumnModel().getColumn(4).setMaxWidth(0);
+        }
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Orders/Bookings");
+        jLabel2.setText("Requests You Sent");
 
         btnAccept.setText("Confirm");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -113,10 +183,10 @@ public class requestsPanel extends javax.swing.JPanel {
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2)))
+                            .addComponent(jScrollPane2)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(270, 270, 270)
                         .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,6 +222,76 @@ public class requestsPanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 970, 630);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = requestTable.getSelectedRow();
+        
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a item to confirm/cancel it.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        UserRequest req=(UserRequest) model.getValueAt(selectedRowIndex, 5);
+        SingleUser singleuser = req.getFromUser();
+        CoupleUser userAccount=new CoupleUser(user.getName(),singleuser.getName(),user.getZodiacSign(),singleuser.getZodiacSign(),user.getUserName(),user.getPassword(),"",new Date());
+        system.getCoupledirectory().createUserAccount(userAccount);
+        CoupleUser userAccount1=new CoupleUser(singleuser.getName(),user.getName(),singleuser.getZodiacSign(),singleuser.getZodiacSign(),singleuser.getUserName(),singleuser.getPassword(),"",new Date());
+        system.getCoupledirectory().createUserAccount(userAccount1);
+        req.setStatus(UserRequest.Status.Confirmed);
+        JOptionPane.showMessageDialog(null, "Congrats You Can Plan Your Wedding Now!!");
+        system.getSingleUserlist().getSingleUserList().remove(singleuser);
+        system.getSingleUserlist().getSingleUserList().remove(user);
+        populateTable();
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here
+         int selectedRowIndex = requestTable.getSelectedRow();
+        
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a item to confirm/cancel it.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        UserRequest req=(UserRequest) model.getValueAt(selectedRowIndex, 5);
+        req.setStatus(UserRequest.Status.Cancel);
+        JOptionPane.showMessageDialog(null, "OOPs you missed a Match!");
+    }//GEN-LAST:event_btnCancelActionPerformed
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        model.setRowCount(0);
+        for(UserRequest req:user.getRequests()){
+            if(req.getStatus()==UserRequest.Status.Waiting){
+                javax.swing.JLabel photo2;
+                photo2=new JLabel();
+                photo2.setIcon(ResizeImageTable(req.getFromUser().getImage()));
+            model.addRow(new Object[]{
+             photo2,
+             req.getFromUser().getName(),
+             req.getFromUser().getZodiacSign(),
+             req.getFromUser().getHobbies(),
+              req.getStatus().getValue(),
+              req
+            });
+            }
+        }
+        DefaultTableModel model1 = (DefaultTableModel) requestTable1.getModel();
+        model1.setRowCount(0);
+        for(UserRequest req:user.getRequests()){
+            if(req.getStatus()==UserRequest.Status.RequestSent)
+            model1.addRow(new Object[]{
+             req.getToUser().getName(),
+             req.getToUser().getZodiacSign(),
+             req.getToUser().getHobbies(),
+              req.getStatus().getValue(),
+              req.getToUser()
+            });
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;

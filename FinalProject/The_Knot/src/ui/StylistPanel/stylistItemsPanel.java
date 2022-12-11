@@ -202,8 +202,11 @@ public class stylistItemsPanel extends javax.swing.JPanel {
                 uploadImageMouseClicked(evt);
             }
         });
-
-        photo1.setSize(new java.awt.Dimension(0, 0));
+        uploadImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadImageActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -298,7 +301,7 @@ public class stylistItemsPanel extends javax.swing.JPanel {
         add(adminPanelCard);
         adminPanelCard.setBounds(0, 0, 1090, 630);
 
-        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/weddingcake.jpeg"))); // NOI18N
+        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/desingerBg.jpeg"))); // NOI18N
         add(adminBackgroundImg);
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents
@@ -361,6 +364,10 @@ public class stylistItemsPanel extends javax.swing.JPanel {
             System.out.println("No File Select");
         }
     }//GEN-LAST:event_uploadImageMouseClicked
+
+    private void uploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uploadImageActionPerformed
      private void resetForm() {
        jTextField4.setText("");
        jTextField3.setText("");

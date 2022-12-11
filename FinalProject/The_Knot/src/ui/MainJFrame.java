@@ -12,6 +12,7 @@ import User.SingleUser;
 import com.db4o.ObjectSet;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -33,6 +34,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import ui.SingleUser.mainPanelSingleUser;
 
 /**
@@ -51,6 +55,7 @@ public class MainJFrame extends javax.swing.JFrame {
     Employee employeeAccount;
     mainPanelUser userpanel;
     mainPanelSingleUser singleuserpanel;
+    public String photoPath;
     public MainJFrame() throws FileNotFoundException {
         initComponents();
         setTitle("The Knot");
@@ -504,6 +509,11 @@ public class MainJFrame extends javax.swing.JFrame {
         lblName16.setText("Profile Picture");
 
         ProfileImg.setText("Upload Image");
+        ProfileImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProfileImgActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout registerForm1Layout = new javax.swing.GroupLayout(registerForm1);
         registerForm1.setLayout(registerForm1Layout);
@@ -908,8 +918,8 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(validateSingleUser()){
             if(system.checkIfUserIsUnique(system,txtUserName.getText())){
-            SingleUser user=new SingleUser(txtName.getText(),genderBtn.getSelection().getActionCommand(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().getActionCommand(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
-            system.getSingleUserlist().createUserAccount(txtName.getText(),genderBtn.getSelection().getActionCommand(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),"",Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().getActionCommand(),dropdownHobby.getSelectedItem().toString(),txtpreferedZodiac.getText());
+            SingleUser user=new SingleUser(txtName.getText(),genderBtn.getSelection().getActionCommand(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),photoPath,Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().getActionCommand(),dropdownHobby1.getSelectedItem().toString(),txtpreferedZodiac.getText());
+            system.getSingleUserlist().createUserAccount(txtName.getText(),genderBtn.getSelection().getActionCommand(),Integer.parseInt(txtAge.getText()),txtZodiac.getText(),txtUserName1.getText(),txtPassword1.getText(),dropdownHobby.getSelectedItem().toString(),photoPath,Integer.parseInt(txtAge1.getText()),genderBtn1.getSelection().getActionCommand(),dropdownHobby1.getSelectedItem().toString(),txtpreferedZodiac.getText());
             JOptionPane.showMessageDialog(null, "User Created Successfully");
             singleuserpanel=new mainPanelSingleUser(system,user);
             mainPanel.add("workArea",singleuserpanel);
@@ -932,6 +942,29 @@ public class MainJFrame extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Please Enter All details!!!");
         }
     }//GEN-LAST:event_btnRegisterUsr2ActionPerformed
+
+    private void ProfileImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileImgActionPerformed
+        JFileChooser file = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "gif", "png");
+        file.addChoosableFileFilter(filter);
+        int result = file.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = file.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+            photoPath = path;
+            profileImg.setIcon(ResizeImage(path));
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No File Select");
+        }
+    }//GEN-LAST:event_ProfileImgActionPerformed
+    public ImageIcon ResizeImage(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(125, 145, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
     public boolean validateCoupleUser(){
         boolean valid = true;
         if(txtyourName.getText().isEmpty() || txtyourName1.getText().isEmpty()){

@@ -8,6 +8,8 @@ import Business.EcoSystem;
 import ui.User.*;
 import User.CoupleUser;
 import User.SingleUser;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import ui.SystemAdmin.*;
 
 /**
@@ -20,8 +22,7 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
      * Creates new form mainPanelSysadmin
      */
     findMatchPanel planPanel;
-    requestsPanel requestPanel= new requestsPanel();
-    estimationsPanel estimationPanel = new estimationsPanel();
+    requestsPanel requestPanel;
     EcoSystem system;
     SingleUser user;
     public mainPanelSingleUser(EcoSystem system,SingleUser user) {
@@ -31,8 +32,15 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
         jLabel1.setText("Welcome "+user.getName());
         planPanel = new findMatchPanel(system,user);
         splitPane.setRightComponent(planPanel);
+        ProfileImg.setIcon(ResizeImage(user.getImage()));
     }
-
+    public ImageIcon ResizeImage(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(134, 134, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,18 +52,18 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
 
         splitPane = new javax.swing.JSplitPane();
         sysAdminMenuPanel = new javax.swing.JPanel();
-        sysAdminProfileImg = new javax.swing.JLabel();
+        ProfileImg = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnPlanWedding = new javax.swing.JButton();
         btnRequests = new javax.swing.JButton();
-        btnEstimations = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1210, 630));
         setPreferredSize(new java.awt.Dimension(1210, 630));
         setSize(new java.awt.Dimension(1210, 630));
 
-        sysAdminProfileImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sysAdminProfileImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/adminGirl.png"))); // NOI18N
+        ProfileImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ProfileImg.setPreferredSize(new java.awt.Dimension(134, 134));
+        ProfileImg.setSize(new java.awt.Dimension(134, 134));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -79,15 +87,6 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
             }
         });
 
-        btnEstimations.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/request.png"))); // NOI18N
-        btnEstimations.setText("       Your Estimation");
-        btnEstimations.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnEstimations.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEstimationsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout sysAdminMenuPanelLayout = new javax.swing.GroupLayout(sysAdminMenuPanel);
         sysAdminMenuPanel.setLayout(sysAdminMenuPanelLayout);
         sysAdminMenuPanelLayout.setHorizontalGroup(
@@ -96,7 +95,7 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
                 .addGroup(sysAdminMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sysAdminMenuPanelLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(sysAdminProfileImg))
+                        .addComponent(ProfileImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(sysAdminMenuPanelLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -105,23 +104,20 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(sysAdminMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRequests, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPlanWedding, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEstimations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnPlanWedding, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         sysAdminMenuPanelLayout.setVerticalGroup(
             sysAdminMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sysAdminMenuPanelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(sysAdminProfileImg)
+                .addComponent(ProfileImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92)
                 .addComponent(btnPlanWedding)
                 .addGap(27, 27, 27)
                 .addComponent(btnRequests)
-                .addGap(27, 27, 27)
-                .addComponent(btnEstimations)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(sysAdminMenuPanel);
@@ -149,22 +145,17 @@ public class mainPanelSingleUser extends javax.swing.JPanel {
 
     private void btnRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestsActionPerformed
         // TODO add your handling code here:
+        requestPanel= new requestsPanel(system,user);
         splitPane.setRightComponent(requestPanel);
     }//GEN-LAST:event_btnRequestsActionPerformed
 
-    private void btnEstimationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstimationsActionPerformed
-        // TODO add your handling code here:
-        splitPane.setRightComponent(estimationPanel);
-    }//GEN-LAST:event_btnEstimationsActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEstimations;
+    private javax.swing.JLabel ProfileImg;
     private javax.swing.JButton btnPlanWedding;
     private javax.swing.JButton btnRequests;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel sysAdminMenuPanel;
-    private javax.swing.JLabel sysAdminProfileImg;
     // End of variables declaration//GEN-END:variables
 }

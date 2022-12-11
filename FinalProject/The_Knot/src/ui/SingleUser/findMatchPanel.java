@@ -7,11 +7,20 @@ package ui.SingleUser;
 import Business.EcoSystem;
 import Employee.Employee;
 import User.SingleUser;
+import UserRequest.UserRequest;
 import ui.User.*;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import ui.StylistPanel.stylistItemsPanel;
 
 /**
  *
@@ -29,6 +38,7 @@ public class findMatchPanel extends javax.swing.JPanel {
         this.user=user;
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        matchTable.getColumn("Image").setCellRenderer(new findMatchPanel.CellRenderer());
         populateTable();
     }
     
@@ -38,8 +48,11 @@ public class findMatchPanel extends javax.swing.JPanel {
          for (SingleUser singleUser : system.getSingleUserlist().getSingleUserList()) {
              if(!singleUser.getUserName().equals(user.getUserName())){
                  if(singleUser.getGender().equals(user.getPreferredGender())&& singleUser.getHobbies().equals(user.getPreferredHobbies())){
+                            javax.swing.JLabel photo2;
+                            photo2=new JLabel();
+                            photo2.setIcon(ResizeImageTable(singleUser.getImage()));
                             Object row[] = new Object[7];
-                            row[0] = singleUser.getImage();
+                            row[0] = photo2;
                             row[1] = singleUser.getName();
                             row[2] = singleUser.getAge();
                             row[3] = singleUser.getHobbies();
@@ -49,10 +62,37 @@ public class findMatchPanel extends javax.swing.JPanel {
                             ((DefaultTableModel) matchTable.getModel()).addRow(row);
                  }
                  else{
-                     JOptionPane.showMessageDialog(null, "No Match Found According to Your Preferences :( !!");
+                     //JOptionPane.showMessageDialog(null, "No Match Found According to Your Preferences :( !!");
                  }
              }
          }
+    }
+    public ImageIcon ResizeImageTable(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
+    class CellRenderer implements TableCellRenderer {
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value,
+                boolean isSelected,
+                boolean hasFocus,
+                int row,
+                int column) {
+
+            TableColumn tb = matchTable.getColumn("Image");
+            tb.setMaxWidth(60);
+            tb.setMinWidth(60);
+
+            matchTable.setRowHeight(60);
+
+            return (Component) value;
+        }
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -147,6 +187,10 @@ public class findMatchPanel extends javax.swing.JPanel {
 
         SingleUser singleUser= (SingleUser) matchTable.getValueAt(matchTable.getSelectedRow(), 6);
         JOptionPane.showMessageDialog(null, "Do you Want to send a request to "+singleUser.getUserName());
+        UserRequest req=new UserRequest(user,singleUser,UserRequest.Status.Waiting);
+        singleUser.getRequests().add(req);
+        UserRequest reqSent=new UserRequest(user,singleUser,UserRequest.Status.RequestSent);
+        user.getRequests().add(reqSent);
     }//GEN-LAST:event_matchTableMouseClicked
     
 
