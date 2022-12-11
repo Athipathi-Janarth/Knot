@@ -283,6 +283,12 @@ public class planWeddingPanel extends javax.swing.JPanel {
         stylistTable = new javax.swing.JTable();
         btnBookVenue4 = new javax.swing.JButton();
         tabBg4 = new javax.swing.JLabel();
+        designerPanel = new javax.swing.JPanel();
+        tabCard5 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        venueTable5 = new javax.swing.JTable();
+        btnBookVenue5 = new javax.swing.JButton();
+        tabBg5 = new javax.swing.JLabel();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(977, 630));
@@ -652,6 +658,66 @@ public class planWeddingPanel extends javax.swing.JPanel {
 
         userTabs.addTab("Stylist", groomingPanel);
 
+        designerPanel.setLayout(null);
+
+        venueTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Image", "Venue Name", "Event Type", "Location", "Capacity", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(venueTable5);
+
+        btnBookVenue5.setText("Book Venue");
+
+        javax.swing.GroupLayout tabCard5Layout = new javax.swing.GroupLayout(tabCard5);
+        tabCard5.setLayout(tabCard5Layout);
+        tabCard5Layout.setHorizontalGroup(
+            tabCard5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabCard5Layout.createSequentialGroup()
+                .addGroup(tabCard5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabCard5Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabCard5Layout.createSequentialGroup()
+                        .addGap(375, 375, 375)
+                        .addComponent(btnBookVenue5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+        tabCard5Layout.setVerticalGroup(
+            tabCard5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabCard5Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(145, 145, 145)
+                .addComponent(btnBookVenue5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+
+        designerPanel.add(tabCard5);
+        tabCard5.setBounds(0, 0, 870, 520);
+        tabCard5.setBackground(new Color(0,0,0,90));
+
+        tabBg5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/desingerBg.jpeg"))); // NOI18N
+        tabBg5.setMinimumSize(new java.awt.Dimension(870, 520));
+        designerPanel.add(tabBg5);
+        tabBg5.setBounds(0, 0, 870, 520);
+
+        userTabs.addTab("Designer", designerPanel);
+
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
         adminPanelCardLayout.setHorizontalGroup(
@@ -718,18 +784,21 @@ public class planWeddingPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBookVenue1;
     private javax.swing.JButton btnBookVenue2;
     private javax.swing.JButton btnBookVenue4;
+    private javax.swing.JButton btnBookVenue5;
     private javax.swing.JPanel cakePanel;
     private javax.swing.JTable cakeTable;
     private javax.swing.JPanel cateringPanel;
     private javax.swing.JTable cateringTable;
     private javax.swing.JPanel decoartionPanel;
     private javax.swing.JTable decorTable;
+    private javax.swing.JPanel designerPanel;
     private javax.swing.JPanel groomingPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JButton orderCake;
     private javax.swing.JTable stylistTable;
     private javax.swing.JLabel tabBg;
@@ -737,13 +806,16 @@ public class planWeddingPanel extends javax.swing.JPanel {
     private javax.swing.JLabel tabBg2;
     private javax.swing.JLabel tabBg3;
     private javax.swing.JLabel tabBg4;
+    private javax.swing.JLabel tabBg5;
     private javax.swing.JPanel tabCard;
     private javax.swing.JPanel tabCard1;
     private javax.swing.JPanel tabCard2;
     private javax.swing.JPanel tabCard3;
     private javax.swing.JPanel tabCard4;
+    private javax.swing.JPanel tabCard5;
     private javax.swing.JTabbedPane userTabs;
     private javax.swing.JPanel venuePanel;
     private javax.swing.JTable venueTable;
+    private javax.swing.JTable venueTable5;
     // End of variables declaration//GEN-END:variables
 }
