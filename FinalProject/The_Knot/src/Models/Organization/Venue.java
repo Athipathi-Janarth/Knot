@@ -4,6 +4,8 @@
  */
 package Models.Organization;
 
+import Model.Menus.BakeryMenu;
+import Model.Menus.VenueMenu;
 import Models.Organization.Organization;
 
 /**
@@ -31,7 +33,14 @@ public class Venue extends Organization {
     public void setPricePerday(float pricePerday) {
         this.pricePerday = pricePerday;
     }
-    
+    private VenueMenu menu = new VenueMenu(1, this.getName() + "menu" );
     private int capacity;
     private float pricePerday;
+
+    public VenueMenu getMenu() {
+        if(menu ==null){
+            menu = new VenueMenu(1, this.getName() + "menu" );
+        }
+        return menu;
+    }
 }

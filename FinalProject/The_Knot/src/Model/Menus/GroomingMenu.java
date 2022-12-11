@@ -13,9 +13,12 @@ import java.util.ArrayList;
  */
 public class GroomingMenu extends Menu {
 
-    private ArrayList<GroomingMenuItem> groomingMenu;
+    private ArrayList<GroomingMenuItem> groomingMenu =  new ArrayList<>();
 
     public ArrayList<GroomingMenuItem> getGroomingMenu() {
+        if(groomingMenu ==null){
+            groomingMenu = new ArrayList<>();
+        }
         return groomingMenu;
     }
 

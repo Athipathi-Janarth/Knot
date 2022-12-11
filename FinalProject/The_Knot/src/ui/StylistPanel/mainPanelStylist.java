@@ -4,6 +4,8 @@
  */
 package ui.StylistPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
 import ui.SystemAdmin.*;
 
 /**
@@ -15,9 +17,18 @@ public class mainPanelStylist extends javax.swing.JPanel {
     /**
      * Creates new form mainPanelSysadmin
      */
+    
+    EcoSystem system;
+    Employee employee;
    stylistBookingsPanel bookings= new stylistBookingsPanel();
    stylistItemsPanel menu=new stylistItemsPanel();
     public mainPanelStylist() {
+        initComponents();
+        splitPane.setRightComponent(bookings);
+    }
+    public mainPanelStylist(EcoSystem system, Employee employee) {
+        this.system = system;
+        this.employee = employee;
         initComponents();
         splitPane.setRightComponent(bookings);
     }
