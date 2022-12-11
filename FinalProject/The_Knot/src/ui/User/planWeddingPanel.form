@@ -140,7 +140,8 @@
                         <Component class="javax.swing.JTable" name="venueTable">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="6" rowCount="4">
+                              <Table columnCount="7" rowCount="4">
+                                <Column editable="true" title="Image" type="java.lang.String"/>
                                 <Column editable="true" title="Venue Name" type="java.lang.String"/>
                                 <Column editable="true" title="Event Type" type="java.lang.String"/>
                                 <Column editable="true" title="Capacity" type="java.lang.Integer"/>
@@ -151,6 +152,11 @@
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                   <Title/>
                                   <Editor/>
@@ -284,7 +290,8 @@
                         <Component class="javax.swing.JTable" name="decorTable">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="6" rowCount="4">
+                              <Table columnCount="7" rowCount="4">
+                                <Column editable="true" title="Item" type="java.lang.String"/>
                                 <Column editable="true" title="Name" type="java.lang.String"/>
                                 <Column editable="true" title="Event Type" type="java.lang.String"/>
                                 <Column editable="true" title="Theme" type="java.lang.String"/>
@@ -295,6 +302,11 @@
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                   <Title/>
                                   <Editor/>
@@ -554,7 +566,8 @@
                         <Component class="javax.swing.JTable" name="cakeTable">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="6" rowCount="4">
+                              <Table columnCount="7" rowCount="4">
+                                <Column editable="true" title="Image" type="java.lang.String"/>
                                 <Column editable="true" title="Name" type="java.lang.String"/>
                                 <Column editable="true" title="Flavour" type="java.lang.String"/>
                                 <Column editable="true" title="Price" type="java.lang.Float"/>
@@ -565,6 +578,11 @@
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                   <Title/>
                                   <Editor/>
@@ -695,16 +713,17 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="venueTable4">
+                        <Component class="javax.swing.JTable" name="stylistTable">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="6" rowCount="4">
+                              <Table columnCount="7" rowCount="4">
                                 <Column editable="true" title="Image" type="java.lang.String"/>
-                                <Column editable="true" title="Venue Name" type="java.lang.String"/>
                                 <Column editable="true" title="Event Type" type="java.lang.String"/>
-                                <Column editable="true" title="Location" type="java.lang.String"/>
-                                <Column editable="true" title="Capacity" type="java.lang.String"/>
+                                <Column editable="true" title="Package" type="java.lang.String"/>
+                                <Column editable="true" title="Theme" type="java.lang.String"/>
                                 <Column editable="true" title="Price" type="java.lang.String"/>
+                                <Column editable="true" title="menuItem" type="java.lang.Object"/>
+                                <Column editable="true" title="stylistObj" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -734,7 +753,12 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -758,7 +782,7 @@
                 <Component class="javax.swing.JLabel" name="tabBg4">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Images/makeupBg.png"/>
+                      <Image iconType="3" name="/Images/desingerBg.jpeg"/>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[870, 520]"/>

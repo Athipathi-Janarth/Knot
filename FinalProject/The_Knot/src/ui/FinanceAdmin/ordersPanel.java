@@ -4,22 +4,45 @@
  */
 package ui.FinanceAdmin;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Models.Order.Order;
+import Payment.Payment;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author vikashsingh
  */
-public class displayEmployee extends javax.swing.JPanel {
+public class ordersPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form networkPanel
      */
-    public displayEmployee() {
+    EcoSystem system;
+    public ordersPanel(EcoSystem system,Employee employee) {
+        this.system=system;
         initComponents();
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        populateTable();
     }
-
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i< system.getMasterOrderList().getMasterOrderList().size();i++){
+            Order menuItem = system.getMasterOrderList().getMasterOrderList().get(i);             
+            model.addRow(new Object[]{
+             menuItem.getOrderId(),
+              menuItem.getItemName(),
+              menuItem.getOrgName(),
+              menuItem.getPrice(),
+              menuItem.getUserName(),
+              menuItem.getStatus().getValue(),
+              menuItem.getOrderDate()
+            });
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,49 +54,49 @@ public class displayEmployee extends javax.swing.JPanel {
 
         adminPanelCard = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        networkTable = new javax.swing.JTable();
+        orderTable = new javax.swing.JTable();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setSize(new java.awt.Dimension(977, 630));
         setLayout(null);
 
-        networkTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        networkTable.setModel(new javax.swing.table.DefaultTableModel(
+        orderTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        orderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Users"
+                "Order Id", "Item", "Organization", "Price", "Ordered By", "Status", "Ordered Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(networkTable);
+        jScrollPane1.setViewportView(orderTable);
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
         adminPanelCardLayout.setHorizontalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminPanelCardLayout.createSequentialGroup()
-                .addGap(315, 315, 315)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminPanelCardLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(74, 74, 74)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         add(adminPanelCard);
@@ -90,6 +113,6 @@ public class displayEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable networkTable;
+    private javax.swing.JTable orderTable;
     // End of variables declaration//GEN-END:variables
 }

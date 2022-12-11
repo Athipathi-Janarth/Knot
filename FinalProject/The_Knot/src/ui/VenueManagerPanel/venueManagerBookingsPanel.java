@@ -85,7 +85,7 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
         for(int i=0;i< venueOrderDirectory.getVenueOrder().size();i++){
             VenueOrder venuOrderItem = venueOrderDirectory.getVenueOrder().get(i);
             System.out.println(venuOrderItem.getStatus());
-            if(venuOrderItem.getStatus() == Order.OrderStatus.CONFIRM  || venuOrderItem.getStatus() ==  Order.OrderStatus.ACCEPT){
+            if(venuOrderItem.getStatus() == Order.OrderStatus.CONFIRM  || venuOrderItem.getStatus() ==  Order.OrderStatus.ACCEPT || venuOrderItem.getStatus() ==  Order.OrderStatus.DONE){
                 model.addRow(new Object[]{
                     venuOrderItem.getUserName(),
                     venuOrderItem.getPrice(),

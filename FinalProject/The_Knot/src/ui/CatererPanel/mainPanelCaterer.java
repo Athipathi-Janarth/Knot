@@ -60,7 +60,7 @@ public class mainPanelCaterer extends javax.swing.JPanel {
         setSize(new java.awt.Dimension(1210, 630));
 
         bakerProfileImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bakerProfileImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/baker.png"))); // NOI18N
+        bakerProfileImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/chef.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

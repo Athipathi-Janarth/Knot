@@ -54,7 +54,7 @@ public class mainPanelStylist extends javax.swing.JPanel {
         setSize(new java.awt.Dimension(1210, 630));
 
         bakerProfileImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bakerProfileImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/baker.png"))); // NOI18N
+        bakerProfileImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/stylist.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -83,19 +83,19 @@ public class mainPanelStylist extends javax.swing.JPanel {
         bakerMenuPanelLayout.setHorizontalGroup(
             bakerMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bakerMenuPanelLayout.createSequentialGroup()
-                .addGroup(bakerMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bakerMenuPanelLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(bakerProfileImg))
-                    .addGroup(bakerMenuPanelLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
-            .addGroup(bakerMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(bakerMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnServices, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBookings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(bakerMenuPanelLayout.createSequentialGroup()
+                .addGroup(bakerMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bakerMenuPanelLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bakerMenuPanelLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(bakerProfileImg, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         bakerMenuPanelLayout.setVerticalGroup(
             bakerMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +108,7 @@ public class mainPanelStylist extends javax.swing.JPanel {
                 .addComponent(btnBookings)
                 .addGap(27, 27, 27)
                 .addComponent(btnServices)
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(bakerMenuPanel);

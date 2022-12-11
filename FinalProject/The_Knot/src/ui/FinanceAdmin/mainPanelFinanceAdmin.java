@@ -19,18 +19,18 @@ public class mainPanelFinanceAdmin extends javax.swing.JPanel {
     
     EcoSystem system;
     Employee employeeAccount;
-    displayEmployee employee ;
-    organisationPanel organisation; 
-    manageBusinessUserPanel manageUser;
+    ordersPanel employee ;
+    paymentPanel organisation; 
     public mainPanelFinanceAdmin() {
         initComponents();
-       
+        splitPane.setRightComponent(organisation);
     }
     
     public mainPanelFinanceAdmin(EcoSystem system,Employee emp) {
         initComponents();
         this.system = system;
         this.employeeAccount=emp;
+        organisation=new paymentPanel(system,employeeAccount);
         splitPane.setRightComponent(organisation);
     }
 
@@ -48,7 +48,6 @@ public class mainPanelFinanceAdmin extends javax.swing.JPanel {
         sysAdminProfileImg = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnOrganisation = new javax.swing.JButton();
-        btnUsers = new javax.swing.JButton();
         btnDisplay = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1210, 630));
@@ -56,14 +55,14 @@ public class mainPanelFinanceAdmin extends javax.swing.JPanel {
         setSize(new java.awt.Dimension(1210, 630));
 
         sysAdminProfileImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sysAdminProfileImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/adminGirl.png"))); // NOI18N
+        sysAdminProfileImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/venueManager.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcome FinanceAdmin!");
+        jLabel1.setText("Welcome Finance!");
 
         btnOrganisation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/manageIcon.png"))); // NOI18N
-        btnOrganisation.setText("       Manage Organisation");
+        btnOrganisation.setText("       Manage Payments");
         btnOrganisation.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnOrganisation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,17 +70,8 @@ public class mainPanelFinanceAdmin extends javax.swing.JPanel {
             }
         });
 
-        btnUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/admins.png"))); // NOI18N
-        btnUsers.setText("       Manage Users");
-        btnUsers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnUsers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsersActionPerformed(evt);
-            }
-        });
-
         btnDisplay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/admins.png"))); // NOI18N
-        btnDisplay.setText("       Display Users");
+        btnDisplay.setText("       Display Orders");
         btnDisplay.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDisplay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +95,6 @@ public class mainPanelFinanceAdmin extends javax.swing.JPanel {
             .addGroup(sysAdminMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sysAdminMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnOrganisation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -118,11 +107,9 @@ public class mainPanelFinanceAdmin extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnOrganisation)
-                .addGap(27, 27, 27)
-                .addComponent(btnUsers)
-                .addGap(27, 27, 27)
+                .addGap(36, 36, 36)
                 .addComponent(btnDisplay)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(sysAdminMenuPanel);
@@ -143,20 +130,14 @@ public class mainPanelFinanceAdmin extends javax.swing.JPanel {
 
     private void btnOrganisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrganisationActionPerformed
         // TODO add your handling code here:
-//        organisation = new organisationPanel(system,employeeAccount);
+        organisation = new paymentPanel(system,employeeAccount);
         splitPane.setRightComponent(organisation);
         
     }//GEN-LAST:event_btnOrganisationActionPerformed
 
-    private void btnUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersActionPerformed
-        // TODO add your handling code here:
-//        manageUser=new manageBusinessUserPanel(system,employeeAccount);
-        splitPane.setRightComponent(manageUser);
-    }//GEN-LAST:event_btnUsersActionPerformed
-
     private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
         // TODO add your handling code here:
-//        employee = new displayEmployee(system,employeeAccount);
+        employee = new ordersPanel(system,employeeAccount);
         splitPane.setRightComponent(employee);
     }//GEN-LAST:event_btnDisplayActionPerformed
 
@@ -164,7 +145,6 @@ public class mainPanelFinanceAdmin extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDisplay;
     private javax.swing.JButton btnOrganisation;
-    private javax.swing.JButton btnUsers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel sysAdminMenuPanel;

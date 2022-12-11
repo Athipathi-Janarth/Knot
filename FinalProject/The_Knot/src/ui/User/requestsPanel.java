@@ -44,7 +44,7 @@ public class requestsPanel extends javax.swing.JPanel {
         for(int i=0;i< masterOrderDirectory.getMasterOrderList().size();i++){
             Order order = masterOrderDirectory.getMasterOrderList().get(i);
             System.out.println(order.getStatus());
-            if(order.getUserName().equals(user.getUserName()) && !order.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue())){
+            if(order.getUserName().equals(user.getUserName()) && !order.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue()) && !order.getStatus().getValue().equals(Order.OrderStatus.DONE.getValue())){
               System.out.println("Adding request row");
               model.addRow(new Object[]{
                     order.getOrderId(),
@@ -66,7 +66,7 @@ public class requestsPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(int i=0;i< masterOrderDirectory.getMasterOrderList().size();i++){
             Order order = masterOrderDirectory.getMasterOrderList().get(i);
-            if(order.getUserName().equals(user.getUserName()) && order.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue())){
+            if(order.getUserName().equals(user.getUserName()) && (order.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue())|| order.getStatus().getValue().equals(Order.OrderStatus.DONE.getValue()))){
               System.out.println("Adding request row");
               model.addRow(new Object[]{
                     order.getOrderId(),
