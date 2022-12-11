@@ -12,9 +12,9 @@ import java.util.Date;
  *
  * @author nageshsairam
  */
-public class GroomingOrder extends Order {
+public class StylistOrder extends Order {
 
-    public GroomingOrder(float total, Date orderDate, ArrayList<MenuItem> items, OrderStatus status) {
+    public StylistOrder(float total, Date orderDate, ArrayList<MenuItem> items, OrderStatus status) {
         super(total, orderDate, items, status);
     }
 

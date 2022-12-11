@@ -21,7 +21,7 @@ public class mainPanelStylist extends javax.swing.JPanel {
     EcoSystem system;
     Employee employee;
    stylistBookingsPanel bookings= new stylistBookingsPanel();
-   stylistItemsPanel menu=new stylistItemsPanel();
+   stylistItemsPanel menu;
     public mainPanelStylist() {
         initComponents();
         splitPane.setRightComponent(bookings);
@@ -136,6 +136,7 @@ public class mainPanelStylist extends javax.swing.JPanel {
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
         // TODO add your handling code here:
+        menu=new stylistItemsPanel(system,employee);
         splitPane.setRightComponent(menu);
     }//GEN-LAST:event_btnServicesActionPerformed
 

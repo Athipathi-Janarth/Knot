@@ -4,7 +4,8 @@
  */
 package Models.Organization;
 
-import Model.Menus.GroomingMenu;
+import Model.Menus.StylistMenu;
+import Model.Menus.StylistMenu;
 import Models.Organization.Organization;
 
 /**
@@ -13,17 +14,21 @@ import Models.Organization.Organization;
  */
 public class Stylist extends Organization {
 
-    public GroomingMenu getMenu() {
+
+     private StylistMenu menu = new StylistMenu(1, this.getName() + "menu" );
+
+    public StylistMenu getMenu() {
+        if(menu ==null){
+            menu = new StylistMenu(1, this.getName() + "menu" );
+        }
         return menu;
     }
-
-    public void setMenu(GroomingMenu menu) {
+    public void setMenu(StylistMenu menu) {
         this.menu = menu;
     }
 
     public Stylist(String name,Type type) {
         super(name,type);
     }
-    private GroomingMenu menu;
     
 }

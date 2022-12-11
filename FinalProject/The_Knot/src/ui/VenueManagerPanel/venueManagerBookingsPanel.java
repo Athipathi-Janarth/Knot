@@ -141,9 +141,9 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
         add(adminPanelCard);
         adminPanelCard.setBounds(0, 0, 1090, 630);
 
-        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/weddingcake.jpeg"))); // NOI18N
+        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/venue.jpeg"))); // NOI18N
         add(adminBackgroundImg);
-        adminBackgroundImg.setBounds(0, 0, 1090, 630);
+        adminBackgroundImg.setBounds(0, 0, 1090, 640);
     }// </editor-fold>//GEN-END:initComponents
 
 

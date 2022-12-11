@@ -4,7 +4,7 @@
  */
 package Models.Organization;
 
-import Model.Menus.GroomingMenu;
+import Model.Menus.StylistMenu;
 import Models.Organization.Organization;
 
 /**
@@ -17,16 +17,16 @@ public class Designer extends Organization {
         super(name,type);
     }
 
-    public GroomingMenu getMenu() {
+    public StylistMenu getMenu() {
         return menu;
     }
 
-    public void setMenu(GroomingMenu menu) {
+    public void setMenu(StylistMenu menu) {
         this.menu = menu;
     }
 
     
-    private GroomingMenu menu;
+    private StylistMenu menu;
     
 }
 

@@ -15,14 +15,20 @@ import Models.Organization.Organization;
 import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+
 
 /**
  *
@@ -44,7 +50,7 @@ public class decorationItemsPanel extends javax.swing.JPanel {
         this.employee=employee;
         adminPanelCard.setBackground(new Color(0,0,0,90));
          decor = getDecor(employee.getOrgId());
-        
+        ItemsTable.getColumn("Image").setCellRenderer(new decorationItemsPanel.CellRenderer());
         populateTable(decor.getMenu());
     }
        private Decor getDecor(long orgId){
@@ -270,9 +276,9 @@ public class decorationItemsPanel extends javax.swing.JPanel {
         add(adminPanelCard);
         adminPanelCard.setBounds(0, 0, 1090, 630);
 
-        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/weddingcake.jpeg"))); // NOI18N
+        adminBackgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eventdecor.jpg"))); // NOI18N
         add(adminBackgroundImg);
-        adminBackgroundImg.setBounds(0, 0, 1090, 630);
+        adminBackgroundImg.setBounds(0, 0, 1060, 1001);
     }// </editor-fold>//GEN-END:initComponents
 
     private void photoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoMouseClicked
@@ -344,17 +350,46 @@ public class decorationItemsPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(int i=0;i< menu.getDecorMenu().size();i++){
             DecorMenuItem menuItem = menu.getDecorMenu().get(i);
+            javax.swing.JLabel photo2;
+            photo2=new JLabel();
+            photo2.setIcon(ResizeImageTable(menuItem.getPhoto()));
             model.addRow(new Object[]{
               menuItem.getItemName(),
               menuItem.getEventtype(),
               menuItem.getTheme(),
               menuItem.getPrice(),
-              menuItem.getPhoto(),
+              photo2,
               menuItem
             });
         }
     }
+    class CellRenderer implements TableCellRenderer {
 
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value,
+                boolean isSelected,
+                boolean hasFocus,
+                int row,
+                int column) {
+
+            TableColumn tb = ItemsTable.getColumn("Image");
+            tb.setMaxWidth(60);
+            tb.setMinWidth(60);
+
+            ItemsTable.setRowHeight(60);
+
+            return (Component) value;
+        }
+
+    }
+    public ImageIcon ResizeImageTable(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImageLabel;
     private javax.swing.JTable ItemsTable;

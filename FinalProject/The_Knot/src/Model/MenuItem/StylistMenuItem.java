@@ -10,13 +10,26 @@ import Model.Menus.MenuItem;
  *
  * @author nageshsairam
  */
-public class GroomingMenuItem extends MenuItem {
+public class StylistMenuItem extends MenuItem {
 
-    public GroomingMenuItem(String itemName, int id, float price) {
-        super(itemName, id, price);
-    }
     private String eventType;
     private String theme;
+
+    public StylistMenuItem(String eventType, String theme, String photo, String itemName, int id, float price) {
+        super(itemName, id, price);
+        this.eventType = eventType;
+        this.theme = theme;
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+    private String photo;
 
     public String getEventType() {
         return eventType;

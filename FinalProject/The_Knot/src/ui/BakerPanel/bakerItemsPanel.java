@@ -14,14 +14,20 @@ import Models.Organization.Organization;
 import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import ui.StylistPanel.stylistItemsPanel;
 
 /**
  *
@@ -46,7 +52,7 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         System.out.println("Baker items panel");
         adminPanelCard.setBackground(new Color(0,0,0,90));
         bakery = getBakery(employee.getOrgId());
-        System.out.println("Bakery is " + bakery.getMenu());
+       ItemsTable.getColumn("Image").setCellRenderer(new bakerItemsPanel.CellRenderer());
         populateTable(bakery.getMenu());
     }
 
@@ -108,9 +114,6 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ItemsTable);
         if (ItemsTable.getColumnModel().getColumnCount() > 0) {
-            ItemsTable.getColumnModel().getColumn(4).setMinWidth(0);
-            ItemsTable.getColumnModel().getColumn(4).setPreferredWidth(0);
-            ItemsTable.getColumnModel().getColumn(4).setMaxWidth(0);
             ItemsTable.getColumnModel().getColumn(5).setMinWidth(0);
             ItemsTable.getColumnModel().getColumn(5).setPreferredWidth(0);
             ItemsTable.getColumnModel().getColumn(5).setMaxWidth(0);
@@ -345,6 +348,13 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         ImageIcon image = new ImageIcon(newImg);
         return image;
     }
+    public ImageIcon ResizeImageTable(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
     
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
         int selectedRowIndex = ItemsTable.getSelectedRow();
@@ -430,15 +440,38 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(int i=0;i< menu.getBakeryMenu().size();i++){
             BakeryMenuItem menuItem = menu.getBakeryMenu().get(i);
+            javax.swing.JLabel photo2;
+            photo2=new JLabel();
+            photo2.setIcon(ResizeImageTable(menuItem.getPhoto()));
             model.addRow(new Object[]{
               menuItem.getItemName(),
               menuItem.getFlavour(),
               menuItem.getServes(),
               menuItem.getPrice(),
-              menuItem.getPhoto(),
+              photo2,
               menuItem
             });
         }
+    }
+    class CellRenderer implements TableCellRenderer {
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value,
+                boolean isSelected,
+                boolean hasFocus,
+                int row,
+                int column) {
+
+            TableColumn tb = ItemsTable.getColumn("Image");
+            tb.setMaxWidth(60);
+            tb.setMinWidth(60);
+
+            ItemsTable.setRowHeight(60);
+
+            return (Component) value;
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

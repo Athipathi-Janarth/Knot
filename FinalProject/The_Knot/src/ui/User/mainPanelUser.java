@@ -54,7 +54,7 @@ public class mainPanelUser extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcome Vicky ");
+        jLabel1.setText("Welcome ");
 
         btnPlanWedding.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/schedules.png"))); // NOI18N
         btnPlanWedding.setText("    Plan Your Wedding");

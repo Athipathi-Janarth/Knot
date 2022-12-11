@@ -21,8 +21,8 @@ public class StylistDirectory {
     public StylistDirectory() {
     }
 
-    public void setStylistDirectory(ArrayList<Stylist> groomingDirectory) {
-        this.stylistDirectory = groomingDirectory;
+    public void setStylistDirectory(ArrayList<Stylist> stylistDirectory) {
+        this.stylistDirectory = stylistDirectory;
     }
 
 }
