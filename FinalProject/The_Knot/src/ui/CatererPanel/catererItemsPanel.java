@@ -218,13 +218,18 @@ public class catererItemsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createFoodActionPerformed
-        String name = cuisine.getText().trim();
-        float priceValue = Float.valueOf(price.getText().trim());
-        System.out.println(employee.getOrgId());
-        System.out.println(catering);
-        catering.getMenu().addCateringMenuItem(new CateringMenuItem(name, catering.getMenu().getMenuItemId(), priceValue));
-        populateTable(catering.getMenu());
-        resetForm();
+        if (validateForm()){
+            String name = cuisine.getText().trim();
+            float priceValue = Float.valueOf(price.getText().trim());
+            System.out.println(employee.getOrgId());
+            System.out.println(catering);
+            catering.getMenu().addCateringMenuItem(new CateringMenuItem(name, catering.getMenu().getMenuItemId(), priceValue));
+            populateTable(catering.getMenu());
+            resetForm();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please enter all the details");
+        }
     }//GEN-LAST:event_createFoodActionPerformed
 
     private void deleteFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFoodActionPerformed
@@ -267,7 +272,15 @@ public class catererItemsPanel extends javax.swing.JPanel {
         cuisine.setText("");
         price.setText("");
     }
-
+    
+    public boolean validateForm(){
+        boolean valid = true;
+        
+        if(cuisine.getText().isEmpty() || price.getText().isEmpty()){
+            valid = false;
+        }
+        return valid;
+    }
     private void populateTable(CateringMenu menu) {
         System.out.print("Catering menu ");
         System.out.print(menu);

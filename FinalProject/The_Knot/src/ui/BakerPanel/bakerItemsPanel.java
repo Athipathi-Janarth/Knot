@@ -317,15 +317,20 @@ public class bakerItemsPanel extends javax.swing.JPanel {
     
     
     private void btnCreateCakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCakeActionPerformed
-        String name = cakeName.getText().trim();
-        String flavour = flavourValue.getText().trim();
-        int serves =  Integer.valueOf(serveValue.getText().trim());
-        float price = Float.valueOf(PriceValue.getText().trim());
-        System.out.println(name +" "+ flavour+  " "+serves + " "+ price);
-        System.out.println(employee.getOrgId());
-        bakery.getMenu().addBakeryMenuItem(new BakeryMenuItem(flavour, serves,photoPath, name,bakery.getMenu().getMenuItemId(),price));
-        populateTable(bakery.getMenu());
-        resetForm();
+        if(validateForm()){
+            String name = cakeName.getText().trim();
+            String flavour = flavourValue.getText().trim();
+            int serves =  Integer.valueOf(serveValue.getText().trim());
+            float price = Float.valueOf(PriceValue.getText().trim());
+            System.out.println(name +" "+ flavour+  " "+serves + " "+ price);
+            System.out.println(employee.getOrgId());
+            bakery.getMenu().addBakeryMenuItem(new BakeryMenuItem(flavour, serves,photoPath, name,bakery.getMenu().getMenuItemId(),price));
+            populateTable(bakery.getMenu());
+            resetForm();
+        }
+        else{
+                JOptionPane.showMessageDialog(null, "Please enter all the details");
+            }
     }//GEN-LAST:event_btnCreateCakeActionPerformed
 
     private void ItemsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemsTableMouseClicked
@@ -432,6 +437,16 @@ public class bakerItemsPanel extends javax.swing.JPanel {
         PriceValue.setText("");
         photo.setIcon(null);
     }
+    
+    public boolean validateForm(){
+        boolean valid = true;
+        
+        if(cakeName.getText().isEmpty() || flavourValue.getText().isEmpty() || serveValue.getText().isEmpty() || PriceValue.getText().isEmpty()){
+            valid = false;
+        }
+        return valid;
+    }
+    
     
     private void populateTable(BakeryMenu menu){
         System.out.print("Bakery menu ");

@@ -314,13 +314,18 @@ public class decorationItemsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ItemsTableMouseClicked
 
     private void btnCreateCakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCakeActionPerformed
-         String name = decorName.getText().trim();
-        String type = eventType.getSelectedItem().toString();
-        String themename= theme.getSelectedItem().toString();       
-        float price = Float.valueOf(PriceValue.getText().trim());
-        decor.getMenu().addDecorMenuItem(new DecorMenuItem(type,themename,photoPath,name,decor.getMenu().getMenuItemId(),price));               
-        populateTable(decor.getMenu());
-        resetForm();
+        if(validateForm()){
+            String name = decorName.getText().trim();
+            String type = eventType.getSelectedItem().toString();
+            String themename= theme.getSelectedItem().toString();       
+            float price = Float.valueOf(PriceValue.getText().trim());
+            decor.getMenu().addDecorMenuItem(new DecorMenuItem(type,themename,photoPath,name,decor.getMenu().getMenuItemId(),price));               
+            populateTable(decor.getMenu());
+            resetForm();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please enter all the details");
+        }
     }//GEN-LAST:event_btnCreateCakeActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -343,6 +348,15 @@ public class decorationItemsPanel extends javax.swing.JPanel {
         decorName.setText("");
         PriceValue.setText("");
         photo.setIcon(null);
+    }
+     
+    public boolean validateForm(){
+        boolean valid = true;
+        
+        if(decorName.getText().isEmpty() || PriceValue.getText().isEmpty() ){ //|| photoPath.isEmpty()
+            valid = false;
+        }
+        return valid;
     }
      
      private void populateTable(DecorMenu menu){  
