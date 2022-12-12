@@ -74,6 +74,7 @@
                           <Component id="btnNetwork" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnAdmins" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnViewAdmins" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnViewAdmins1" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -93,7 +94,9 @@
                       <Component id="btnAdmins" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="btnViewAdmins" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="161" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="btnViewAdmins1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="93" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -162,6 +165,18 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewAdminsActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnViewAdmins1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/manageIcon.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="       Visualize Data"/>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewAdmins1ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
