@@ -57,9 +57,31 @@ public class planWeddingPanel extends javax.swing.JPanel {
     
     public void displayAlltables(EcoSystem system){
         venueTable.getColumn("Image").setCellRenderer(new CellRenderer());
-        //decorTable.getColumn("Image").setCellRenderer(new CellRenderer());
-        //stylistTable.getColumn("Image").setCellRenderer(new CellRenderer());
-        //cakeTable.getColumn("Image").setCellRenderer(new CellRenderer());
+        decorTable.getColumn("Image").setCellRenderer(new CellRenderer());
+        stylistTable.getColumn("Image").setCellRenderer(new CellRenderer());
+        cakeTable.getColumn("Image").setCellRenderer(new CellRenderer());
+         TableColumn tb = venueTable.getColumn("Image");
+            tb.setMaxWidth(60);
+            tb.setMinWidth(60);
+
+            venueTable.setRowHeight(60);
+           TableColumn tb1 = decorTable.getColumn("Image");
+            tb1.setMaxWidth(60);
+            tb1.setMinWidth(60);
+
+            decorTable.setRowHeight(60);
+            
+             TableColumn tb2 = cakeTable.getColumn("Image");
+            tb2.setMaxWidth(60);
+            tb2.setMinWidth(60);
+
+            cakeTable.setRowHeight(60);
+            
+            TableColumn tb3 = stylistTable.getColumn("Image");
+            tb3.setMaxWidth(60);
+            tb3.setMinWidth(60);
+
+            stylistTable.setRowHeight(60);
         displayVenueTable(system);
         displayCateringTable(system);
         displayDecorTable(system);
@@ -233,11 +255,28 @@ public class planWeddingPanel extends javax.swing.JPanel {
                 int row,
                 int column) {
 
-            TableColumn tb = venueTable.getColumn("Image");
-            tb.setMaxWidth(60);
-            tb.setMinWidth(60);
-
-            venueTable.setRowHeight(60);
+//            TableColumn tb = venueTable.getColumn("Image");
+//            tb.setMaxWidth(60);
+//            tb.setMinWidth(60);
+//
+//            venueTable.setRowHeight(60);
+//           TableColumn tb = decorTable.getColumn("Image");
+//            tb.setMaxWidth(60);
+//            tb.setMinWidth(60);
+//
+//            decorTable.setRowHeight(60);
+//            
+////             TableColumn tb2 = cakeTable.getColumn("Image");
+////            tb2.setMaxWidth(60);
+////            tb2.setMinWidth(60);
+////
+////            cakeTable.setRowHeight(60);
+////            
+////            TableColumn tb3 = stylistTable.getColumn("Image");
+////            tb3.setMaxWidth(60);
+////            tb3.setMinWidth(60);
+////
+////            stylistTable.setRowHeight(60);
             return (Component) value;          
         }
 
@@ -562,11 +601,11 @@ public class planWeddingPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Image", "Name", "Flavour", "Price", "Serves", "menuItem", "BakeryObject"
+                "Image", "Name", "Flavour", "Serves", "Price", "menuItem", "BakeryObject"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -56,7 +56,7 @@ public class mainPanelUser extends javax.swing.JPanel {
         setSize(new java.awt.Dimension(1210, 630));
 
         sysAdminProfileImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sysAdminProfileImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/adminGirl.png"))); // NOI18N
+        sysAdminProfileImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/couple-image.jpeg"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
