@@ -98,13 +98,13 @@ public class stylistItemsPanel extends javax.swing.JPanel {
         btnCreateCake = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        eventtype = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        packagee = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        theme = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        price = new javax.swing.JTextField();
         cakeImg = new javax.swing.JLabel();
         ImageLabel = new javax.swing.JLabel();
         photo = new javax.swing.JLabel();
@@ -165,25 +165,25 @@ public class stylistItemsPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Event Type");
 
-        jTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        eventtype.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Package");
 
-        jTextField2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        packagee.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Theme");
 
-        jTextField3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        theme.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Price");
 
-        jTextField4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        price.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
         ImageLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         ImageLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,19 +223,19 @@ public class stylistItemsPanel extends javax.swing.JPanel {
                                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(packagee, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(eventtype, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(theme, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(133, 133, 133)
                                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(photo, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
@@ -262,19 +262,19 @@ public class stylistItemsPanel extends javax.swing.JPanel {
                         .addGap(52, 52, 52)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(eventtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(packagee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(uploadImage))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
@@ -312,15 +312,28 @@ public class stylistItemsPanel extends javax.swing.JPanel {
 
     private void btnCreateCakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCakeActionPerformed
         // TODO add your handling code here:
-        String name = jTextField2.getText().trim();
-        String eventType = jTextField1.getText().trim();
-        String Theme =  jTextField3.getText().trim();
-        float price = Float.valueOf(jTextField4.getText().trim());
-        stylist.getMenu().addStylistMenuItem(new StylistMenuItem(eventType, Theme,photoPath, name,stylist.getMenu().getMenuItemId(),price));
-        populateTable(stylist.getMenu());
-        resetForm();
+        if (validateForm()){
+            String name = packagee.getText().trim();
+            String eventType = eventtype.getText().trim();
+            String Theme =  theme.getText().trim();
+            float price1 = Float.valueOf(price.getText().trim());
+            stylist.getMenu().addStylistMenuItem(new StylistMenuItem(eventType, Theme,photoPath, name,stylist.getMenu().getMenuItemId(),price1));
+            populateTable(stylist.getMenu());
+            resetForm();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please enter all the details");
+        }
     }//GEN-LAST:event_btnCreateCakeActionPerformed
-
+    
+    public boolean validateForm(){
+        boolean valid = true;
+        
+        if(eventtype.getText().isEmpty() || packagee.getText().isEmpty() || theme.getText().isEmpty() || price.getText().isEmpty()){
+            valid = false;
+        }
+        return valid;
+    }
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectedRowIndex = ItemsTable.getSelectedRow();
         
@@ -341,11 +354,11 @@ public class stylistItemsPanel extends javax.swing.JPanel {
         int selectedRowIndex = ItemsTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) ItemsTable.getModel();
         StylistMenuItem menuitem = (StylistMenuItem) model.getValueAt(selectedRowIndex, 5); 
-        jTextField2.setText(menuitem.getItemName());
+        packagee.setText(menuitem.getItemName());
 
-        jTextField4.setText(Float.toString(menuitem.getPrice()));
-        jTextField1.setText(menuitem.getEventType());
-        jTextField3.setText(menuitem.getTheme());
+        price.setText(Float.toString(menuitem.getPrice()));
+        eventtype.setText(menuitem.getEventType());
+        theme.setText(menuitem.getTheme());
                                   
     }//GEN-LAST:event_ItemsTableMouseClicked
 
@@ -369,10 +382,10 @@ public class stylistItemsPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_uploadImageActionPerformed
      private void resetForm() {
-       jTextField4.setText("");
-       jTextField3.setText("");
-       jTextField2.setText("");
-       jTextField1.setText("");
+       price.setText("");
+       theme.setText("");
+       packagee.setText("");
+       eventtype.setText("");
        photo.setIcon(null);
     }
      private void populateTable(StylistMenu menu){        
@@ -421,17 +434,17 @@ public class stylistItemsPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreateCake;
     private javax.swing.JButton btnDelete;
     private javax.swing.JLabel cakeImg;
+    private javax.swing.JTextField eventtype;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField packagee;
     private javax.swing.JLabel photo;
     private javax.swing.JLabel photo1;
+    private javax.swing.JTextField price;
+    private javax.swing.JTextField theme;
     private javax.swing.JButton uploadImage;
     // End of variables declaration//GEN-END:variables
 }

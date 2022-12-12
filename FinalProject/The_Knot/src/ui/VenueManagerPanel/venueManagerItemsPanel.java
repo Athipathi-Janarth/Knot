@@ -287,15 +287,30 @@ public class venueManagerItemsPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        String name = venueName.getText().trim();
-        String type = eventName.getSelectedItem().toString();
-        int capacity =  Integer.valueOf(capacityValue.getText().trim());
-        float price = Float.valueOf(PriceValue.getText().trim());
-        venue.getMenu().addVenueMenuItem(new VenueMenuItem(type,capacity,photoPath,name,venue.getMenu().getMenuItemId(),price));               
-        populateTable(venue.getMenu());
-        resetForm();
+        if(validateForm()){
+            String name = venueName.getText().trim();
+            String type = eventName.getSelectedItem().toString();
+            int capacity =  Integer.valueOf(capacityValue.getText().trim());
+            float price = Float.valueOf(PriceValue.getText().trim());
+            venue.getMenu().addVenueMenuItem(new VenueMenuItem(type,capacity,photoPath,name,venue.getMenu().getMenuItemId(),price));               
+            populateTable(venue.getMenu());
+            resetForm();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please enter all the details");
+        }
+        
     }//GEN-LAST:event_btnCreateActionPerformed
-
+    
+    public boolean validateForm(){
+        boolean valid = true;
+        
+        if(venueName.getText().isEmpty() || capacityValue.getText().isEmpty() || PriceValue.getText().isEmpty()){
+            valid = false;
+        }
+        return valid;
+    }
+    
     private void ItemsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemsTableMouseClicked
                                     
         int selectedRowIndex = ItemsTable.getSelectedRow();
