@@ -4,6 +4,7 @@
  */
 package Models.Order;
 
+import Model.MenuItem.DecorMenuItem;
 import java.util.Date;
 
 /**
@@ -24,6 +25,15 @@ public class VenueOrder extends Order {
 
     public void setWeddingDate(Date weddingDate) {
         this.weddingDate = weddingDate;
+    }
+    private DecorMenuItem menuItem;
+
+    public DecorMenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(DecorMenuItem menuItem) {
+        this.menuItem = menuItem;
     }
 
 }

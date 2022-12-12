@@ -19,6 +19,7 @@ import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -251,6 +252,11 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         int selectedRowIndex = requestTable.getSelectedRow();
+        if(selectedRowIndex < 0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an Order to accept");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
         VenueOrder venuOrderItem  = (VenueOrder) model.getValueAt(selectedRowIndex, 5); 
         venuOrderItem.setStatus(Order.OrderStatus.ACCEPT);
@@ -265,6 +271,11 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
         int selectedRowIndex = requestTable.getSelectedRow();
+        if(selectedRowIndex < 0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an Order to cancel");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
         VenueOrder venuOrderItem  = (VenueOrder) model.getValueAt(selectedRowIndex, 5); 
         venuOrderItem.setStatus(Order.OrderStatus.REJECT);

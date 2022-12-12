@@ -201,7 +201,7 @@ public class planWeddingPanel extends javax.swing.JPanel {
          model.setRowCount(0);
         for(int i=0; i < system.getNetworkList().size();i++){
             Network network = system.getNetworkList().get(i);
-            for(int j=0; j < network.getVenueDirectory().getVenueDirectory().size();j++){
+            for(int j=0; j < network.getStylistDirectory().getStylistDirectory().size();j++){
                 Stylist stylist = network.getStylistDirectory().getStylistDirectory().get(j);
                 for(int k=0; k < stylist.getMenu().getStylistMenu().size(); k++){
                     StylistMenuItem menuItem = stylist.getMenu().getStylistMenu().get(k);
@@ -732,6 +732,11 @@ public class planWeddingPanel extends javax.swing.JPanel {
 
     private void orderCakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderCakeActionPerformed
         int selectedRowIndex = cakeTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an item to book");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) cakeTable.getModel();
         Bakery organization = (Bakery) model.getValueAt(selectedRowIndex, 6);
         BakeryMenuItem bakeryMenuItem = (BakeryMenuItem) model.getValueAt(selectedRowIndex, 5);
@@ -749,6 +754,11 @@ public class planWeddingPanel extends javax.swing.JPanel {
     private void bookCateringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookCateringMouseClicked
         // TODO add your handling code here:
         int selectedRowIndex = cateringTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an item to book");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) cateringTable.getModel();
         Catering organization = (Catering) model.getValueAt(selectedRowIndex, 3);
         CateringMenuItem cateringMenuItem = (CateringMenuItem) model.getValueAt(selectedRowIndex, 2);
@@ -765,6 +775,11 @@ public class planWeddingPanel extends javax.swing.JPanel {
 
     private void bookDecorationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookDecorationMouseClicked
         int selectedRowIndex = decorTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an item to book");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) decorTable.getModel();
         Decor organization = (Decor) model.getValueAt(selectedRowIndex, 6);
         DecorMenuItem decorMenuItem = (DecorMenuItem) model.getValueAt(selectedRowIndex, 5);
@@ -781,6 +796,11 @@ public class planWeddingPanel extends javax.swing.JPanel {
 
     private void btnBookVenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookVenueActionPerformed
         int selectedRowIndex = venueTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an item to book");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) venueTable.getModel();
         Venue organization = (Venue) model.getValueAt(selectedRowIndex, 6);
         VenueMenuItem venuMenuItem = (VenueMenuItem) model.getValueAt(selectedRowIndex, 5);
@@ -797,6 +817,11 @@ public class planWeddingPanel extends javax.swing.JPanel {
 
     private void bookStylistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookStylistMouseClicked
         int selectedRowIndex = stylistTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an item to book");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) stylistTable.getModel();
         Stylist organization = (Stylist) model.getValueAt(selectedRowIndex, 6);
         StylistMenuItem stylistMenuItem = (StylistMenuItem) model.getValueAt(selectedRowIndex, 5);

@@ -4,6 +4,7 @@
  */
 package Models.Order;
 
+import Model.MenuItem.BakeryMenuItem;
 import Model.Menus.MenuItem;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,14 @@ public class BakeryOrder extends Order {
     public BakeryOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
         super(orderDate, status, username, orgId, orgName, price, itemName);
     }
+    private BakeryMenuItem menuItem;
 
+    public BakeryMenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(BakeryMenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
 
 }

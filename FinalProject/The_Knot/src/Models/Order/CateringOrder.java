@@ -4,6 +4,8 @@
  */
 package Models.Order;
 
+import Model.MenuItem.BakeryMenuItem;
+import Model.MenuItem.CateringMenuItem;
 import java.util.Date;
 
 /**
@@ -15,6 +17,6 @@ public class CateringOrder extends Order {
     public CateringOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
         super(orderDate, status, username, orgId, orgName, price, itemName);
     }
-
+   private CateringMenuItem menuItem;
 
 }

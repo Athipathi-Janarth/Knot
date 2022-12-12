@@ -7,11 +7,9 @@ package ui.User;
 import Business.EcoSystem;
 import Models.Order.MasterOrderDirectory;
 import Models.Order.Order;
-import Models.Order.VenueOrder;
-import Models.Order.VenueOrderDirectory;
 import User.CoupleUser;
-import ui.SystemAdmin.*;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -169,6 +167,8 @@ public class requestsPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Orders/Bookings");
 
+        btnAccept.setBackground(new java.awt.Color(51, 102, 255));
+        btnAccept.setForeground(new java.awt.Color(255, 255, 255));
         btnAccept.setText("Confirm");
         btnAccept.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -198,8 +198,8 @@ public class requestsPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane2)))
                     .addGroup(adminPanelCardLayout.createSequentialGroup()
                         .addGap(270, 270, 270)
-                        .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
+                        .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
@@ -212,9 +212,9 @@ public class requestsPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAccept)
-                    .addComponent(btnCancel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                    .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,8 +233,18 @@ public class requestsPanel extends javax.swing.JPanel {
 
     private void btnAcceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptMouseClicked
         int selectedRowIndex = requestTable.getSelectedRow();
+        if(selectedRowIndex < 0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an Order to accept");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
         Order order  = (Order) model.getValueAt(selectedRowIndex, 7); 
+        System.out.println("Order status "+ order.getStatus());
+        if(order.getStatus().getValue().equals(Order.OrderStatus.PENDING.getValue())){
+             JOptionPane.showMessageDialog(this, "You can confirm once order is accepted");
+             return;
+        }
         order.setStatus(Order.OrderStatus.CONFIRM);
         system.getMasterOrderList().updateOrder(order);
         populateRequestTable(system.getMasterOrderList());
@@ -243,6 +253,11 @@ public class requestsPanel extends javax.swing.JPanel {
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
         int selectedRowIndex = requestTable.getSelectedRow();
+        if(selectedRowIndex < 0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an Order to cancel");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
         Order order  = (Order) model.getValueAt(selectedRowIndex, 7); 
         order.setStatus(Order.OrderStatus.REJECT);

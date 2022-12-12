@@ -14,6 +14,7 @@ import Models.Organization.Catering;
 import Network.Network;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -270,6 +271,11 @@ public class catererBookingsPanel extends javax.swing.JPanel {
 
     private void btnAcceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptMouseClicked
         int selectedRowIndex = requestTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an Order to accept");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
         CateringOrder cateringOrderItem  = (CateringOrder) model.getValueAt(selectedRowIndex, 5); 
         cateringOrderItem.setStatus(Order.OrderStatus.ACCEPT);
@@ -280,6 +286,11 @@ public class catererBookingsPanel extends javax.swing.JPanel {
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
         int selectedRowIndex = requestTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an Order to cancel");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
         CateringOrder cateringOrderItem  = (CateringOrder) model.getValueAt(selectedRowIndex, 5); 
         cateringOrderItem.setStatus(Order.OrderStatus.ACCEPT);

@@ -4,6 +4,8 @@
  */
 package Models.Order;
 
+import Model.MenuItem.DecorMenuItem;
+import Model.MenuItem.StylistMenuItem;
 import java.util.Date;
 
 /**
@@ -16,5 +18,13 @@ public class StylistOrder extends Order {
         super(orderDate, status, username, orgId, orgName, price, itemName);
     }
 
+   private StylistMenuItem menuItem;
 
+    public StylistMenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(StylistMenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
 }

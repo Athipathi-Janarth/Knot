@@ -18,6 +18,7 @@ import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -251,6 +252,11 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
 
     private void btnAcceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptMouseClicked
         int selectedRowIndex = requestTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an Order to accept");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
         BakeryOrder bakeryOrderItem  = (BakeryOrder) model.getValueAt(selectedRowIndex, 5); 
         bakeryOrderItem.setStatus(Order.OrderStatus.ACCEPT);
@@ -261,6 +267,11 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
         int selectedRowIndex = bookingTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select an Order to cancel.");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
         BakeryOrder bakeryOrderItem  = (BakeryOrder) model.getValueAt(selectedRowIndex, 5); 
         bakeryOrderItem.setStatus(Order.OrderStatus.REJECT);

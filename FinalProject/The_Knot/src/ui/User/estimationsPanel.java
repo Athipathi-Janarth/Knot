@@ -13,6 +13,7 @@ import User.CoupleUser;
 import ui.SystemAdmin.*;
 import java.awt.Color;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -118,7 +119,9 @@ public class estimationsPanel extends javax.swing.JPanel {
             cartTable.getColumnModel().getColumn(5).setMaxWidth(0);
         }
 
-        pay.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        pay.setBackground(new java.awt.Color(153, 255, 153));
+        pay.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        pay.setForeground(new java.awt.Color(255, 255, 255));
         pay.setText("Checkout and Pay");
         pay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -185,6 +188,7 @@ public class estimationsPanel extends javax.swing.JPanel {
             }
         }
        populateCardTable(system.getMasterOrderList());
+       JOptionPane.showMessageDialog(this, "Order placed success fully");
        System.out.println("add masterlist");
        email.sendPaymentEmail(user,total);
 

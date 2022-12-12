@@ -4,6 +4,8 @@
  */
 package Models.Order;
 
+import Model.MenuItem.CateringMenuItem;
+import Model.MenuItem.DecorMenuItem;
 import Model.Menus.MenuItem;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,5 +19,14 @@ public class DecorOrder extends Order  {
     public DecorOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
         super(orderDate, status, username, orgId, orgName, price, itemName);
     }
-    
+
+    public DecorMenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(DecorMenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
+   private DecorMenuItem menuItem;
+
 }
