@@ -5,8 +5,7 @@
 package Models.Organization;
 
 import Model.Menus.StylistMenu;
-import Model.Menus.StylistMenu;
-import Models.Organization.Organization;
+import Models.Order.StylistOrderDirectory;
 
 /**
  *
@@ -29,6 +28,19 @@ public class Stylist extends Organization {
 
     public Stylist(String name,Type type) {
         super(name,type);
+    }
+    
+    private StylistOrderDirectory orders;
+
+    public StylistOrderDirectory getOrders() {
+        if(orders ==null){
+            orders = new StylistOrderDirectory();
+        }
+        return orders;
+    }
+
+    public void setOrders(StylistOrderDirectory orders) {
+        this.orders = orders;
     }
     
 }

@@ -10,9 +10,9 @@ import java.util.Date;
  *
  * @author nageshsairam
  */
-public class CatergoryOrder extends Order {
+public class CateringOrder extends Order {
 
-    public CatergoryOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
+    public CateringOrder(Date orderDate, OrderStatus status, String username, long orgId, String orgName, float price, String itemName) {
         super(orderDate, status, username, orgId, orgName, price, itemName);
     }
 

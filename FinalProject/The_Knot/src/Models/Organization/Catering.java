@@ -32,6 +32,9 @@ public class Catering extends Organization {
     private CateringOrderDirectory orders = new CateringOrderDirectory();
 
     public CateringOrderDirectory getOrders() {
+        if(orders==null){
+            orders = new CateringOrderDirectory();
+        }
         return orders;
     }
 

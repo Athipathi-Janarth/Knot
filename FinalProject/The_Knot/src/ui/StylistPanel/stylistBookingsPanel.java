@@ -4,8 +4,18 @@
  */
 package ui.StylistPanel;
 
+import Business.EcoSystem;
+import Employee.Employee;
+import Models.Order.StylistOrder;
+import Models.Order.StylistOrderDirectory;
+import Models.Order.Order;
+import Models.Organization.Stylist;
+import Models.Organization.Organization;
+import Network.Network;
 import ui.SystemAdmin.*;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,11 +26,73 @@ public class stylistBookingsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
-    public stylistBookingsPanel() {
+   EcoSystem system;
+   Organization org;
+   Employee employee;
+   Stylist stylist;
+    public stylistBookingsPanel(EcoSystem system, Employee employee) {
         initComponents();
+        this.system = system;
+        this.employee = employee;
         adminPanelCard.setBackground(new Color(0,0,0,90));
+        stylist = getStylist(employee.getOrgId());
+        System.out.println("stylist Orders " +stylist.getOrders().getStylistOrders().size());
+        populateRequestTable(stylist.getOrders());
+        populateBookingTable(stylist.getOrders());
     }
 
+       private void populateRequestTable(StylistOrderDirectory stylistDirectory){
+        System.out.print("Stylist Order ");
+        System.out.print(stylistDirectory);
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i < stylistDirectory.getStylistOrders().size();i++){
+        StylistOrder stylistOrderItem = stylistDirectory.getStylistOrders().get(i);
+        if(stylistOrderItem.getStatus().getValue().equals(Order.OrderStatus.PENDING.getValue()))
+            model.addRow(new Object[]{
+                    stylistOrderItem.getUserName(),
+                    stylistOrderItem.getOrderDate(),
+                    stylistOrderItem.getItemName(),
+                    stylistOrderItem.getPrice(),
+                    stylistOrderItem.getStatus(),
+                    stylistOrderItem
+            });
+        }
+    }
+    
+     
+    private void populateBookingTable(StylistOrderDirectory stylistDirectory){
+        System.out.print("Bakery Order ");
+        System.out.print(stylistDirectory);
+        DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i < stylistDirectory.getStylistOrders().size();i++){
+        StylistOrder stylistOrderItem = stylistDirectory.getStylistOrders().get(i);
+        if(stylistOrderItem.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue()) || stylistOrderItem.getStatus().getValue().equals( Order.OrderStatus.ACCEPT.getValue()))
+            model.addRow(new Object[]{
+                    stylistOrderItem.getUserName(),
+                    stylistOrderItem.getOrderDate(),
+                    stylistOrderItem.getItemName(),
+                    stylistOrderItem.getPrice(),
+                    stylistOrderItem.getStatus(),
+                    stylistOrderItem
+            });
+        }
+    }
+    
+    
+     private Stylist getStylist(long orgId){
+       Network network = system.retriveNetwork(employee.getNetworkname());
+       Stylist currentStylist=null;
+        ArrayList<Stylist> stylists = network.getStylistDirectory().getStylistDirectory();
+        for(int i=0; i < stylists.size();i++){         
+            if(stylists.get(i).getId() == orgId ){
+                System.out.println("stylist found");
+                currentStylist = stylists.get(i);
+            }
+        }
+       return currentStylist;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +107,7 @@ public class stylistBookingsPanel extends javax.swing.JPanel {
         requestTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        requestTable1 = new javax.swing.JTable();
+        bookingTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnAccept = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -47,17 +119,17 @@ public class stylistBookingsPanel extends javax.swing.JPanel {
         requestTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Package", "Theme", "Price", "Status"
+                "User", "Package", "Booking date", "Price", "Status", "Order"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -65,40 +137,70 @@ public class stylistBookingsPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(requestTable);
+        if (requestTable.getColumnModel().getColumnCount() > 0) {
+            requestTable.getColumnModel().getColumn(5).setMinWidth(0);
+            requestTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            requestTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Order Requests");
 
-        requestTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        requestTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bookingTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Package", "Theme", "Price", "Status"
+                "User", "Package", "booking Date", "Price", "Status", "Order"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(requestTable1);
+        jScrollPane2.setViewportView(bookingTable);
+        if (bookingTable.getColumnModel().getColumnCount() > 0) {
+            bookingTable.getColumnModel().getColumn(5).setMinWidth(0);
+            bookingTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            bookingTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Upcoming / Past Orders");
 
         btnAccept.setText("Accept");
+        btnAccept.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAcceptMouseClicked(evt);
+            }
+        });
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -146,10 +248,51 @@ public class stylistBookingsPanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+//                int selectedRowIndex = requestTable.getSelectedRow();
+//        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+//        StylistOrder stylistOrderItem  = (StylistOrder) model.getValueAt(selectedRowIndex, 5); 
+//        stylistOrderItem.setStatus(Order.OrderStatus.ACCEPT);
+//        populateRequestTable(stylist.getOrders());
+//        populateBookingTable(stylist.getOrders());
+//        system.getMasterOrderList().updateOrder(stylistOrderItem);  
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+//        int selectedRowIndex = bookingTable.getSelectedRow();
+//        DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
+//        StylistOrder stylistOrderItem  = (StylistOrder) model.getValueAt(selectedRowIndex, 5); 
+//        stylistOrderItem.setStatus(Order.OrderStatus.REJECT);
+//        populateRequestTable(stylist.getOrders());
+//        populateBookingTable(stylist.getOrders());
+//        system.getMasterOrderList().updateOrder(stylistOrderItem); 
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnAcceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptMouseClicked
+        int selectedRowIndex = requestTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        StylistOrder stylistOrderItem  = (StylistOrder) model.getValueAt(selectedRowIndex, 5); 
+        stylistOrderItem.setStatus(Order.OrderStatus.ACCEPT);
+        populateRequestTable(stylist.getOrders());
+        populateBookingTable(stylist.getOrders());
+        system.getMasterOrderList().updateOrder(stylistOrderItem);  
+    }//GEN-LAST:event_btnAcceptMouseClicked
+
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        int selectedRowIndex = bookingTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
+        StylistOrder stylistOrderItem  = (StylistOrder) model.getValueAt(selectedRowIndex, 5); 
+        stylistOrderItem.setStatus(Order.OrderStatus.REJECT);
+        populateRequestTable(stylist.getOrders());
+        populateBookingTable(stylist.getOrders());
+        system.getMasterOrderList().updateOrder(stylistOrderItem); 
+    }//GEN-LAST:event_btnCancelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
+    private javax.swing.JTable bookingTable;
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnCancel;
     private javax.swing.JLabel jLabel1;
@@ -157,6 +300,5 @@ public class stylistBookingsPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable requestTable;
-    private javax.swing.JTable requestTable1;
     // End of variables declaration//GEN-END:variables
 }

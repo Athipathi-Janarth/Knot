@@ -40,7 +40,7 @@ public class estimationsPanel extends javax.swing.JPanel {
         for(int i=0;i< masterOrderDirectory.getMasterOrderList().size();i++){
             Order order = masterOrderDirectory.getMasterOrderList().get(i);
             if(order.getUserName().equals(user.getUserName()) && order.getStatus().getValue().equals( Order.OrderStatus.CONFIRM.getValue())){
-              System.out.println("User order found");
+              System.out.println("Order Id "+ order.getOrderId());
               model.addRow(new Object[]{
                     order.getOrderId(),
                     order.getItemName(),

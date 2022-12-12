@@ -5,9 +5,7 @@
 package Models.Organization;
 
 import Model.Menus.DecorMenu;
-import Model.Menus.DecorMenu;
-import Model.Menus.VenueMenu;
-import Models.Order.OrderDirectory;
+import Models.Order.DecorOrderDirectory;
 
 /**
  *
@@ -30,14 +28,16 @@ public class Decor extends Organization {
     public void setMenu(DecorMenu menu) {
         this.menu = menu;
     }
-    
-    private OrderDirectory orders;
+    private DecorOrderDirectory orders;
 
-    public OrderDirectory getOrders() {
+    public DecorOrderDirectory getOrders() {
+        if(orders ==null){
+            orders = new DecorOrderDirectory();
+        }
         return orders;
     }
 
-    public void setOrders(OrderDirectory orders) {
+    public void setOrders(DecorOrderDirectory orders) {
         this.orders = orders;
     }
 }

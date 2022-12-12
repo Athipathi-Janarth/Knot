@@ -41,11 +41,10 @@ public class MasterOrderDirectory extends OrderDirectory {
     }
     
     public Order updateOrder(Order order) {
-        System.out.println("Updating emploee");
         if (order != null) {
             for (int i = 0; i < masterOrderList.size(); i++) {
-                System.out.println("gng to update Order "+ order.getOrderId());
                 if (order.getOrderId() == masterOrderList.get(i).getOrderId()) {
+                    System.out.println("gng to update Order "+ order.getOrderId());
                     masterOrderList.set(i, order);
                     return order;
                 }

@@ -27,6 +27,9 @@ public class StylistOrderDirectory extends OrderDirectory {
     }
 
     public ArrayList<StylistOrder> getStylistOrders() {
+        if(stylistOrders==null){
+            stylistOrders = new ArrayList<>();
+        }
         return stylistOrders;
     }
 

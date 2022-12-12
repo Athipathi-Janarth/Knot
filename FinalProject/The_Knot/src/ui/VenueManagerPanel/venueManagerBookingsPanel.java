@@ -65,7 +65,7 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(int i=0;i< venueOrderDirectory.getVenueOrder().size();i++){
             VenueOrder venuOrderItem = venueOrderDirectory.getVenueOrder().get(i);
-            if(venuOrderItem.getStatus() == Order.OrderStatus.PENDING){
+            if(venuOrderItem.getStatus().getValue().equals(Order.OrderStatus.PENDING.getValue())){
               model.addRow(new Object[]{
                     venuOrderItem.getUserName(),
                     venuOrderItem.getPrice(),
@@ -85,7 +85,7 @@ public class venueManagerBookingsPanel extends javax.swing.JPanel {
         for(int i=0;i< venueOrderDirectory.getVenueOrder().size();i++){
             VenueOrder venuOrderItem = venueOrderDirectory.getVenueOrder().get(i);
             System.out.println(venuOrderItem.getStatus());
-            if(venuOrderItem.getStatus() == Order.OrderStatus.CONFIRM  || venuOrderItem.getStatus() ==  Order.OrderStatus.ACCEPT || venuOrderItem.getStatus() ==  Order.OrderStatus.DONE){
+            if(venuOrderItem.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue())  || venuOrderItem.getStatus().getValue().equals(Order.OrderStatus.ACCEPT.getValue())){
                 model.addRow(new Object[]{
                     venuOrderItem.getUserName(),
                     venuOrderItem.getPrice(),

@@ -31,7 +31,7 @@ public class mainPanelDecoration extends javax.swing.JPanel {
         this.system = system;
         this.employee = employee;
         initComponents();
-        bookings= new decorationBookingsPanel();
+        bookings= new decorationBookingsPanel(system, employee);
         splitPane.setRightComponent(bookings);
     }
 
@@ -131,7 +131,7 @@ public class mainPanelDecoration extends javax.swing.JPanel {
 
     private void btnBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingsActionPerformed
         // TODO add your handling code here:
-        bookings= new decorationBookingsPanel();
+        bookings= new decorationBookingsPanel(system, employee);
         splitPane.setRightComponent(bookings);
         
     }//GEN-LAST:event_btnBookingsActionPerformed

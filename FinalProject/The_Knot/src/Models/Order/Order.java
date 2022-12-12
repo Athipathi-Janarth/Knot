@@ -68,6 +68,15 @@ public class Order {
     private long orderId;
     private float price;
     private String itemName;
+    private int itemId;
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
 
     public String getUsername() {
         return username;

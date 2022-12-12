@@ -8,7 +8,10 @@ import Business.EcoSystem;
 import Employee.Employee;
 import Model.MenuItem.BakeryMenuItem;
 import Model.Menus.BakeryMenu;
+import Models.Order.BakeryOrder;
 import Models.Order.BakeryOrderDirectory;
+import Models.Order.Order;
+import Models.Order.VenueOrder;
 import Models.Organization.Bakery;
 import Models.Organization.Organization;
 import Network.Network;
@@ -40,25 +43,46 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
         adminPanelCard.setBackground(new Color(0,0,0,90));
         bakery = getBakery(employee.getOrgId());
         System.out.println("Bakery order size " + bakery.getOrders().getBakeryOrders().size());
-//        populateTable(bakery.getOrders());
+        populateRequestTable(bakery.getOrders());
+        populateBookingTable(bakery.getOrders());
     }
     
-     private void populateTable(BakeryOrderDirectory bakeryDirectory){
+     private void populateRequestTable(BakeryOrderDirectory bakeryDirectory){
         System.out.print("Bakery Ordr ");
         System.out.print(bakeryDirectory);
         DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
         model.setRowCount(0);
-//        for(int i=0;i< menu.getBakeryMenu().size();i++){
-//            BakeryMenuItem menuItem = menu.getBakeryMenu().get(i);
-//            model.addRow(new Object[]{
-//              menuItem.getItemName(),
-//              menuItem.getFlavour(),
-//              menuItem.getServes(),
-//              menuItem.getPrice(),
-//              menuItem.getPhoto(),
-//              menuItem
-//            });
-//        }
+        for(int i=0;i < bakeryDirectory.getBakeryOrders().size();i++){
+        BakeryOrder bakeryOrderItem = bakeryDirectory.getBakeryOrders().get(i);
+        if(bakeryOrderItem.getStatus().getValue().equals(Order.OrderStatus.PENDING.getValue()))
+            model.addRow(new Object[]{
+                    bakeryOrderItem.getUserName(),
+                    bakeryOrderItem.getOrderDate(),
+                    bakeryOrderItem.getItemName(),
+                    bakeryOrderItem.getPrice(),
+                    bakeryOrderItem.getStatus(),
+                    bakeryOrderItem
+            });
+        }
+    }
+     
+    private void populateBookingTable(BakeryOrderDirectory bakeryDirectory){
+        System.out.print("Bakery Order ");
+        System.out.print(bakeryDirectory);
+        DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
+        model.setRowCount(0);
+        for(int i=0;i < bakeryDirectory.getBakeryOrders().size();i++){
+        BakeryOrder bakeryOrderItem = bakeryDirectory.getBakeryOrders().get(i);
+        if(bakeryOrderItem.getStatus().getValue().equals(Order.OrderStatus.CONFIRM.getValue()) || bakeryOrderItem.getStatus().getValue().equals( Order.OrderStatus.ACCEPT.getValue()))
+            model.addRow(new Object[]{
+                    bakeryOrderItem.getUserName(),
+                    bakeryOrderItem.getOrderDate(),
+                    bakeryOrderItem.getItemName(),
+                    bakeryOrderItem.getPrice(),
+                    bakeryOrderItem.getStatus(),
+                    bakeryOrderItem
+            });
+        }
     }
     
     
@@ -94,7 +118,7 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
         requestTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        requestTable1 = new javax.swing.JTable();
+        bookingTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnAccept = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -106,17 +130,17 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
         requestTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "User", "Name", "Booking Date", "Price", "Status", "Order"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -124,40 +148,60 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(requestTable);
+        if (requestTable.getColumnModel().getColumnCount() > 0) {
+            requestTable.getColumnModel().getColumn(5).setMinWidth(0);
+            requestTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            requestTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Order Requests");
 
-        requestTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        requestTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bookingTable.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Booking Date", "Item", "Price", "Status"
+                "User", "Name", "Booking Date", "Price", "Status", "Order"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(requestTable1);
+        jScrollPane2.setViewportView(bookingTable);
+        if (bookingTable.getColumnModel().getColumnCount() > 0) {
+            bookingTable.getColumnModel().getColumn(5).setMinWidth(0);
+            bookingTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            bookingTable.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Upcoming / Past Orders");
 
         btnAccept.setText("Accept");
+        btnAccept.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAcceptMouseClicked(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
@@ -205,10 +249,31 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
         adminBackgroundImg.setBounds(0, 0, 1090, 630);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptMouseClicked
+        int selectedRowIndex = requestTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) requestTable.getModel();
+        BakeryOrder bakeryOrderItem  = (BakeryOrder) model.getValueAt(selectedRowIndex, 5); 
+        bakeryOrderItem.setStatus(Order.OrderStatus.ACCEPT);
+        populateRequestTable(bakery.getOrders());
+        populateBookingTable(bakery.getOrders());
+        system.getMasterOrderList().updateOrder(bakeryOrderItem);
+    }//GEN-LAST:event_btnAcceptMouseClicked
+
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        int selectedRowIndex = bookingTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) bookingTable.getModel();
+        BakeryOrder bakeryOrderItem  = (BakeryOrder) model.getValueAt(selectedRowIndex, 5); 
+        bakeryOrderItem.setStatus(Order.OrderStatus.REJECT);
+        populateRequestTable(bakery.getOrders());
+        populateBookingTable(bakery.getOrders());
+        system.getMasterOrderList().updateOrder(bakeryOrderItem);
+    }//GEN-LAST:event_btnCancelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminBackgroundImg;
     private javax.swing.JPanel adminPanelCard;
+    private javax.swing.JTable bookingTable;
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnCancel;
     private javax.swing.JLabel jLabel1;
@@ -216,6 +281,5 @@ public class bakerBookingsPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable requestTable;
-    private javax.swing.JTable requestTable1;
     // End of variables declaration//GEN-END:variables
 }
