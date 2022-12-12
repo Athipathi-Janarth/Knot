@@ -6,6 +6,12 @@ package ui.SystemAdmin;
 
 import Business.EcoSystem;
 import DB4OUtil.DB4OUtil;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -46,6 +52,7 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
         btnEnterprise = new javax.swing.JButton();
         btnAdmins = new javax.swing.JButton();
         btnViewAdmins = new javax.swing.JButton();
+        btnViewAdmins1 = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1210, 630));
         setPreferredSize(new java.awt.Dimension(1210, 630));
@@ -94,6 +101,15 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
             }
         });
 
+        btnViewAdmins1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/manageIcon.png"))); // NOI18N
+        btnViewAdmins1.setText("       Visualize Data");
+        btnViewAdmins1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnViewAdmins1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewAdmins1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sysAdminMenuPanelLayout = new javax.swing.GroupLayout(sysAdminMenuPanel);
         sysAdminMenuPanel.setLayout(sysAdminMenuPanelLayout);
         sysAdminMenuPanelLayout.setHorizontalGroup(
@@ -113,7 +129,8 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
                     .addComponent(btnEnterprise, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdmins, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnViewAdmins, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnViewAdmins, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnViewAdmins1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         sysAdminMenuPanelLayout.setVerticalGroup(
             sysAdminMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +147,9 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
                 .addComponent(btnAdmins)
                 .addGap(26, 26, 26)
                 .addComponent(btnViewAdmins)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(btnViewAdmins1)
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(sysAdminMenuPanel);
@@ -174,12 +193,34 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
         splitPane.setRightComponent(displayPanel);
     }//GEN-LAST:event_btnViewAdminsActionPerformed
 
+    private void btnViewAdmins1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAdmins1ActionPerformed
+        // TODO add your handling code here:
+        drawchart();
+    }//GEN-LAST:event_btnViewAdmins1ActionPerformed
+     private void drawchart(){
+        DefaultPieDataset pieDataset= new DefaultPieDataset();
+        pieDataset.setValue("One",1);
+        pieDataset.setValue("Two",2);
+        pieDataset.setValue("Three",3);
+        pieDataset.setValue("Four",1);
+        
+        JFreeChart chart=ChartFactory.createPieChart("Organizations", pieDataset);
+        PiePlot p=(PiePlot)chart.getPlot();
+        ChartPanel chartPanel= new ChartPanel(chart);
+      
+        ChartFrame frame= new ChartFrame("Organizations",chart);
+           frame.setVisible(true);
+           frame.setSize(450,500);
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmins;
     private javax.swing.JButton btnEnterprise;
     private javax.swing.JButton btnNetwork;
     private javax.swing.JButton btnViewAdmins;
+    private javax.swing.JButton btnViewAdmins1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel sysAdminMenuPanel;
