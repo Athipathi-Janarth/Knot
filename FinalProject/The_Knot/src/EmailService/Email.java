@@ -50,4 +50,30 @@ public class Email {
             //System.out.println(""+ex);
             }           
     }
+    public void sendPaymentEmail(CoupleUser user,float total){
+         setProperties();
+           try{
+            MimeMessage message = new MimeMessage (session) ;
+            message. setFrom (new InternetAddress (system_mail));
+            message.addRecipient (Message. RecipientType.TO, new InternetAddress (user.getEmail()));
+            message.setSubject ("PAYMENT CONFIRMATION RECEIPT");
+            message.setText("Dear "+ user.getName()+",\n" +
+            "\n" +
+            "Thank you for getting in touch with The Knot. \n" +
+            "We are happy to hear from you and delighted to help and plan your Wedding. \n" +
+            "\n" +
+            "This email is just to confirm the receipt of your Payment for\n" +
+            total+". \n" +
+            "In the meantime, if you have any more questions don’t \n" +
+            "hesitate to share them by hitting reply to this message. \n" +
+            "\n" +
+            "King regards, \n" +
+            "\n" +
+            "The Knot");
+            Transport.send(message);
+            System.out.println("Email Sent");
+            } catch (Exception ex) {
+            //System.out.println(""+ex);
+            }   
+    }
 }

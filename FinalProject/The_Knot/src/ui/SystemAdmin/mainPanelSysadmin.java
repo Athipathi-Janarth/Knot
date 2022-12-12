@@ -6,6 +6,10 @@ package ui.SystemAdmin;
 
 import Business.EcoSystem;
 import DB4OUtil.DB4OUtil;
+import Models.Order.MasterOrderDirectory;
+import Models.Order.Order;
+import java.util.HashMap;
+import java.util.Map;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
@@ -199,11 +203,23 @@ public class mainPanelSysadmin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnViewAdmins1ActionPerformed
      private void drawchart(){
         DefaultPieDataset pieDataset= new DefaultPieDataset();
-        pieDataset.setValue("One",1);
-        pieDataset.setValue("Two",2);
-        pieDataset.setValue("Three",3);
-        pieDataset.setValue("Four",1);
-        
+        MasterOrderDirectory masterOrderList = system.getMasterOrderList();
+         Map<String, Integer> hMap = new HashMap<>();
+
+        int femaleCount = 0;
+        int maleCount = 0;
+        for (Order order : masterOrderList.getMasterOrderList()) {
+        if( hMap.get(order.getOrgName())==null)
+        {
+              hMap.put(order.getOrgName(), 1);
+        }else{
+        hMap.put(order.getOrgName(),hMap.get(order.getOrgName())+1 );
+        }
+            
+        }
+        for (Map.Entry<String,Integer> entry : hMap.entrySet()) 
+            pieDataset.setValue(entry.getKey(),entry.getValue());          
+             
         JFreeChart chart=ChartFactory.createPieChart("Organizations", pieDataset);
         PiePlot p=(PiePlot)chart.getPlot();
         ChartPanel chartPanel= new ChartPanel(chart);

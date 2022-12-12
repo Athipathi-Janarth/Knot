@@ -5,6 +5,7 @@
 package ui.User;
 
 import Business.EcoSystem;
+import EmailService.Email;
 import Models.Order.MasterOrderDirectory;
 import Models.Order.Order;
 import Payment.Payment;
@@ -23,8 +24,10 @@ public class estimationsPanel extends javax.swing.JPanel {
     /**
      * Creates new form networkPanel
      */
+    Email email=new Email();
     EcoSystem system;
     CoupleUser user;
+    float total;
     public estimationsPanel(EcoSystem system,CoupleUser user) {
         initComponents();
         this.system= system;
@@ -63,6 +66,7 @@ public class estimationsPanel extends javax.swing.JPanel {
             }
         }
         System.out.println(total);
+        this.total=total;
         totalValue.setText(Float.toString(total));
     }
     /**
@@ -182,6 +186,9 @@ public class estimationsPanel extends javax.swing.JPanel {
         }
        populateCardTable(system.getMasterOrderList());
        System.out.println("add masterlist");
+       email.sendPaymentEmail(user,total);
+
+      
     }//GEN-LAST:event_payMouseClicked
 
 

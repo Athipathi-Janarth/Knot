@@ -7,6 +7,7 @@ package ui.FinanceAdmin;
 
 import Business.EcoSystem;
 import Employee.Employee;
+import Models.Order.Order;
 import Payment.Payment;
 import Payment.PaymentDirectory;
 import java.awt.Color;
@@ -18,19 +19,14 @@ import javax.swing.table.DefaultTableModel;
  * @author vikashsingh
  */
 public class paymentPanel extends javax.swing.JPanel {
-//    [7:40 PM, 12/5/2022] Athi Dsem: mainPanelSysAdmin-> mainPanelFoodAdmin
-//[7:41 PM, 12/5/2022] Athi Dsem: enterprisePanel->organisation Panel
-//[7:41 PM, 12/5/2022] Athi Dsem: manageAdminPanel->manageBusinessUserPanel
-//[7:42 PM, 12/5/2022] Athi Dsem: manage Networkpanel-> dsplay Employees
-    /**
-     * Creates new form networkPanel
-     */
+
     EcoSystem system;
     public paymentPanel(EcoSystem system,Employee employee) {
         initComponents();
         this.system=system;
         adminPanelCard.setBackground(new Color(0,0,0,90));
         populateTable();
+        setTotal();
     }
     
     public void populateTable(){
@@ -49,6 +45,15 @@ public class paymentPanel extends javax.swing.JPanel {
             });
         }
     }
+    public void setTotal(){
+        float total = 0;
+         for(int i=0;i< system.getPaymentList().getPaymentList().size();i++){
+             Payment menuItem = system.getPaymentList().getPaymentList().get(i); 
+             total=total+menuItem.getAmount();
+         }
+        System.out.println(total);
+        totalValue.setText(Float.toString(total));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,6 +66,8 @@ public class paymentPanel extends javax.swing.JPanel {
         adminPanelCard = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         paymentTable = new javax.swing.JTable();
+        totalLabel = new javax.swing.JLabel();
+        totalValue = new javax.swing.JLabel();
         adminBackgroundImg = new javax.swing.JLabel();
 
         setSize(new java.awt.Dimension(977, 630));
@@ -88,20 +95,34 @@ public class paymentPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(paymentTable);
 
+        totalLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        totalLabel.setText("Total Revenue:");
+
+        totalValue.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout adminPanelCardLayout = new javax.swing.GroupLayout(adminPanelCard);
         adminPanelCard.setLayout(adminPanelCardLayout);
         adminPanelCardLayout.setHorizontalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminPanelCardLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(adminPanelCardLayout.createSequentialGroup()
+                        .addComponent(totalLabel)
+                        .addGap(77, 77, 77)
+                        .addComponent(totalValue, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(311, Short.MAX_VALUE))
         );
         adminPanelCardLayout.setVerticalGroup(
             adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminPanelCardLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(adminPanelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalLabel)
+                    .addComponent(totalValue, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -120,5 +141,7 @@ public class paymentPanel extends javax.swing.JPanel {
     private javax.swing.JPanel adminPanelCard;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable paymentTable;
+    private javax.swing.JLabel totalLabel;
+    private javax.swing.JLabel totalValue;
     // End of variables declaration//GEN-END:variables
 }
